@@ -195,7 +195,7 @@ line in its log, and a new row in `reports` (see the outputs above). In Kubernet
 **A dependency is missing.** Run the worker with its default URLs: on this network there is no `python-api` and no
 `go-status`, exactly what happens when the job starts before the services exist:
 
-<!-- test: fail; contains=ENOTFOUND; output -->
+<!-- test: fail; contains=python-api:8000/api/stats failed; output -->
 ```bash
 docker run --rm --network lesson-worker \
   -e DB_HOST=lesson-worker-db -e DB_PASSWORD=example-only \
@@ -207,7 +207,9 @@ docker run --rm --network lesson-worker \
 2026-10-04T17:51:07.247Z report-worker ERROR: GET http://python-api:8000/api/stats failed: ENOTFOUND: getaddrinfo ENOTFOUND python-api
 ```
 
-`ENOTFOUND` means a **DNS** failure: the name does not exist on this network. Exit code 1: Kubernetes would mark the
+The name `python-api` does not exist on this network. Depending on the DNS server, that shows up as `ENOTFOUND`
+(the lookup fails at once, as on Docker Desktop) or as a `TimeoutError` (the lookup is still unanswered when the
+worker's 5-second timeout ends, as on the CI machines). Either way it is a **DNS** problem: the name is not there. Exit code 1: Kubernetes would mark the
 Job's Pod as failed and retry it (up to `backoffLimit`).
 
 **The secret is missing.**

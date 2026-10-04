@@ -96,6 +96,10 @@ No language toolchains (Node, Python, Go, JDK, PHP) are needed: every build runs
 | 19 | Troubleshooting | [troubleshooting/](troubleshooting/README.md), [docs/13](docs/13-logging-and-debugging.md) |
 | 20 | The complete multi-stack platform | [capstone/](capstone/README.md) |
 
+**Start here:** the guided [tutorial](tutorial/README.md) walks you through the twenty levels in order, like a senior
+engineer sitting next to you. To revise or read offline: the [study guide PDF](study/study-guide.pdf), with the
+[glossary](study/glossary.md) and [25 interview questions](study/interview-questions.md).
+
 Practical challenges come after every major section: in each application lesson, in the Compose lesson, and in
 [labs/](labs/README.md).
 
@@ -110,6 +114,8 @@ Practical challenges come after every major section: in each application lesson,
 ├── troubleshooting/ 12 failures: break it, investigate, fix, verify
 ├── labs/           practical challenges with hidden solutions
 ├── capstone/       the complete platform, verified by one script
+├── tutorial/       the guided course: 14 chapters through the repository, level by level
+├── study/          glossary, 25 interview questions, the printable study guide (PDF)
 └── tests/          the runner that executes every lesson (mdrun.py), link checker, screenshot helper
 ```
 

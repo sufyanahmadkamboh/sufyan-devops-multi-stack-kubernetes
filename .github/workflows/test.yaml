@@ -91,7 +91,8 @@ jobs:
           kind version && kubectl version --client && helm version
       - name: Build the images (the same as the Compose lesson builds)
         run: |
-          cd compose && cp .env.example .env && docker compose --profile jobs build
+          # the example .env only satisfies the file's required variables for the build; the lessons create real values
+          cd compose && cp .env.example .env && docker compose --profile jobs build && rm .env
       - name: Run the lessons
         run: |
           files="kubernetes/00-cluster.md kubernetes/01-foundation.md"
