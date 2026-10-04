@@ -1,0 +1,8 @@
+kubectl get pvc
+kubectl get pv -o custom-columns='VOLUME:.metadata.name,CLAIM:.spec.claimRef.name,CAPACITY:.spec.capacity.storage,STORAGECLASS:.spec.storageClassName,STATUS:.status.phase'
+---
+NAME              STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+data-postgres-0   Bound    pvc-1ba278d3-a38a-4bfc-8c87-5d89fc688bc6   1Gi        RWO            standard       <unset>                 3m20s
+VOLUME                                     CLAIM             CAPACITY   STORAGECLASS   STATUS
+pvc-1ba278d3-a38a-4bfc-8c87-5d89fc688bc6   data-postgres-0   1Gi        standard       Bound
+# exit 0

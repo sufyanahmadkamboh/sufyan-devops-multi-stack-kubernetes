@@ -1,0 +1,5 @@
+docker run --rm --network laravel-lab -e DB_PASSWORD=example-only laravel-fpm:1.0.0
+---
+laravel-admin: missing required environment variable(s): APP_KEY
+laravel-admin: APP_KEY can be generated with: php artisan key:generate --show
+# exit 1

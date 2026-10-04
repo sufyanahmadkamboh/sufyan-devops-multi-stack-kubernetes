@@ -1,0 +1,4 @@
+kubectl apply -f kubernetes/namespace.yaml
+---
+namespace/bookshop created
+# exit 0

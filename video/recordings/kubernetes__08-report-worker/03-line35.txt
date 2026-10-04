@@ -1,0 +1,6 @@
+kubectl create job report-now --from=cronjob/report-worker
+kubectl wait --for=condition=complete job/report-now --timeout=240s
+---
+job.batch/report-now created
+job.batch/report-now condition met
+# exit 0

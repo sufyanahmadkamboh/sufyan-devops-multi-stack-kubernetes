@@ -1,0 +1,86 @@
+bash capstone/deploy.sh
+---
+
+==> 1/8 images: build every application (Docker layer cache makes rebuilds fast)
+ Image python-api:1.0.0 Building 
+ Image laravel-fpm:1.0.0 Building 
+ Image frontend:1.0.0 Building 
+ Image java-api:1.0.0 Building 
+ Image go-status:1.0.0 Building 
+ Image report-worker:1.0.0 Building 
+ Image laravel-web:1.0.0 Building 
+ Image node-api:1.0.0 Building 
+ Image node-api:1.0.0 Built 
+ Image frontend:1.0.0 Built 
+ Image go-status:1.0.0 Built 
+ Image laravel-fpm:1.0.0 Built 
+ Image report-worker:1.0.0 Built 
+ Image python-api:1.0.0 Built 
+ Image java-api:1.0.0 Built 
+ Image laravel-web:1.0.0 Built 
+
+==> 2/8 cluster: kind + Traefik ingress controller
+traefik ready
+
+==> 3/8 images into the cluster
+Image: "frontend:1.0.0" with ID "sha256:4f1e116a82bdd1eba4e060e327464fe43bc364154ab2e8fc935f402214598b1f" not yet present on node "bookshop-control-plane", loading...
+Image: "frontend:1.0.0" with ID "sha256:4f1e116a82bdd1eba4e060e327464fe43bc364154ab2e8fc935f402214598b1f" not yet present on node "bookshop-worker", loading...
+Image: "node-api:1.0.0" with ID "sha256:751ec8fc0cfb11108f498ce7d71971e39c8855343921acb1fae155ad825d9ce9" not yet present on node "bookshop-control-plane", loading...
+Image: "node-api:1.0.0" with ID "sha256:751ec8fc0cfb11108f498ce7d71971e39c8855343921acb1fae155ad825d9ce9" not yet present on node "bookshop-worker", loading...
+Image: "python-api:1.0.0" with ID "sha256:93184881583830f429c2f4d17a0c8749687a3be4732f50545391abf0be9782a3" not yet present on node "bookshop-control-plane", loading...
+Image: "python-api:1.0.0" with ID "sha256:93184881583830f429c2f4d17a0c8749687a3be4732f50545391abf0be9782a3" not yet present on node "bookshop-worker", loading...
+Image: "go-status:1.0.0" with ID "sha256:bbd27b14056a034f7caa79a959ef7be61da9758b96789ac1ee0eefdd01a3e2fb" not yet present on node "bookshop-control-plane", loading...
+Image: "go-status:1.0.0" with ID "sha256:bbd27b14056a034f7caa79a959ef7be61da9758b96789ac1ee0eefdd01a3e2fb" not yet present on node "bookshop-worker", loading...
+Image: "java-api:1.0.0" with ID "sha256:e1a9b4cd3f1b28803c6afcefa336eb877d4880429cd0f384719e1afff1bec248" not yet present on node "bookshop-control-plane", loading...
+Image: "java-api:1.0.0" with ID "sha256:e1a9b4cd3f1b28803c6afcefa336eb877d4880429cd0f384719e1afff1bec248" not yet present on node "bookshop-worker", loading...
+Image: "laravel-fpm:1.0.0" with ID "sha256:b1f1b0bfc3236a865fa188db27b2e03fc65ee4a51b1eb734163d599e33b13a7b" not yet present on node "bookshop-control-plane", loading...
+Image: "laravel-fpm:1.0.0" with ID "sha256:b1f1b0bfc3236a865fa188db27b2e03fc65ee4a51b1eb734163d599e33b13a7b" not yet present on node "bookshop-worker", loading...
+Image: "laravel-web:1.0.0" with ID "sha256:cd091881eb5ca2f8c47b57e2cef20e119c0e6803a78e4ecd67d940c25f06765c" not yet present on node "bookshop-control-plane", loading...
+Image: "laravel-web:1.0.0" with ID "sha256:cd091881eb5ca2f8c47b57e2cef20e119c0e6803a78e4ecd67d940c25f06765c" not yet present on node "bookshop-worker", loading...
+Image: "report-worker:1.0.0" with ID "sha256:84a13554578547c857c456e3c98d7604b91139357beb22e2ae26e508ee2dbcc3" not yet present on node "bookshop-control-plane", loading...
+Image: "report-worker:1.0.0" with ID "sha256:84a13554578547c857c456e3c98d7604b91139357beb22e2ae26e508ee2dbcc3" not yet present on node "bookshop-worker", loading...
+loaded 8 images
+
+==> 4/8 namespace, configuration, secrets (generated once, never written to disk)
+namespace/bookshop unchanged
+configmap/bookshop-config unchanged
+
+==> 5/8 database
+service/postgres unchanged
+statefulset.apps/postgres configured
+partitioned roll out complete: 1 new pods have been updated...
+
+==> 6/8 schema migrations (Laravel Job), then the applications
+job.batch/laravel-migrate created
+job.batch/laravel-migrate condition met
+deployment.apps/node-api unchanged
+service/node-api unchanged
+deployment.apps/python-api unchanged
+service/python-api unchanged
+deployment.apps/java-api unchanged
+Warning: resource services/java-api is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by kubectl apply. kubectl apply should only be used on resources created declaratively by either kubectl create --save-config or kubectl apply. The missing annotation will be patched automatically.
+service/java-api configured
+deployment.apps/go-status unchanged
+service/go-status unchanged
+deployment.apps/frontend unchanged
+service/frontend unchanged
+deployment.apps/laravel-admin unchanged
+service/laravel-admin unchanged
+cronjob.batch/report-worker unchanged
+deployment.apps/frontend condition met
+deployment.apps/go-status condition met
+deployment.apps/java-api condition met
+deployment.apps/laravel-admin condition met
+deployment.apps/node-api condition met
+deployment.apps/python-api condition met
+
+==> 7/8 entry point
+ingress.networking.k8s.io/bookshop unchanged
+
+==> 8/8 first report
+job.batch/capstone-report created
+job.batch/capstone-report condition met
+
+Bookshop is up:  http://bookshop.localhost:8080   admin: http://admin.bookshop.localhost:8080
+Verify it:       capstone/verify.sh
+# exit 0

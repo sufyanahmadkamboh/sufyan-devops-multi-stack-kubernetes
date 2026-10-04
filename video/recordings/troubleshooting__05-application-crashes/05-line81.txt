@@ -1,0 +1,7 @@
+kubectl rollout undo deployment/node-api
+kubectl rollout status deployment/node-api --timeout=240s
+---
+Warning: resource deployments/node-api was previously managed with 'kubectl apply'. Rolling back will not update the kubectl.kubernetes.io/last-applied-configuration annotation, which may cause unexpected behavior on future 'kubectl apply' operations. Consider using 'kubectl apply' with your previous configuration file instead.
+deployment.apps/node-api rolled back
+deployment "node-api" successfully rolled out
+# exit 0

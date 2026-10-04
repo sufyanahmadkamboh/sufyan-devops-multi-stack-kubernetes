@@ -1,0 +1,13 @@
+docker images --format 'table {{.Repository}}\t{{.Tag}}\t{{.Size}}' | grep -E 'REPOSITORY|1\.0\.0'
+---
+REPOSITORY               TAG                             SIZE
+quotes-api               1.0.0                           189MB
+laravel-fpm              1.0.0                           222MB
+java-api                 1.0.0                           348MB
+laravel-web              1.0.0                           81.5MB
+frontend                 1.0.0                           81.8MB
+go-status                1.0.0                           16.4MB
+report-worker            1.0.0                           246MB
+node-api                 1.0.0                           251MB
+python-api               1.0.0                           261MB
+# exit 0

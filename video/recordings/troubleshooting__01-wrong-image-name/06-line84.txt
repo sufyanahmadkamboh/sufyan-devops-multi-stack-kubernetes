@@ -1,0 +1,6 @@
+kubectl apply -f kubernetes/go-status/deployment.yaml
+kubectl rollout status deployment/go-status --timeout=240s
+---
+deployment.apps/go-status configured
+deployment "go-status" successfully rolled out
+# exit 0

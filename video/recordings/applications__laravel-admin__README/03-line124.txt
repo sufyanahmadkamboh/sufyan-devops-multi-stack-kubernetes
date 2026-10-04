@@ -1,0 +1,10 @@
+docker network create laravel-lab
+docker run -d --name laravel-db --network laravel-lab \
+  -e POSTGRES_DB=bookshop -e POSTGRES_USER=bookshop -e POSTGRES_PASSWORD=example-only \
+  postgres:18.6-alpine
+docker ps --filter name=laravel-db --format '{{.Names}} {{.Status}}'
+---
+c3f00a09e8a85d66479473951eb27e5efe34666bf09ae6e429bbd61b34c17044
+42d7b3f64258a8a0ad18a0ebdb09ca889ba13712c586fc9c3cf37e1b78a90fe0
+laravel-db Up Less than a second
+# exit 0

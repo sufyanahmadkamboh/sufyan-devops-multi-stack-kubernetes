@@ -1,0 +1,6 @@
+kubectl apply -f kubernetes/python-api/deployment.yaml
+kubectl rollout status deployment/python-api --timeout=240s
+---
+deployment.apps/python-api configured
+deployment "python-api" successfully rolled out
+# exit 0

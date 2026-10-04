@@ -1,0 +1,7 @@
+docker rm -f lesson-worker-db lesson-worker-apis
+docker network rm lesson-worker
+---
+lesson-worker-db
+lesson-worker-apis
+lesson-worker
+# exit 0

@@ -1,0 +1,4 @@
+kubectl set resources deployment python-api --limits=memory=24Mi --requests=memory=24Mi
+---
+deployment.apps/python-api resource requirements updated
+# exit 0

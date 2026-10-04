@@ -1,0 +1,12 @@
+docker compose ps --format 'table {{.Service}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}'
+---
+SERVICE       IMAGE                  STATUS                    PORTS
+frontend      frontend:1.0.0         Up 1 second               127.0.0.1:8081->8080/tcp
+go-status     go-status:1.0.0        Up 15 seconds             8080/tcp
+java-api      java-api:1.0.0         Up 12 seconds (healthy)   8080/tcp
+laravel-fpm   laravel-fpm:1.0.0      Up 11 seconds             9000/tcp
+laravel-web   laravel-web:1.0.0      Up 10 seconds             127.0.0.1:8082->8080/tcp
+node-api      node-api:1.0.0         Up 12 seconds (healthy)   3000/tcp
+postgres      postgres:18.6-alpine   Up 15 seconds (healthy)   5432/tcp
+python-api    python-api:1.0.0       Up 12 seconds (healthy)   8000/tcp
+# exit 0

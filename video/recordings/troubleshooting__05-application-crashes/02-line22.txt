@@ -1,0 +1,7 @@
+kubectl get pods -l app=node-api
+---
+NAME                       READY   STATUS             RESTARTS     AGE
+node-api-6f678b5b5-btwrc   1/1     Running            0            2m16s
+node-api-6f678b5b5-dwb4s   1/1     Running            0            2m18s
+node-api-87d54bc8-sl7nk    0/1     CrashLoopBackOff   1 (3s ago)   5s
+# exit 0

@@ -1,0 +1,6 @@
+kubectl rollout status deployment/node-api --timeout=240s
+---
+Waiting for deployment "node-api" rollout to finish: 0 of 2 updated replicas are available...
+Waiting for deployment "node-api" rollout to finish: 1 of 2 updated replicas are available...
+deployment "node-api" successfully rolled out
+# exit 0

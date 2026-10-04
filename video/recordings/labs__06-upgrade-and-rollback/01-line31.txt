@@ -1,0 +1,56 @@
+docker build --build-arg APP_VERSION=2.0.0 -t quotes-api:2.0.0 labs/work/quotes-api > /dev/null
+kind load docker-image quotes-api:2.0.0 --name bookshop > /dev/null
+kubectl set image deployment/quotes-api quotes-api=quotes-api:2.0.0
+kubectl annotate deployment/quotes-api kubernetes.io/change-cause="quotes-api 2.0.0: served_by" --overwrite > /dev/null
+kubectl rollout status deployment/quotes-api --timeout=240s
+---
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 218B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.14-slim
+#2 DONE 0.7s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 50B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 28B done
+#4 DONE 0.0s
+
+#5 [1/3] FROM docker.io/library/python:3.14-slim@sha256:c3e521df8b2b498a7a682e7e18676771cb80c6b75b8699af886b2d554ce40151
+#5 resolve docker.io/library/python:3.14-slim@sha256:c3e521df8b2b498a7a682e7e18676771cb80c6b75b8699af886b2d554ce40151 0.0s done
+#5 DONE 0.0s
+
+#6 [2/3] WORKDIR /app
+#6 CACHED
+
+#7 [3/3] COPY app.py .
+#7 CACHED
+
+#8 exporting to image
+#8 exporting layers done
+#8 exporting manifest sha256:630ff89ceb822b3170e0a5bad0620396010b9514a3f9614bf0f95b33454858d2 done
+#8 exporting config sha256:5ef3de430d47885c059230353c8b0cc852f8c15df9e739b857056b77df8a95ed done
+#8 exporting attestation manifest sha256:d356088c4e36862b31928f74070c78b5243b2f3c073fcfa71872f09e7acc1eff 0.0s done
+#8 exporting manifest list sha256:48c9c50513c4b09c9204fc399d7cb43080e91302d3cfa18fba1e5fa8ae6bf41c
+#8 exporting manifest list sha256:48c9c50513c4b09c9204fc399d7cb43080e91302d3cfa18fba1e5fa8ae6bf41c 0.0s done
+#8 naming to docker.io/library/quotes-api:2.0.0 done
+#8 unpacking to docker.io/library/quotes-api:2.0.0 done
+#8 DONE 0.1s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/t8t9c7b7nv8yvarmfw9mir9vy
+Image: "quotes-api:2.0.0" with ID "sha256:48c9c50513c4b09c9204fc399d7cb43080e91302d3cfa18fba1e5fa8ae6bf41c" not yet present on node "bookshop-control-plane", loading...
+Image: "quotes-api:2.0.0" with ID "sha256:48c9c50513c4b09c9204fc399d7cb43080e91302d3cfa18fba1e5fa8ae6bf41c" not yet present on node "bookshop-worker", loading...
+deployment.apps/quotes-api image updated
+Waiting for deployment "quotes-api" rollout to finish: 1 out of 2 new replicas have been updated...
+Waiting for deployment "quotes-api" rollout to finish: 1 out of 2 new replicas have been updated...
+Waiting for deployment "quotes-api" rollout to finish: 1 out of 2 new replicas have been updated...
+Waiting for deployment "quotes-api" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "quotes-api" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "quotes-api" rollout to finish: 1 old replicas are pending termination...
+deployment "quotes-api" successfully rolled out
+# exit 0

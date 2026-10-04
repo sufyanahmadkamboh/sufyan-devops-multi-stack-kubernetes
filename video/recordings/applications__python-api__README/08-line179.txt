@@ -1,0 +1,11 @@
+docker logs py-lab-api
+---
+INFO:     Started server process [1]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-10-04 19:15:59,735 INFO python-api GET /health 200
+2026-10-04 19:15:59,854 INFO python-api GET / 200
+2026-10-04 19:15:59,926 INFO python-api GET /ready 200
+2026-10-04 19:16:00,322 INFO python-api GET /api/stats 200
+# exit 0

@@ -1,0 +1,8 @@
+kubectl get pods -l app=node-api
+kubectl get deployment node-api -o jsonpath='command: {.spec.template.spec.containers[0].command}{"\n"}'
+---
+NAME                       READY   STATUS    RESTARTS   AGE
+node-api-6f678b5b5-btwrc   1/1     Running   0          2m19s
+node-api-6f678b5b5-dwb4s   1/1     Running   0          2m21s
+command: 
+# exit 0

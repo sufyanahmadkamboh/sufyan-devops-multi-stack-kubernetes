@@ -1,0 +1,4 @@
+docker run --rm report-worker:1.0.0
+---
+2026-10-04T19:18:50.736Z report-worker ERROR: DB_PASSWORD is not set. Set it (Compose: environment, Kubernetes: a Secret) and run again.
+# exit 1

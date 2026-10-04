@@ -1,0 +1,5 @@
+kubectl apply -f kubernetes/database/postgres.yaml
+---
+service/postgres created
+statefulset.apps/postgres created
+# exit 0

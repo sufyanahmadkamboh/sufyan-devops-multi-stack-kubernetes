@@ -1,0 +1,5 @@
+kubectl exec deploy/node-api -- wget -qO- -T 3 http://python-api:8000/health 2>&1 || true
+---
+wget: can't connect to remote host (10.96.123.241): Connection refused
+command terminated with exit code 1
+# exit 0

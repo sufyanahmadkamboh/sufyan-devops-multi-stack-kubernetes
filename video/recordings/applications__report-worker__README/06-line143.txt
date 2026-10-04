@@ -1,0 +1,9 @@
+docker run --rm --network lesson-worker \
+  -e DB_HOST=lesson-worker-db -e DB_PASSWORD=example-only \
+  -e STATS_URL=http://lesson-worker-apis:8000/api/stats \
+  -e STATUS_URL=http://lesson-worker-apis:8000/api/status \
+  report-worker:1.0.0
+---
+2026-10-04T19:18:39.142Z report-worker version 1.0.0 starting: stats from http://lesson-worker-apis:8000/api/stats, status from http://lesson-worker-apis:8000/api/status
+2026-10-04T19:18:39.288Z report-worker report #2 saved: users=4 books=5 reviews=2 services up=6/6
+# exit 0

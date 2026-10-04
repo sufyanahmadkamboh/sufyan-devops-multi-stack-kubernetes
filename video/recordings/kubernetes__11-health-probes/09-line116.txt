@@ -1,0 +1,7 @@
+kubectl get events --field-selector reason=Killing --sort-by=.lastTimestamp | grep go-status | tail -1
+kubectl get pods -l app=go-status
+---
+10s         Normal   Killing   pod/go-status-6ddf8dbd94-t4prv   Stopping container go-status
+NAME                        READY   STATUS    RESTARTS   AGE
+go-status-b5b65b96d-xdflm   1/1     Running   0          11s
+# exit 0

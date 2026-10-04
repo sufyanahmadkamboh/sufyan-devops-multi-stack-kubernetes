@@ -1,0 +1,8 @@
+docker run -d --name java-lab-wronghost --network java-lab -p 8085:8080   -e DB_HOST=postgress -e DB_PASSWORD=example-only java-api:1.0.0 > /dev/null
+until curl -sf http://localhost:8085/health > /dev/null; do sleep 1; done
+curl -s -w ' [%{http_code}]
+' http://localhost:8085/ready
+docker rm -f java-lab-wronghost > /dev/null
+---
+{"status":"not ready","service":"java-api","reason":"UnknownHostException: postgress"} [503]
+# exit 0

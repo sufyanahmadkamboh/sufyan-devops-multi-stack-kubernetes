@@ -1,0 +1,12 @@
+docker exec laravel-db createdb -U bookshop fresh 2>/dev/null || true
+docker run -d --name laravel-fpm-fresh --network laravel-lab --env-file laravel-lab.env -e DB_NAME=fresh laravel-fpm:1.0.0 > /dev/null
+docker run -d --name laravel-web-fresh --network laravel-lab -e FPM_HOST=laravel-fpm-fresh -p 8088:8080 laravel-web:1.0.0 > /dev/null
+sleep 3
+curl -s -w '\nGET / -> HTTP %{http_code}\n' http://localhost:8088/ | tail -1
+curl -s http://localhost:8088/ready; echo
+docker logs laravel-fpm-fresh 2>&1 | grep -oE 'SQLSTATE\[42P01\][^(]{0,70}' | head -1
+---
+GET / -> HTTP 500
+{"status":"ready","service":"laravel-admin","version":"1.0.0"}
+SQLSTATE[42P01]: Undefined table: 7 ERROR:  relation "reviews" does not exist
+# exit 0

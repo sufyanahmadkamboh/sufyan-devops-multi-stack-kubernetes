@@ -1,0 +1,6 @@
+docker run --rm --entrypoint sh java-api:1.0.0 -c 'ls -l /app && id'
+---
+total 22072
+-rw-r--r-- 1 root root 22600356 Oct  4 17:55 app.jar
+uid=10001(app) gid=10001(app) groups=10001(app)
+# exit 0

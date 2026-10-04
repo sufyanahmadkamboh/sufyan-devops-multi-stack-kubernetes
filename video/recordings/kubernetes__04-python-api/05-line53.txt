@@ -1,0 +1,10 @@
+kubectl get pods -l app=python-api -o wide
+kubectl logs deploy/python-api --tail=2
+---
+NAME                          READY   STATUS    RESTARTS   AGE   IP            NODE              NOMINATED NODE   READINESS GATES
+python-api-54c69f569b-4xxhv   1/1     Running   0          7s    10.244.1.9    bookshop-worker   <none>           <none>
+python-api-54c69f569b-xrmbc   1/1     Running   0          7s    10.244.1.10   bookshop-worker   <none>           <none>
+Found 2 pods, using pod/python-api-54c69f569b-4xxhv
+2026-10-04 19:22:06,157 INFO python-api GET /ready 200
+2026-10-04 19:22:06,418 INFO python-api GET /api/stats 200
+# exit 0

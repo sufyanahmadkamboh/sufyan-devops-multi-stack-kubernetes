@@ -1,0 +1,8 @@
+docker rm -f go-lab-status go-lab-status2 go-lab-web
+docker network rm go-lab
+---
+go-lab-status
+go-lab-status2
+go-lab-web
+go-lab
+# exit 0

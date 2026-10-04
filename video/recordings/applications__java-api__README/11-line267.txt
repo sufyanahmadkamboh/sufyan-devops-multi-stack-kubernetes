@@ -1,0 +1,4 @@
+docker run --rm --network java-lab -e DB_HOST=java-lab-db java-api:1.0.0
+---
+FATAL java-api: environment variable DB_PASSWORD is not set; refusing to start
+# exit 1

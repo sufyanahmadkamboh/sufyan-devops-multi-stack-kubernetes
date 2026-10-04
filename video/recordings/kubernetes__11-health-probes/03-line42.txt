@@ -1,0 +1,7 @@
+kubectl get endpointslices -l kubernetes.io/service-name=node-api -o custom-columns='SERVICE:.metadata.labels.kubernetes\.io/service-name,READY:.endpoints[*].conditions.ready'
+kubectl get events --field-selector reason=Unhealthy --sort-by=.lastTimestamp | grep node-api | tail -1
+---
+SERVICE    READY
+node-api   false,false
+1s          Warning   Unhealthy   pod/node-api-6f678b5b5-54hfh       Readiness probe failed: Get "http://10.244.1.5:3000/ready": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+# exit 0

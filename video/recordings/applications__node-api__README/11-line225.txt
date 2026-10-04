@@ -1,0 +1,4 @@
+curl -s http://localhost:3000/ready
+---
+{"status":"ready","service":"node-api","version":"1.0.0"}
+# exit 0

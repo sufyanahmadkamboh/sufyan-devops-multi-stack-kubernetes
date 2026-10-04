@@ -1,0 +1,14 @@
+docker network create lesson-worker
+docker run -d --name lesson-worker-db --network lesson-worker \
+  -e POSTGRES_DB=bookshop -e POSTGRES_USER=bookshop -e POSTGRES_PASSWORD=example-only \
+  postgres:18.6-alpine
+docker run -d --name lesson-worker-apis --network lesson-worker busybox:1.37 sh -c '
+  mkdir -p /www/api
+  echo "{\"users\":4,\"books\":5,\"reviews\":2,\"latest_report\":null}" > /www/api/stats
+  echo "{\"services\":[],\"up\":6,\"total\":6}" > /www/api/status
+  httpd -f -p 8000 -h /www'
+---
+83728c080b3b8877b9b9ec8fa62be62e8322d7a5d68a34fcdab78705cbc9633d
+ca6211bcb451382676484e887150017d48e0285a8370214bcbcce6b7c0cf22ce
+100a9194bf69c642bfe3642da5fd74b8ee9050ea3c4ed0d7287e215a53c38147
+# exit 0

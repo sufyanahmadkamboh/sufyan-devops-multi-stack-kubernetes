@@ -1,0 +1,11 @@
+kubectl get configmap bookshop-config -o jsonpath='{.data}' | python3 -m json.tool | head -8
+---
+{
+    "ADMIN_URL": "http://admin.bookshop.localhost:8080",
+    "DB_HOST": "postgres",
+    "DB_NAME": "bookshop",
+    "DB_PORT": "5432",
+    "DB_USER": "bookshop",
+    "STATS_URL": "http://python-api:8000/api/stats",
+    "STATUS_URL": "http://go-status:8080/api/status",
+# exit 0

@@ -1,0 +1,8 @@
+kubectl get endpointslices -l kubernetes.io/service-name=node-api -o custom-columns='SERVICE:.metadata.labels.kubernetes\.io/service-name,ENDPOINTS:.endpoints[*].addresses[0]'
+kubectl describe service node-api | grep -E 'Selector|Endpoints'
+---
+SERVICE    ENDPOINTS
+node-api   <none>
+Selector:                 app=node-apii
+Endpoints:                
+# exit 0

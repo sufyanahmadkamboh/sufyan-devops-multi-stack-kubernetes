@@ -1,0 +1,7 @@
+docker run -d --name go-lab-status2 -p 18081:8080 \
+  -e TARGETS="web=http://go-lab-web/" go-status:1.0.0
+docker ps --filter name=go-lab-status2 --format '{{.Names}}  {{.Status}}'
+---
+31e96b1987762d511f290cdfa384706acd6387c6810c281b91d0df89c68b8cd3
+go-lab-status2  Up Less than a second
+# exit 0

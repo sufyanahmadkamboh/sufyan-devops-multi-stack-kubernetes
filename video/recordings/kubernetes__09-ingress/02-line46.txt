@@ -1,0 +1,11 @@
+kubectl get endpointslices -o custom-columns='SERVICE:.metadata.labels.kubernetes\.io/service-name,ADDRESSES:.endpoints[*].addresses[0]'
+---
+SERVICE         ADDRESSES
+frontend        10.244.1.8,10.244.1.7
+go-status       10.244.1.11
+java-api        10.244.1.12
+laravel-admin   10.244.1.14
+node-api        10.244.1.5,10.244.1.6
+postgres        10.244.1.4
+python-api      10.244.1.10,10.244.1.9
+# exit 0

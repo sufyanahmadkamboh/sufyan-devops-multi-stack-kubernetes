@@ -1,0 +1,8 @@
+docker stop laravel-db > /dev/null
+curl -s -w ' HTTP %{http_code}\n' http://localhost:8086/ready
+curl -s -w ' HTTP %{http_code}\n' http://localhost:8086/health
+docker start laravel-db > /dev/null
+---
+{"status":"not ready","reason":"database: QueryException","service":"laravel-admin","version":"1.0.0"} HTTP 503
+{"status":"ok","service":"laravel-admin","version":"1.0.0"} HTTP 200
+# exit 0

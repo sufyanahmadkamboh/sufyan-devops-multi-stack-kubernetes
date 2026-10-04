@@ -1,0 +1,4 @@
+docker compose exec node-api wget -qO- http://java-api:8080/api/books/2; echo
+---
+{"id":2,"title":"Moby-Dick","author":"Herman Melville","year":1851}
+# exit 0

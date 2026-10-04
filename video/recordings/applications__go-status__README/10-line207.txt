@@ -1,0 +1,4 @@
+docker run --rm --network go-lab busybox:1.37 wget -qO- http://go-lab-status:8080/health
+---
+{"service":"go-status","status":"ok","version":"1.0.0"}
+# exit 0

@@ -1,0 +1,8 @@
+kubectl get pod scratch-writer
+kubectl get pvc scratch-data
+---
+NAME             READY   STATUS    RESTARTS   AGE
+scratch-writer   1/1     Running   0          9s
+NAME           STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+scratch-data   Bound    pvc-90b4f954-2c9d-428d-a8a8-52215f20853f   100Mi      RWO            standard       <unset>                 9s
+# exit 0

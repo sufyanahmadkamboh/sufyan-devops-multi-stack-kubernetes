@@ -1,0 +1,11 @@
+kubectl get services
+---
+NAME            TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+frontend        ClusterIP   10.96.94.63     <none>        8080/TCP   91s
+go-status       ClusterIP   10.96.161.47    <none>        8080/TCP   59s
+java-api        ClusterIP   10.96.193.99    <none>        8080/TCP   41s
+laravel-admin   ClusterIP   10.96.46.10     <none>        8080/TCP   16s
+node-api        ClusterIP   10.96.44.188    <none>        3000/TCP   109s
+postgres        ClusterIP   None            <none>        5432/TCP   2m21s
+python-api      ClusterIP   10.96.123.241   <none>        8000/TCP   69s
+# exit 0

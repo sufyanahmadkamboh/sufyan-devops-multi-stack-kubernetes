@@ -1,0 +1,16 @@
+cat > labs/work/compose.quotes.yml <<'EOF'
+services:
+  quotes-api:
+    build: { context: ../labs/work/quotes-api }
+    image: quotes-api:1.0.0
+    networks: [frontend]
+  go-status:
+    environment:
+      TARGETS: >-
+        frontend=http://frontend:8080/health,node-api=http://node-api:3000/health,python-api=http://python-api:8000/health,go-status=http://go-status:8080/health,java-api=http://java-api:8080/health,laravel-admin=http://laravel-web:8080/health,quotes-api=http://quotes-api:8000/health
+EOF
+ls labs/work
+---
+compose.quotes.yml
+quotes-api
+# exit 0

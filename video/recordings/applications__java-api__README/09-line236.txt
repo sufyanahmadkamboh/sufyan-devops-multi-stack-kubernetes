@@ -1,0 +1,8 @@
+curl -s -w ' [%{http_code}]\n' http://localhost:8084/api/books
+curl -s -w ' [%{http_code}]\n' http://localhost:8084/api/books/2
+curl -s -w ' [%{http_code}]\n' http://localhost:8084/api/books/99
+---
+[{"id":1,"title":"Pride and Prejudice","author":"Jane Austen","year":1813},{"id":2,"title":"Moby-Dick","author":"Herman Melville","year":1851},{"id":3,"title":"Crime and Punishment","author":"Fyodor Dostoevsky","year":1866},{"id":4,"title":"The Adventures of Sherlock Holmes","author":"Arthur Conan Doyle","year":1892},{"id":5,"title":"The Time Machine","author":"H. G. Wells","year":1895}] [200]
+{"id":2,"title":"Moby-Dick","author":"Herman Melville","year":1851} [200]
+{"error":"book not found","id":99} [404]
+# exit 0

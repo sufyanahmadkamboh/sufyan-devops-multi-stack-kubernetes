@@ -1,0 +1,4 @@
+curl -s http://localhost:18000/api/stats
+---
+{"users":2,"books":0,"reviews":0,"latest_report":null}
+# exit 0

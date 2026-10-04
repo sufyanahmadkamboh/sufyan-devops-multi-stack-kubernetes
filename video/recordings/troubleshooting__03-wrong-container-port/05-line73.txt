@@ -1,0 +1,5 @@
+kubectl get deployment node-api -o jsonpath='containerPort: {.spec.template.spec.containers[0].ports[0].containerPort}{"\n"}PORT env: {.spec.template.spec.containers[0].env[?(@.name=="PORT")].value}{"\n"}'
+---
+containerPort: 3000
+PORT env: 3001
+# exit 0

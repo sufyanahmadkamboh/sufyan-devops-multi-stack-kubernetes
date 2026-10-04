@@ -1,0 +1,4 @@
+kubectl get deployment frontend -o jsonpath='{.spec.template.spec.containers[0].env[?(@.name=="JAVA_API_URL")].value}{"\n"}'
+---
+http://java-api.bookshop.svc.cluster.local:8080
+# exit 0

@@ -1,0 +1,4 @@
+docker exec lesson-worker-db pg_isready -U bookshop -d bookshop
+---
+/var/run/postgresql:5432 - accepting connections
+# exit 0

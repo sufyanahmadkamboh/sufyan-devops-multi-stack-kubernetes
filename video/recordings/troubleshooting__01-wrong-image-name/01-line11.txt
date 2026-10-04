@@ -1,0 +1,4 @@
+kubectl set image deployment/go-status go-status=go-staus:1.0.0
+---
+deployment.apps/go-status image updated
+# exit 0

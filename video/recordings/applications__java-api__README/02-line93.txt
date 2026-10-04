@@ -1,0 +1,7 @@
+docker build -q --target build -t java-api:build-stage applications/java-api > /dev/null
+docker image ls --format 'table {{.Repository}}:{{.Tag}}\t{{.Size}}' | grep -E 'REPOSITORY|java-api'
+---
+REPOSITORY:TAG                        SIZE
+java-api:1.0.0                        348MB
+java-api:build-stage                  677MB
+# exit 0

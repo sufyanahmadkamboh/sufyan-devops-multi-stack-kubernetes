@@ -1,0 +1,9 @@
+docker stop quotes-lab > /dev/null
+docker logs quotes-lab
+docker rm quotes-lab > /dev/null
+---
+quotes-api 1.0.0 listening on :8000
+quotes-api GET /health 200
+quotes-api GET /api/quotes 200
+quotes-api: SIGTERM, shutting down
+# exit 0

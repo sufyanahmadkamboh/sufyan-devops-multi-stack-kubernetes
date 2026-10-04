@@ -1,0 +1,8 @@
+docker run -d --name laravel-web-broken --network laravel-lab -p 8087:8080 laravel-web:1.0.0 > /dev/null
+sleep 2
+curl -s -w '\nHTTP %{http_code}\n' http://localhost:8087/health | tail -1
+docker logs laravel-web-broken 2>&1 | grep -m1 'connect() failed'
+---
+HTTP 502
+2026/10/04 19:17:50 [error] 35#35: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.19.0.1, server: _, request: "GET /health HTTP/1.1", upstream: "fastcgi://127.0.0.1:9000", host: "localhost:8087"
+# exit 0

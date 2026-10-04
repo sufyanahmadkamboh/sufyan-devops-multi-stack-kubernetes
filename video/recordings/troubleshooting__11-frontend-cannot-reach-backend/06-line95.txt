@@ -1,0 +1,4 @@
+kubectl apply -f kubernetes/java-api/service.yaml
+---
+The Service "java-api" is invalid: spec.ports[1].name: Duplicate value: "http"
+# exit 1

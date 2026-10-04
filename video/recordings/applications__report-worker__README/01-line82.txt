@@ -1,0 +1,48 @@
+docker build -t report-worker:1.0.0 applications/report-worker
+---
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 397B 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/node:24.21-alpine
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 102B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 127B done
+#4 DONE 0.0s
+
+#5 [1/5] FROM docker.io/library/node:24.21-alpine@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#5 resolve docker.io/library/node:24.21-alpine@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1 0.0s done
+#5 DONE 0.0s
+
+#6 [2/5] WORKDIR /app
+#6 CACHED
+
+#7 [3/5] COPY package.json package-lock.json ./
+#7 CACHED
+
+#8 [4/5] RUN npm ci --omit=dev && npm cache clean --force
+#8 CACHED
+
+#9 [5/5] COPY src ./src
+#9 CACHED
+
+#10 exporting to image
+#10 exporting layers done
+#10 exporting manifest sha256:b1c8d9a9e4da4d68abcbcab4e483ff2b49c1669ae273abdeb31c80e5b965001d done
+#10 exporting config sha256:5db6051d8c542efeadde898ff2123a580fcfd6458bbf5cee242c800e87614b8a done
+#10 exporting attestation manifest sha256:e23a75981e79ad8b0f39941db2d0c03113cce840c1fe5b59d2e6ab1a7cc8c0e1 0.0s done
+#10 exporting manifest list sha256:5a8ff58bdd94afb979820fe800b316be4a13bfa2c97ddfe841ce4d0978f385aa 0.0s done
+#10 naming to docker.io/library/report-worker:1.0.0 done
+#10 unpacking to docker.io/library/report-worker:1.0.0
+#10 unpacking to docker.io/library/report-worker:1.0.0 0.0s done
+#10 DONE 0.1s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/wwufboeqsdig7t61gehd4gej5
+# exit 0

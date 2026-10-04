@@ -1,0 +1,7 @@
+docker exec py-lab-db psql -U bookshop -d bookshop -c \
+  "CREATE TABLE users (id serial PRIMARY KEY, name text, email text);
+   INSERT INTO users (name, email) VALUES ('Ada', 'ada@example.com'), ('Linus', 'linus@example.com');"
+---
+CREATE TABLE
+INSERT 0 2
+# exit 0

@@ -1,0 +1,5 @@
+curl -s -w ' HTTP %{http_code}\n' -X POST -H 'Content-Type: application/json' \
+  -d '{"name":"Alan Turing","email":"alan@example.com"}' http://localhost:3000/api/users
+---
+{"error":"email already exists"} HTTP 409
+# exit 0

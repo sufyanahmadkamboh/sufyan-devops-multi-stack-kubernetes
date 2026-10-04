@@ -1,0 +1,5 @@
+NEW=$(kubectl get pods -l app=python-api --sort-by=.metadata.creationTimestamp -o name | tail -1)
+kubectl logs $NEW --previous
+---
+python-api: FATAL: the environment variable DB_PASSWORD is not set (the database password is required)
+# exit 0

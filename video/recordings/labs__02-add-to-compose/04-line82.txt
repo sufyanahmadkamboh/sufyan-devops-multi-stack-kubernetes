@@ -1,0 +1,6 @@
+cd compose
+docker compose -f docker-compose.yml -f ../labs/work/compose.quotes.yml down -v > /dev/null 2>&1
+cd ..
+---
+
+# exit 0

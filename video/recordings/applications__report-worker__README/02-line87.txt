@@ -1,0 +1,6 @@
+docker images report-worker
+---
+WARNING: This output is designed for human readability. For machine-readable output, please use --format.
+IMAGE                 ID             DISK USAGE   CONTENT SIZE   EXTRA
+report-worker:1.0.0   5a8ff58bdd94        246MB         62.3MB        
+# exit 0

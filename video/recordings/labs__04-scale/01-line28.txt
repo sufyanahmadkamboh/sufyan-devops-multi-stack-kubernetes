@@ -1,0 +1,8 @@
+kubectl scale deployment quotes-api --replicas=4
+kubectl rollout status deployment/quotes-api --timeout=240s
+---
+deployment.apps/quotes-api scaled
+Waiting for deployment "quotes-api" rollout to finish: 2 of 4 updated replicas are available...
+Waiting for deployment "quotes-api" rollout to finish: 3 of 4 updated replicas are available...
+deployment "quotes-api" successfully rolled out
+# exit 0

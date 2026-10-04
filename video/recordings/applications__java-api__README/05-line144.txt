@@ -1,0 +1,8 @@
+docker run -d --name java-lab-api --network java-lab -p 8084:8080 \
+  -e DB_HOST=java-lab-db -e DB_PASSWORD=example-only \
+  java-api:1.0.0
+docker ps --filter name=java-lab-api --format '{{.Names}} {{.Status}} {{.Ports}}'
+---
+d1f35fa7925a60e10ba1c85adba98c0a3b40074f7be1170f1a602a6a7ce62e12
+java-lab-api Up Less than a second 0.0.0.0:8084->8080/tcp, [::]:8084->8080/tcp
+# exit 0

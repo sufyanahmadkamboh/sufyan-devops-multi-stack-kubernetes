@@ -1,0 +1,11 @@
+kubectl get pods -l app=python-api
+kubectl get pods -l app=python-api -o jsonpath='{range .items[*]}{.metadata.name}{"  "}{.status.containerStatuses[0].lastState.terminated.reason}{" exit "}{.status.containerStatuses[0].lastState.terminated.exitCode}{"\n"}{end}'
+---
+NAME                          READY   STATUS    RESTARTS     AGE
+python-api-54c69f569b-4xxhv   1/1     Running   0            2m10s
+python-api-54c69f569b-xrmbc   1/1     Running   0            2m10s
+python-api-798f8bf4fb-zrtbz   0/1     Running   1 (0s ago)   2s
+python-api-54c69f569b-4xxhv   exit 
+python-api-54c69f569b-xrmbc   exit 
+python-api-798f8bf4fb-zrtbz  OOMKilled exit 137
+# exit 0

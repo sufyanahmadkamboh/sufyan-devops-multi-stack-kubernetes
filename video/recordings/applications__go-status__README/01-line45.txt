@@ -1,0 +1,74 @@
+docker build -t go-status:1.0.0 applications/go-status
+docker images go-status
+---
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 688B done
+#1 DONE 0.0s
+
+#2 resolve image config for docker-image://docker.io/docker/dockerfile:1
+#2 DONE 0.2s
+
+#3 docker-image://docker.io/docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e
+#3 resolve docker.io/docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e 0.0s done
+#3 CACHED
+
+#4 [internal] load metadata for docker.io/library/golang:1.27-alpine
+#4 ...
+
+#5 [internal] load metadata for gcr.io/distroless/static-debian12:nonroot
+#5 DONE 0.5s
+
+#4 [internal] load metadata for docker.io/library/golang:1.27-alpine
+#4 DONE 0.8s
+
+#6 [internal] load .dockerignore
+#6 transferring context: 75B done
+#6 DONE 0.0s
+
+#7 [stage-1 1/2] FROM gcr.io/distroless/static-debian12:nonroot@sha256:afa5c872c891853ca7fcf1f12c3edb23f7eeef36189728842dd51042ff57f7ab
+#7 resolve gcr.io/distroless/static-debian12:nonroot@sha256:afa5c872c891853ca7fcf1f12c3edb23f7eeef36189728842dd51042ff57f7ab 0.0s done
+#7 DONE 0.0s
+
+#8 [build 1/6] FROM docker.io/library/golang:1.27-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414
+#8 resolve docker.io/library/golang:1.27-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414 0.0s done
+#8 DONE 0.0s
+
+#9 [internal] load build context
+#9 transferring context: 54B done
+#9 DONE 0.0s
+
+#10 [build 2/6] WORKDIR /src
+#10 CACHED
+
+#11 [build 3/6] COPY go.mod ./
+#11 CACHED
+
+#12 [build 4/6] RUN go mod download
+#12 CACHED
+
+#13 [build 5/6] COPY *.go ./
+#13 CACHED
+
+#14 [build 6/6] RUN CGO_ENABLED=0 GOOS=linux go build -trimpath -ldflags "-s -w -X main.version=1.0.0" -o /out/go-status .
+#14 CACHED
+
+#15 [stage-1 2/2] COPY --from=build /out/go-status /go-status
+#15 CACHED
+
+#16 exporting to image
+#16 exporting layers done
+#16 exporting manifest sha256:9c21c17006be7ecf937b8ba3ac5c4b5b428c6bfef9be2c3901f560dfb7824cbb done
+#16 exporting config sha256:b76365bd7c68722b36b3e18c6e6529a5e7218f8fd330d07316fc9834e63f8c96 done
+#16 exporting attestation manifest sha256:920eb9815f8f13bffdba9d8a6c196d7778af48c7dc8248defd9254a9acd0daf2 0.0s done
+#16 exporting manifest list sha256:f458898790622da4550a59ee52128d62573488e1acda2d285f07b7dcb84387f2 0.0s done
+#16 naming to docker.io/library/go-status:1.0.0 done
+#16 unpacking to docker.io/library/go-status:1.0.0 0.0s done
+#16 DONE 0.1s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/w4tbvf2itgul9fgyw3icx6skb
+WARNING: This output is designed for human readability. For machine-readable output, please use --format.
+IMAGE             ID             DISK USAGE   CONTENT SIZE   EXTRA
+go-status:1.0.0   f45889879062       16.4MB         3.79MB        
+# exit 0

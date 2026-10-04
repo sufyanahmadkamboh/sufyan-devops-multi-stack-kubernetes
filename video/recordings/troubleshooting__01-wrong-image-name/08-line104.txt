@@ -1,0 +1,4 @@
+curl -s http://bookshop.localhost:8080/api/status | python3 -c "import sys,json; d=json.load(sys.stdin); print(f\"{d['up']} of {d['total']} services up\")"
+---
+6 of 6 services up
+# exit 0

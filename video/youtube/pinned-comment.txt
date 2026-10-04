@@ -1,0 +1,2 @@
+💻 The free lab with every command from this video: https://github.com/sufyanahmadkamboh/sufyan-devops-multi-stack-kubernetes
+Which stack was hardest to containerise at your job, and why? Tell me below.

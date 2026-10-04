@@ -1,0 +1,7 @@
+docker logs java-lab-api 2>&1 | grep ' request - ' | tail -4
+---
+2026-10-04T19:17:00.881Z INFO  request - GET /ready 200 11ms
+2026-10-04T19:17:01.021Z INFO  request - GET /api/books 200 27ms
+2026-10-04T19:17:01.107Z INFO  request - GET /api/books/2 200 23ms
+2026-10-04T19:17:01.160Z INFO  request - GET /api/books/99 404 3ms
+# exit 0

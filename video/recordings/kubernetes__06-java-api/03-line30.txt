@@ -1,0 +1,8 @@
+kubectl rollout status deployment/java-api --timeout=240s
+kubectl get pods -l app=java-api
+---
+Waiting for deployment "java-api" rollout to finish: 0 of 1 updated replicas are available...
+deployment "java-api" successfully rolled out
+NAME                        READY   STATUS    RESTARTS   AGE
+java-api-64578ccddb-tdjf4   1/1     Running   0          7s
+# exit 0

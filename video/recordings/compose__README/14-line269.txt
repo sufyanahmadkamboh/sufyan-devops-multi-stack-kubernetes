@@ -1,0 +1,11 @@
+docker compose exec postgres psql -U bookshop -d bookshop -c '\dt'
+---
+             List of tables
+ Schema |    Name    | Type  |  Owner   
+--------+------------+-------+----------
+ public | books      | table | bookshop
+ public | migrations | table | bookshop
+ public | reviews    | table | bookshop
+ public | users      | table | bookshop
+(4 rows)
+# exit 0

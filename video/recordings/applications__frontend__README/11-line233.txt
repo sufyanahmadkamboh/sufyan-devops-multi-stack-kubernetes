@@ -1,0 +1,6 @@
+docker rm -f frontend
+docker run -d --name frontend --network frontend-test -p 8081:8080 -e JAVA_API_URL=http://fake-books:8080 frontend:1.0.0
+---
+frontend
+a5752b98de6cac364b6a8d08c15662f2a5754c39e8f1fedfdca10bf0e7d10a85
+# exit 0

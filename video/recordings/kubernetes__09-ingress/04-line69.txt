@@ -1,0 +1,18 @@
+kubectl get ingress bookshop
+kubectl describe ingress bookshop | sed -n '/Rules:/,/Annotations:/p'
+---
+NAME       CLASS     HOSTS                                         ADDRESS   PORTS   AGE
+bookshop   traefik   bookshop.localhost,admin.bookshop.localhost             80      0s
+Rules:
+  Host                      Path  Backends
+  ----                      ----  --------
+  bookshop.localhost        
+                            /api/users    node-api:3000 (10.244.1.5:3000,10.244.1.6:3000)
+                            /api/books    java-api:8080 (10.244.1.12:8080)
+                            /api/stats    python-api:8000 (10.244.1.10:8000,10.244.1.9:8000)
+                            /api/status   go-status:8080 (10.244.1.11:8080)
+                            /             frontend:8080 (10.244.1.8:8080,10.244.1.7:8080)
+  admin.bookshop.localhost  
+                            /   laravel-admin:8080 (10.244.1.14:8080)
+Annotations:                <none>
+# exit 0

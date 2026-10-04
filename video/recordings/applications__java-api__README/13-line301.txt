@@ -1,0 +1,6 @@
+docker start java-lab-db > /dev/null
+sleep 3
+curl -s -w ' [%{http_code}]\n' http://localhost:8084/ready
+---
+{"status":"ready","service":"java-api","version":"1.0.0"} [200]
+# exit 0

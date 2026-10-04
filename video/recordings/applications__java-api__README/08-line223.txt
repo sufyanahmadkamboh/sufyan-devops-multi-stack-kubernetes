@@ -1,0 +1,8 @@
+curl -s -w ' [%{http_code}]\n' http://localhost:8084/
+curl -s -w ' [%{http_code}]\n' http://localhost:8084/health
+curl -s -w ' [%{http_code}]\n' http://localhost:8084/ready
+---
+{"service":"java-api","version":"1.0.0","language":"Java 25","runtime":"Spring Boot 4 on the JVM","description":"Books API of the Bookshop: GET /api/books, GET /api/books/{id}"} [200]
+{"status":"ok","service":"java-api","version":"1.0.0"} [200]
+{"status":"ready","service":"java-api","version":"1.0.0"} [200]
+# exit 0

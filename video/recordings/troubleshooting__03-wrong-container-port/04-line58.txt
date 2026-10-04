@@ -1,0 +1,10 @@
+NEW=$(kubectl get pods -l app=node-api --sort-by=.metadata.creationTimestamp -o name | tail -1)
+kubectl logs $NEW | grep listening
+kubectl exec $NEW -- wget -qO- http://127.0.0.1:3001/health; echo
+kubectl exec $NEW -- wget -qO- -T 2 http://127.0.0.1:3000/health 2>&1 || true
+---
+2026-10-04T19:26:35.588Z node-api version 1.0.0 listening on port 3001
+{"status":"ok","service":"node-api","version":"1.0.0"}
+wget: can't connect to remote host (127.0.0.1): Connection refused
+command terminated with exit code 1
+# exit 0

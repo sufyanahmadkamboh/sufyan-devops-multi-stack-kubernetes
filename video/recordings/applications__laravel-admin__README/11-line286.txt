@@ -1,0 +1,4 @@
+curl -s -w '\nPOST without token -> HTTP %{http_code}\n' http://localhost:8086/reviews -d 'book_title=x&reviewer=y&rating=3' | tail -1
+---
+POST without token -> HTTP 419
+# exit 0

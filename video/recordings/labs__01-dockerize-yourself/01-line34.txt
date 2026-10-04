@@ -1,0 +1,18 @@
+mkdir -p labs/work/quotes-api && cp labs/quotes-api/app.py labs/work/quotes-api/
+cat > labs/work/quotes-api/Dockerfile <<'EOF'
+FROM python:3.14-slim
+ARG APP_VERSION=1.0.0
+ENV APP_VERSION=${APP_VERSION} PORT=8000 PYTHONUNBUFFERED=1
+WORKDIR /app
+COPY app.py .
+USER 10001
+EXPOSE 8000
+CMD ["python", "app.py"]
+EOF
+printf '*\n!app.py\n' > labs/work/quotes-api/.dockerignore
+ls -A labs/work/quotes-api
+---
+.dockerignore
+Dockerfile
+app.py
+# exit 0

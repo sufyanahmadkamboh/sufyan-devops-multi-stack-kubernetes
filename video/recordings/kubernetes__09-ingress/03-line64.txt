@@ -1,0 +1,4 @@
+kubectl apply -f kubernetes/ingress/ingress.yaml
+---
+ingress.networking.k8s.io/bookshop created
+# exit 0

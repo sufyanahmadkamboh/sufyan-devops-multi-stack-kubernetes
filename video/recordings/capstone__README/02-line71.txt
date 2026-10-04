@@ -1,0 +1,31 @@
+bash capstone/verify.sh
+---
+Workloads
+  PASS  6 Deployments, all Available
+  PASS  no Deployment is stuck in the middle of a rollout
+  PASS  PostgreSQL StatefulSet ready (1/1)
+  PASS  database volume claim Bound
+  PASS  migration Job completed
+  PASS  report CronJob exists
+  PASS  laravel-admin Pod runs 2 containers
+Good practice in every Deployment
+  PASS  every container has CPU and memory requests and limits
+  PASS  every HTTP container has a liveness probe
+  PASS  every Service-facing container has a readiness probe
+  PASS  java-api has a startupProbe
+  PASS  no image uses the tag latest (or no tag)
+  PASS  every Pod runs as non-root
+  PASS  the database password comes from a Secret, not a ConfigMap
+Through the Ingress
+  PASS  UI: /
+  PASS  Node.js: /api/users
+  PASS  Java: /api/books
+  PASS  Python: /api/stats (with a report)
+  PASS  Go: /api/status, every service up
+  PASS  Laravel: admin host
+Resilience
+  PASS  data survives the loss of the database Pod
+  PASS  every Deployment Available again afterwards
+
+22 passed, 0 failed
+# exit 0

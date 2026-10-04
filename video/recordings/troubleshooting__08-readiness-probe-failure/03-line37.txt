@@ -1,0 +1,5 @@
+kubectl rollout status deployment/python-api --timeout=5s 2>&1 || true
+---
+Waiting for deployment "python-api" rollout to finish: 1 out of 2 new replicas have been updated...
+error: timed out waiting for the condition
+# exit 0

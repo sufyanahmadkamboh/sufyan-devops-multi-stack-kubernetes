@@ -1,0 +1,7 @@
+curl -s http://localhost:18000/
+echo
+curl -s http://localhost:18000/ready
+---
+{"service":"python-api","version":"1.0.0","language":"Python","runtime":"CPython 3.14.8","description":"Statistics for the Bookshop: counts of users, books, reviews and the latest report"}
+{"status":"ready","service":"python-api","version":"1.0.0"}
+# exit 0

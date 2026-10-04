@@ -1,0 +1,464 @@
+docker compose build
+---
+ Image node-api:1.0.0 Building 
+ Image laravel-fpm:1.0.0 Building 
+ Image frontend:1.0.0 Building 
+ Image java-api:1.0.0 Building 
+ Image laravel-web:1.0.0 Building 
+ Image python-api:1.0.0 Building 
+ Image go-status:1.0.0 Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 4.50kB done
+#1 DONE 0.0s
+
+#2 [python-api internal] load build definition from Dockerfile
+#2 transferring dockerfile: 817B done
+#2 DONE 0.0s
+
+#3 [laravel-web internal] load build definition from Dockerfile.web
+#3 transferring dockerfile: 740B done
+#3 DONE 0.0s
+
+#4 [laravel-migrate internal] load build definition from Dockerfile.fpm
+#4 transferring dockerfile: 1.89kB done
+#4 DONE 0.1s
+
+#5 [go-status internal] load build definition from Dockerfile
+#5 transferring dockerfile: 688B done
+#5 DONE 0.1s
+
+#6 [node-api internal] load build definition from Dockerfile
+#6 transferring dockerfile: 525B done
+#6 DONE 0.1s
+
+#7 [java-api internal] load build definition from Dockerfile
+#7 transferring dockerfile: 1.11kB done
+#7 DONE 0.1s
+
+#8 [frontend internal] load build definition from Dockerfile
+#8 transferring dockerfile: 1.26kB done
+#8 DONE 0.1s
+
+#9 [java-api internal] load metadata for docker.io/library/eclipse-temurin:25-jre-alpine
+#9 ...
+
+#10 [node-api internal] load metadata for docker.io/library/node:24.21-alpine
+#10 DONE 0.0s
+
+#11 [java-api internal] load metadata for docker.io/library/maven:3.9-eclipse-temurin-25-alpine
+#11 DONE 0.0s
+
+#12 [node-api internal] load .dockerignore
+#12 transferring context: 112B done
+#12 DONE 0.0s
+
+#13 [node-api internal] load build context
+#13 transferring context: 128B done
+#13 DONE 0.0s
+
+#14 [node-api 1/5] FROM docker.io/library/node:24.21-alpine@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#14 resolve docker.io/library/node:24.21-alpine@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1 0.0s done
+#14 DONE 0.0s
+
+#15 [node-api 2/5] WORKDIR /app
+#15 CACHED
+
+#16 [node-api 4/5] RUN npm ci --omit=dev && npm cache clean --force
+#16 CACHED
+
+#17 [node-api 3/5] COPY package.json package-lock.json ./
+#17 CACHED
+
+#18 [node-api 5/5] COPY src ./src
+#18 CACHED
+
+#19 [node-api] exporting to image
+#19 exporting layers done
+#19 exporting manifest sha256:55691ee9cf4deaed801e7232d86c088a18b2d07f776df78e4fade50f10a5e8d8 done
+#19 exporting config sha256:18f736737107e073cdaa2430e23d8bcc7517fcb47d75d8af735e83e8ac029e85 done
+#19 exporting attestation manifest sha256:c1c0321818737502d99d291786e014d971c1f34950d1761a5b407b020fd65673 0.0s done
+#19 exporting manifest list sha256:7eaa17c4a3d304d0ddfacb10f77cb6421a71c349bed9d28deaf71ead2f02d80b 0.0s done
+#19 naming to docker.io/library/node-api:1.0.0 done
+#19 unpacking to docker.io/library/node-api:1.0.0 0.0s done
+#19 DONE 0.2s
+
+#20 [node-api] resolving provenance for metadata file
+#20 DONE 0.0s
+
+#21 [python-api] resolve image config for docker-image://docker.io/docker/dockerfile:1
+#21 DONE 0.5s
+
+#22 [go-status] docker-image://docker.io/docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e
+#22 resolve docker.io/docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e 0.0s done
+#22 CACHED
+
+#9 [java-api internal] load metadata for docker.io/library/eclipse-temurin:25-jre-alpine
+#9 DONE 0.5s
+
+#23 [java-api internal] load .dockerignore
+#23 transferring context: 136B done
+#23 DONE 0.0s
+
+#24 [java-api internal] load build context
+#24 DONE 0.0s
+
+#25 [java-api build 1/6] FROM docker.io/library/maven:3.9-eclipse-temurin-25-alpine@sha256:781f1da87cd3d142e66e47cc149c4582a652fb7f574648206d1e956170c0dc90
+#25 resolve docker.io/library/maven:3.9-eclipse-temurin-25-alpine@sha256:781f1da87cd3d142e66e47cc149c4582a652fb7f574648206d1e956170c0dc90
+#25 resolve docker.io/library/maven:3.9-eclipse-temurin-25-alpine@sha256:781f1da87cd3d142e66e47cc149c4582a652fb7f574648206d1e956170c0dc90 0.1s done
+#25 DONE 0.1s
+
+#26 [java-api stage-1 1/4] FROM docker.io/library/eclipse-temurin:25-jre-alpine@sha256:3c0a9084927a221ccd1d007fcaf614465672c0af37aaa834c5184483afe56d61
+#26 resolve docker.io/library/eclipse-temurin:25-jre-alpine@sha256:3c0a9084927a221ccd1d007fcaf614465672c0af37aaa834c5184483afe56d61 0.1s done
+#26 DONE 0.1s
+
+#24 [java-api internal] load build context
+#24 transferring context: 665B done
+#24 DONE 0.0s
+
+#27 [java-api stage-1 2/4] RUN addgroup -S -g 10001 app && adduser -S -D -H -u 10001 -G app app
+#27 CACHED
+
+#28 [java-api stage-1 3/4] WORKDIR /app
+#28 CACHED
+
+#29 [java-api build 3/6] COPY pom.xml .
+#29 CACHED
+
+#30 [java-api build 4/6] RUN mvn -B -q dependency:go-offline
+#30 CACHED
+
+#31 [java-api build 5/6] COPY src ./src
+#31 CACHED
+
+#32 [java-api build 6/6] RUN mvn -B -q package -DskipTests
+#32 CACHED
+
+#33 [java-api build 2/6] WORKDIR /src
+#33 CACHED
+
+#34 [java-api stage-1 4/4] COPY --from=build /src/target/app.jar app.jar
+#34 CACHED
+
+#35 [java-api] exporting to image
+#35 exporting layers done
+#35 exporting manifest sha256:4a00db94ea38c072e5de25bc3c0e3d2aa5ecbc0a92f77a067e6863ca0d32cf6b 0.1s done
+#35 exporting config sha256:1df644a297b4062901d5c34fc404f5cd140118f4346fbda31089b1b64bc6c739 done
+#35 exporting attestation manifest sha256:43bd8631c784afa455a7216bd318f88a476ab190bb054b949f55cce0c9dc0b37
+#35 exporting attestation manifest sha256:43bd8631c784afa455a7216bd318f88a476ab190bb054b949f55cce0c9dc0b37 0.0s done
+#35 exporting manifest list sha256:a79716e18f98ebb4e0902ee15f563e50aef6f2125e5901e5148b2ddc58f261fa 0.0s done
+#35 naming to docker.io/library/java-api:1.0.0 done
+#35 unpacking to docker.io/library/java-api:1.0.0 0.0s done
+#35 DONE 0.2s
+
+#36 [laravel-web internal] load metadata for docker.io/nginxinc/nginx-unprivileged:1.30-alpine
+#36 ...
+
+#37 [java-api] resolving provenance for metadata file
+#37 DONE 0.0s
+
+#38 [go-status internal] load metadata for gcr.io/distroless/static-debian12:nonroot
+#38 DONE 0.4s
+
+#39 [laravel-migrate internal] load metadata for docker.io/library/composer:2
+#39 DONE 0.4s
+
+#40 [go-status internal] load metadata for docker.io/library/golang:1.27-alpine
+#40 DONE 0.5s
+
+#41 [frontend internal] load metadata for docker.io/nginxinc/nginx-unprivileged:1.30.5-alpine
+#41 DONE 0.5s
+
+#42 [go-status internal] load .dockerignore
+#42 transferring context: 75B done
+#42 DONE 0.0s
+
+#36 [laravel-web internal] load metadata for docker.io/nginxinc/nginx-unprivileged:1.30-alpine
+#36 DONE 0.5s
+
+#43 [frontend internal] load metadata for docker.io/library/node:24-alpine
+#43 DONE 0.5s
+
+#44 [python-api internal] load metadata for docker.io/library/python:3.14-slim
+#44 DONE 0.5s
+
+#45 [laravel-migrate internal] load metadata for docker.io/library/php:8.5-fpm-alpine
+#45 DONE 0.5s
+
+#46 [laravel-web internal] load .dockerignore
+#46 transferring context: 386B 0.0s done
+#46 DONE 0.0s
+
+#47 [go-status internal] load build context
+#47 DONE 0.0s
+
+#48 [frontend internal] load .dockerignore
+#48 transferring context: 104B done
+#48 DONE 0.0s
+
+#49 [go-status stage-1 1/2] FROM gcr.io/distroless/static-debian12:nonroot@sha256:afa5c872c891853ca7fcf1f12c3edb23f7eeef36189728842dd51042ff57f7ab
+#49 resolve gcr.io/distroless/static-debian12:nonroot@sha256:afa5c872c891853ca7fcf1f12c3edb23f7eeef36189728842dd51042ff57f7ab
+#49 resolve gcr.io/distroless/static-debian12:nonroot@sha256:afa5c872c891853ca7fcf1f12c3edb23f7eeef36189728842dd51042ff57f7ab 0.0s done
+#49 DONE 0.0s
+
+#50 [python-api internal] load .dockerignore
+#50 transferring context: 116B 0.0s done
+#50 DONE 0.1s
+
+#51 [go-status build 1/6] FROM docker.io/library/golang:1.27-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414
+#51 resolve docker.io/library/golang:1.27-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414 0.0s done
+#51 DONE 0.1s
+
+#52 [python-api internal] load build context
+#52 transferring context: 91B done
+#52 DONE 0.0s
+
+#47 [go-status internal] load build context
+#47 transferring context: 54B done
+#47 DONE 0.0s
+
+#53 [python-api build 1/5] FROM docker.io/library/python:3.14-slim@sha256:c3e521df8b2b498a7a682e7e18676771cb80c6b75b8699af886b2d554ce40151
+#53 resolve docker.io/library/python:3.14-slim@sha256:c3e521df8b2b498a7a682e7e18676771cb80c6b75b8699af886b2d554ce40151 0.0s done
+#53 DONE 0.0s
+
+#54 [go-status build 3/6] COPY go.mod ./
+#54 CACHED
+
+#55 [go-status build 4/6] RUN go mod download
+#55 CACHED
+
+#56 [go-status build 2/6] WORKDIR /src
+#56 CACHED
+
+#57 [go-status build 5/6] COPY *.go ./
+#57 CACHED
+
+#58 [go-status build 6/6] RUN CGO_ENABLED=0 GOOS=linux go build -trimpath -ldflags "-s -w -X main.version=1.0.0" -o /out/go-status .
+#58 CACHED
+
+#59 [go-status stage-1 2/2] COPY --from=build /out/go-status /go-status
+#59 CACHED
+
+#60 [python-api stage-1 3/5] WORKDIR /app
+#60 CACHED
+
+#61 [python-api build 5/5] RUN pip install --no-cache-dir -r requirements.txt
+#61 CACHED
+
+#62 [python-api build 3/5] RUN python -m venv /opt/venv
+#62 CACHED
+
+#63 [python-api stage-1 4/5] COPY --from=build /opt/venv /opt/venv
+#63 CACHED
+
+#64 [python-api stage-1 2/5] RUN useradd --system --uid 10001 --no-create-home app
+#64 CACHED
+
+#65 [python-api build 2/5] WORKDIR /app
+#65 CACHED
+
+#66 [python-api build 4/5] COPY requirements.txt .
+#66 CACHED
+
+#67 [python-api stage-1 5/5] COPY src/ ./src/
+#67 CACHED
+
+#68 [python-api] exporting to image
+#68 exporting layers done
+#68 ...
+
+#69 [frontend internal] load build context
+#69 DONE 0.0s
+
+#70 [laravel-web internal] load build context
+#70 transferring context: 404B done
+#70 DONE 0.0s
+
+#68 [python-api] exporting to image
+#68 exporting manifest sha256:e8eccec2bf5c88e38ce2fc850710fc8bbba74145339cab42cdff62a77da896ae 0.0s done
+#68 exporting config sha256:09ef536e2e767c35e37c03508e4c0e63811a356dca0f4ef7825daf6d7fa63e1a 0.0s done
+#68 exporting attestation manifest sha256:91aed3f98be7044f036b0e3edd5f76a7aeb8c4000bf5bac3572240f79daf253f
+#68 ...
+
+#71 [laravel-migrate internal] load build context
+#71 DONE 0.0s
+
+#72 [frontend build 1/8] FROM docker.io/library/node:24-alpine@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#72 resolve docker.io/library/node:24-alpine@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1 0.1s done
+#72 DONE 0.1s
+
+#73 [laravel-web stage-1 1/4] FROM docker.io/nginxinc/nginx-unprivileged:1.30.5-alpine@sha256:ed04ec1ff34502c339ee5c3ae3f855442398edc1d05591e2b98981dcbbd20b1e
+#73 resolve docker.io/nginxinc/nginx-unprivileged:1.30.5-alpine@sha256:ed04ec1ff34502c339ee5c3ae3f855442398edc1d05591e2b98981dcbbd20b1e 0.1s done
+#73 DONE 0.2s
+
+#69 [frontend internal] load build context
+#69 transferring context: 464B 0.0s done
+#69 DONE 0.0s
+
+#74 [laravel-web 1/3] FROM docker.io/nginxinc/nginx-unprivileged:1.30-alpine@sha256:ed04ec1ff34502c339ee5c3ae3f855442398edc1d05591e2b98981dcbbd20b1e
+#74 resolve docker.io/nginxinc/nginx-unprivileged:1.30-alpine@sha256:ed04ec1ff34502c339ee5c3ae3f855442398edc1d05591e2b98981dcbbd20b1e 0.1s done
+#74 DONE 0.2s
+
+#68 [python-api] exporting to image
+#68 exporting attestation manifest sha256:91aed3f98be7044f036b0e3edd5f76a7aeb8c4000bf5bac3572240f79daf253f 0.1s done
+#68 exporting manifest list sha256:a44502a454dec1da613686515d10e488848cb38665a212f7fdce92b9cfec36c7
+#68 exporting manifest list sha256:a44502a454dec1da613686515d10e488848cb38665a212f7fdce92b9cfec36c7 0.0s done
+#68 naming to docker.io/library/python-api:1.0.0 done
+#68 unpacking to docker.io/library/python-api:1.0.0 0.0s done
+#68 DONE 0.3s
+
+#75 [frontend build 7/8] COPY src ./src
+#75 CACHED
+
+#76 [frontend build 4/8] RUN npm ci
+#76 CACHED
+
+#77 [frontend build 8/8] RUN npm run build -- --base=/
+#77 CACHED
+
+#78 [frontend build 2/8] WORKDIR /app
+#78 CACHED
+
+#79 [frontend stage-1 3/4] COPY --chmod=755 nginx/40-config-js.sh /docker-entrypoint.d/
+#79 CACHED
+
+#80 [frontend build 3/8] COPY package.json package-lock.json ./
+#80 CACHED
+
+#81 [frontend build 5/8] COPY index.html vite.config.js ./
+#81 CACHED
+
+#82 [frontend stage-1 2/4] COPY nginx/default.conf.template /etc/nginx/templates/default.conf.template
+#82 CACHED
+
+#83 [frontend build 6/8] COPY public ./public
+#83 CACHED
+
+#84 [frontend stage-1 4/4] COPY --from=build /app/dist /usr/share/nginx/html
+#84 CACHED
+
+#85 [laravel-migrate stage-1 1/6] FROM docker.io/library/php:8.5-fpm-alpine@sha256:fa01fb1645cd0fc566a5f146b099adace33b906571f972f71f2182a7c12d1cd7
+#85 resolve docker.io/library/php:8.5-fpm-alpine@sha256:fa01fb1645cd0fc566a5f146b099adace33b906571f972f71f2182a7c12d1cd7 0.1s done
+#85 DONE 0.1s
+
+#86 [laravel-migrate vendor 1/6] FROM docker.io/library/composer:2@sha256:af98f42dfff7c68ba8d53c2164fd9fde1087b7d449514baa38c418b1f6bc4bac
+#86 resolve docker.io/library/composer:2@sha256:af98f42dfff7c68ba8d53c2164fd9fde1087b7d449514baa38c418b1f6bc4bac 0.1s done
+#86 DONE 0.1s
+
+#87 [laravel-web 2/3] COPY docker/nginx/default.conf.template /etc/nginx/templates/default.conf.template
+#87 CACHED
+
+#88 [laravel-web 3/3] COPY src/public /var/www/html/public
+#88 CACHED
+
+#89 [go-status] exporting to image
+#89 exporting layers done
+#89 exporting manifest sha256:8701a11d4bff915f65a9761b3a46c7a6c96cb62d7cbb82bee880f35c0b98de68 done
+#89 exporting config sha256:6b4aa0311b0b6b34f0196517091057f67f5bb8e315448004fb7745ca476f0b0b 0.0s done
+#89 exporting attestation manifest sha256:a8f9a9169380bdf15987316e23dd8520796a8415e6720f06216b5e8c05ef3922 0.1s done
+#89 exporting manifest list sha256:0263545a87f10a07e4a0723ac7f41de9ff6c6a52b118079a2be4b88d68b70dc3 0.0s done
+#89 naming to docker.io/library/go-status:1.0.0 0.0s done
+#89 unpacking to docker.io/library/go-status:1.0.0 0.0s done
+#89 DONE 0.3s
+
+#90 [laravel-web] exporting to image
+#90 exporting layers 0.0s done
+#90 exporting manifest sha256:2d7fbf86fe10a60b1ff20324de305aa7e9a5335e953a409f398eda11945d311a
+#90 ...
+
+#71 [laravel-migrate internal] load build context
+#71 transferring context: 363.54kB 0.1s done
+#71 DONE 0.1s
+
+#91 [laravel-migrate vendor 6/6] RUN composer dump-autoload --no-dev --optimize --classmap-authoritative
+#91 CACHED
+
+#92 [laravel-migrate vendor 5/6] COPY src/ ./
+#92 CACHED
+
+#93 [laravel-migrate stage-1 5/6] COPY --chmod=755 docker/entrypoint.sh /usr/local/bin/laravel-entrypoint
+#93 CACHED
+
+#94 [laravel-migrate stage-1 3/6] WORKDIR /var/www/html
+#94 CACHED
+
+#95 [laravel-migrate stage-1 4/6] COPY --from=vendor --chown=www-data:www-data /app /var/www/html
+#95 CACHED
+
+#96 [laravel-migrate vendor 4/6] RUN composer install --no-dev --no-scripts --no-autoloader --no-interaction --prefer-dist
+#96 CACHED
+
+#97 [laravel-migrate stage-1 2/6] RUN apk add --no-cache libpq  && apk add --no-cache --virtual .build-deps postgresql-dev  && docker-php-ext-install pdo_pgsql  && apk del .build-deps
+#97 CACHED
+
+#98 [laravel-migrate vendor 2/6] WORKDIR /app
+#98 CACHED
+
+#99 [laravel-migrate vendor 3/6] COPY src/composer.json src/composer.lock ./
+#99 CACHED
+
+#90 [laravel-web] exporting to image
+#90 exporting manifest sha256:2d7fbf86fe10a60b1ff20324de305aa7e9a5335e953a409f398eda11945d311a 0.1s done
+#90 exporting config sha256:f73a52e3e5f0bd918156ae46777e537d61d170afd2752150c106f9c6a963ce76
+#90 ...
+
+#100 [laravel-migrate stage-1 6/6] RUN php artisan package:discover  && php artisan route:cache  && php artisan view:cache
+#100 CACHED
+
+#90 [laravel-web] exporting to image
+#90 exporting config sha256:f73a52e3e5f0bd918156ae46777e537d61d170afd2752150c106f9c6a963ce76 0.1s done
+#90 exporting attestation manifest sha256:e13e76d1d225dbf888c3406bd190d31b41da4b12411ceea698300190f4d78ed0
+#90 exporting attestation manifest sha256:e13e76d1d225dbf888c3406bd190d31b41da4b12411ceea698300190f4d78ed0 0.1s done
+#90 exporting manifest list sha256:14cfb39226295825b81c289d6b054a668279717e79bc0f7100ce7525eab35a1d 0.0s done
+#90 naming to docker.io/library/laravel-web:1.0.0
+#90 ...
+
+#101 [frontend] exporting to image
+#101 exporting layers done
+#101 exporting manifest sha256:cee37092ed3b8a9e8f38c6ed6e98312eae1af74a8889e4b9fff7123f034e6a94 done
+#101 exporting config sha256:f31271b4bfd3e4679e69f25511dd93f72abeba2dc498f26f7e4d01561d200d71 0.0s done
+#101 exporting attestation manifest sha256:6117346b1a133775a04ee02f201266228075e9b4dff6f658e329a3e21a15a99b 0.2s done
+#101 exporting manifest list sha256:e46bc1508a51f7510a6673588a431ac8279ffdd36e0ea4eb1b1adcad76803000 0.0s done
+#101 naming to docker.io/library/frontend:1.0.0 0.0s done
+#101 unpacking to docker.io/library/frontend:1.0.0 0.0s done
+#101 DONE 0.5s
+
+#90 [laravel-web] exporting to image
+#90 naming to docker.io/library/laravel-web:1.0.0 0.0s done
+#90 unpacking to docker.io/library/laravel-web:1.0.0 0.1s done
+#90 DONE 0.6s
+
+#102 [laravel-migrate] exporting to image
+#102 exporting layers done
+#102 exporting manifest sha256:67acf2c9ea0d6787d723bd4e3c072f82635c1fb13f4f4f2575718ec6eba4a652 0.1s done
+#102 exporting config sha256:880e8dec5b8de04490342e0d8ba4b696b31966aa2260029d4f5af2ab50312583 0.0s done
+#102 exporting attestation manifest sha256:1cf28f85e14d256251de175bd08147bdea9fcb196f3a3fdd386d41e14d1efe7a 0.1s done
+#102 exporting manifest list sha256:221ebf3cb181ac2c59af001cb9da90844e41a071c51eccf4eb73e2d47eab6084 0.1s done
+#102 naming to docker.io/library/laravel-fpm:1.0.0 0.0s done
+#102 unpacking to docker.io/library/laravel-fpm:1.0.0 0.0s done
+#102 DONE 0.4s
+
+#103 [python-api] resolving provenance for metadata file
+#103 ...
+
+#104 [go-status] resolving provenance for metadata file
+#104 DONE 0.2s
+
+#105 [laravel-web] resolving provenance for metadata file
+#105 DONE 0.1s
+
+#103 [python-api] resolving provenance for metadata file
+#103 DONE 0.1s
+
+#106 [frontend] resolving provenance for metadata file
+#106 DONE 0.0s
+
+#107 [laravel-migrate] resolving provenance for metadata file
+#107 DONE 0.0s
+ Image java-api:1.0.0 Built 
+ Image laravel-web:1.0.0 Built 
+ Image node-api:1.0.0 Built 
+ Image laravel-fpm:1.0.0 Built 
+ Image python-api:1.0.0 Built 
+ Image frontend:1.0.0 Built 
+ Image go-status:1.0.0 Built 
+# exit 0

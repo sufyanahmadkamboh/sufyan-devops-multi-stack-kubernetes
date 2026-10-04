@@ -1,0 +1,4 @@
+kubectl patch service java-api --type json -p '[{"op":"replace","path":"/spec/ports/0/port","value":8081}]'
+---
+service/java-api patched
+# exit 0

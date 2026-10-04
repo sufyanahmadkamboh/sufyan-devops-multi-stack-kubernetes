@@ -1,0 +1,9 @@
+docker logs lesson-node-api
+---
+2026-10-04T19:15:20.809Z node-api version 1.0.0 listening on port 3000
+2026-10-04T19:15:20.886Z node-api table users ready
+2026-10-04T19:15:21.144Z node-api GET / 200
+2026-10-04T19:15:21.210Z node-api GET /health 200
+2026-10-04T19:15:21.332Z node-api GET /api/users 200
+2026-10-04T19:15:21.448Z node-api POST /api/users 201
+# exit 0

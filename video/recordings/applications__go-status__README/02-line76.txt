@@ -1,0 +1,7 @@
+docker pull -q golang:1.27-alpine > /dev/null
+docker images --format 'table {{.Repository}}:{{.Tag}}\t{{.Size}}' | grep -E 'REPOSITORY|golang|go-status'
+---
+REPOSITORY:TAG                        SIZE
+go-status:1.0.0                       16.4MB
+golang:1.27-alpine                    381MB
+# exit 0

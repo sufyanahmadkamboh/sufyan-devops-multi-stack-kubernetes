@@ -1,0 +1,4 @@
+kubectl patch deployment node-api --type json -p '[{"op":"add","path":"/spec/template/spec/containers/0/command","value":["node","src/servr.js"]}]'
+---
+deployment.apps/node-api patched
+# exit 0

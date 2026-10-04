@@ -1,0 +1,11 @@
+docker build -q --build-arg APP_VERSION=1.1.0 -t java-api:1.1.0 applications/java-api > /dev/null
+docker run -d --name java-v1 -p 8091:8080 -e DB_PASSWORD=x java-api:1.0.0 > /dev/null
+docker run -d --name java-v2 -p 8092:8080 -e DB_PASSWORD=x java-api:1.1.0 > /dev/null
+until curl -sf http://localhost:8091/health > /dev/null && curl -sf http://localhost:8092/health > /dev/null; do sleep 1; done
+curl -s http://localhost:8091/health; echo
+curl -s http://localhost:8092/health; echo
+docker rm -f java-v1 java-v2 > /dev/null
+---
+{"status":"ok","service":"java-api","version":"1.0.0"}
+{"status":"ok","service":"java-api","version":"1.1.0"}
+# exit 0

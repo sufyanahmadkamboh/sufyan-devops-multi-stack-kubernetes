@@ -1,0 +1,9 @@
+docker rm -f quotes-lab > /dev/null 2>&1 || true
+docker run -d --name quotes-lab -p 18099:8000 quotes-api:1.0.0 > /dev/null
+sleep 1
+curl -s http://localhost:18099/health; echo
+curl -s http://localhost:18099/api/quotes; echo
+---
+{"status": "ok", "service": "quotes-api", "version": "1.0.0"}
+{"quote": "Make it work, make it right, make it fast.", "author": "Kent Beck", "version": "1.0.0"}
+# exit 0

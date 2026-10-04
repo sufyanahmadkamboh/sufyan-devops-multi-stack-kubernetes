@@ -1,0 +1,9 @@
+kubectl port-forward service/node-api 13000:3000 > /dev/null 2>&1 &
+PF=$!
+sleep 3
+curl -s http://localhost:13000/
+echo
+kill $PF
+---
+{"service":"node-api","version":"1.0.0","language":"JavaScript","runtime":"Node.js 24.21.0","description":"Users API of the Bookshop (Express)"}
+# exit 0

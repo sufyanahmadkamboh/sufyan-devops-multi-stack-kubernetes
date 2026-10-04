@@ -1,0 +1,7 @@
+A=$(kubectl get secret db-credentials -o jsonpath='{.data.DB_PASSWORD}' | base64 -d | sha256sum | cut -c1-12)
+B=$(kubectl exec postgres-0 -- printenv POSTGRES_PASSWORD | tr -d '\n' | sha256sum | cut -c1-12)
+echo "Secret: $A   database: $B"; [ "$A" = "$B" ] && echo "same" || echo "they differ"
+---
+Secret: 6786324d7148   database: eb76f124a4f9
+they differ
+# exit 0

@@ -1,0 +1,4 @@
+kubectl exec deploy/go-status -- sh -c 'echo hello'
+---
+error: Internal error occurred: Internal error occurred: error executing command in container: failed to exec in container: failed to start exec "b12ccf74688df8e5325ccda2adc47eca0c50fd099a7b05aa1c798adf6347f2b2": OCI runtime exec failed: exec failed: unable to start container process: exec: "sh": executable file not found in $PATH
+# exit 1

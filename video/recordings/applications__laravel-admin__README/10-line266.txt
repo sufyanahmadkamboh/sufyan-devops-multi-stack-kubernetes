@@ -1,0 +1,12 @@
+JAR=$(mktemp)
+TOKEN=$(curl -s -c "$JAR" http://localhost:8086/ | grep -oE 'name="_token" value="[^"]+"' | cut -d'"' -f4)
+curl -s -b "$JAR" -c "$JAR" -w '\nPOST /reviews -> HTTP %{http_code}\n' http://localhost:8086/reviews \
+  --data-urlencode "_token=$TOKEN" --data-urlencode "book_title=Designing Data-Intensive Applications" \
+  --data-urlencode "reviewer=Sam" --data-urlencode "rating=5" --data-urlencode "comment=Great on databases." | tail -1
+curl -s -b "$JAR" http://localhost:8086/ | grep -E 'class="ok"|<h2>[0-9]'
+rm -f "$JAR"
+---
+POST /reviews -> HTTP 302
+            <p class="ok">Thank you! Your review was saved.</p>
+        <h2>4 reviews</h2>
+# exit 0

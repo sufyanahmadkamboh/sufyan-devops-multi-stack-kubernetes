@@ -1,0 +1,48 @@
+docker build -t node-api:1.0.0 applications/node-api
+---
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 525B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/node:24.21-alpine
+#2 DONE 0.1s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 112B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 128B done
+#4 DONE 0.0s
+
+#5 [1/5] FROM docker.io/library/node:24.21-alpine@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#5 resolve docker.io/library/node:24.21-alpine@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1 0.0s done
+#5 DONE 0.0s
+
+#6 [3/5] COPY package.json package-lock.json ./
+#6 CACHED
+
+#7 [4/5] RUN npm ci --omit=dev && npm cache clean --force
+#7 CACHED
+
+#8 [2/5] WORKDIR /app
+#8 CACHED
+
+#9 [5/5] COPY src ./src
+#9 CACHED
+
+#10 exporting to image
+#10 exporting layers done
+#10 exporting manifest sha256:c0fc379d7442391e9c50194b14e22e8135d0637fa4d9e6d6ca673e9bcc52dc22 done
+#10 exporting config sha256:edeb718de09527923a389117594f8af83f70b32486b9d6d689fc7f7f574bcd2c done
+#10 exporting attestation manifest sha256:40b3276f0b67935e79f523529adbd3c36fb7f36e96ae227ab665f51a312e2ecb 0.0s done
+#10 exporting manifest list sha256:855d83de7d65d5809407c12b47210577ec674a3f86bd378b744e56c1105bb9fa
+#10 exporting manifest list sha256:855d83de7d65d5809407c12b47210577ec674a3f86bd378b744e56c1105bb9fa 0.0s done
+#10 naming to docker.io/library/node-api:1.0.0 done
+#10 unpacking to docker.io/library/node-api:1.0.0 0.0s done
+#10 DONE 0.1s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/rmn38x3zzws2qk1d3au727uor
+# exit 0

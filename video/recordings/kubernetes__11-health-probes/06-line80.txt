@@ -1,0 +1,11 @@
+kubectl get pods -l 'app in (node-api,python-api,java-api)'
+curl -s http://bookshop.localhost:8080/api/users | head -c 90; echo
+---
+NAME                          READY   STATUS    RESTARTS   AGE
+java-api-64578ccddb-tdjf4     1/1     Running   0          84s
+node-api-6f678b5b5-54hfh      1/1     Running   0          2m32s
+node-api-6f678b5b5-rh76x      1/1     Running   0          2m32s
+python-api-54c69f569b-4xxhv   1/1     Running   0          112s
+python-api-54c69f569b-xrmbc   1/1     Running   0          112s
+[{"id":1,"name":"Ada Lovelace","email":"ada@example.com","created_at":"2026-10-04T19:21:20
+# exit 0

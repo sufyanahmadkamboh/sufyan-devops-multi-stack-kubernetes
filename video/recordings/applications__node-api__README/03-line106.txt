@@ -1,0 +1,8 @@
+docker network create lesson-node
+docker run -d --name lesson-node-db --network lesson-node \
+  -e POSTGRES_DB=bookshop -e POSTGRES_USER=bookshop -e POSTGRES_PASSWORD=example-only \
+  postgres:18.6-alpine
+---
+41406aa5a2e9a4b440f0f0d45d09bdb6564bc1811bef36f33e8cbeeb0b52f0a7
+96e2aa036c522b42e62517b53cad269b9d59599990697e244aa39760336af22c
+# exit 0

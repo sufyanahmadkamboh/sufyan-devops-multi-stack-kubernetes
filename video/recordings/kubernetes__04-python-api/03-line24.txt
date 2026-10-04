@@ -1,0 +1,9 @@
+kubectl apply -f kubernetes/python-api/
+kubectl rollout status deployment/python-api --timeout=240s
+---
+deployment.apps/python-api created
+service/python-api created
+Waiting for deployment "python-api" rollout to finish: 0 of 2 updated replicas are available...
+Waiting for deployment "python-api" rollout to finish: 1 of 2 updated replicas are available...
+deployment "python-api" successfully rolled out
+# exit 0

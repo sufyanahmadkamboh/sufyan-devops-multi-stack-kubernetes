@@ -1,0 +1,5 @@
+kubectl get events --field-selector involvedObject.name=scratch-writer | tail -2
+---
+LAST SEEN   TYPE      REASON             OBJECT               MESSAGE
+0s          Warning   FailedScheduling   pod/scratch-writer   0/2 nodes are available: pod has unbound immediate PersistentVolumeClaims. not found
+# exit 0

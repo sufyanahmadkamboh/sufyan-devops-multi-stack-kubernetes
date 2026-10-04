@@ -1,0 +1,10 @@
+kubectl get deployments -o custom-columns='NAME:.metadata.name,CPU-REQ:.spec.template.spec.containers[*].resources.requests.cpu,MEM-REQ:.spec.template.spec.containers[*].resources.requests.memory,CPU-LIM:.spec.template.spec.containers[*].resources.limits.cpu,MEM-LIM:.spec.template.spec.containers[*].resources.limits.memory'
+---
+NAME            CPU-REQ   MEM-REQ     CPU-LIM     MEM-LIM
+frontend        10m       32Mi        200m        128Mi
+go-status       10m       16Mi        200m        64Mi
+java-api        250m      256Mi       1           512Mi
+laravel-admin   10m,50m   32Mi,64Mi   200m,500m   128Mi,256Mi
+node-api        50m       64Mi        500m        256Mi
+python-api      50m       96Mi        500m        256Mi
+# exit 0

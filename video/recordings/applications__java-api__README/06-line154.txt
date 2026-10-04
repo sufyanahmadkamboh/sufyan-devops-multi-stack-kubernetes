@@ -1,0 +1,9 @@
+curl -sf http://localhost:8084/health > /dev/null
+docker logs java-lab-api 2>&1 | grep -E 'Starting|Started|Tomcat started|books table'
+---
+2026-10-04T19:16:36.326Z INFO  BookshopApplication - Starting BookshopApplication v1.0.0 using Java 25.0.4.1 with PID 1 (/app/app.jar started by app in /app)
+2026-10-04T19:16:38.140Z INFO  TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-10-04T19:16:38.156Z INFO  BookshopApplication - Started BookshopApplication in 2.373 seconds (process running for 3.064)
+2026-10-04T19:16:38.164Z INFO  HikariDataSource - HikariPool-1 - Starting...
+2026-10-04T19:16:38.403Z INFO  SchemaInitializer - books table ready
+# exit 0

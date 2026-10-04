@@ -1,0 +1,7 @@
+kubectl get pods -l app=python-api
+---
+NAME                          READY   STATUS             RESTARTS     AGE
+python-api-54c69f569b-7mz9l   1/1     Running            0            75s
+python-api-54c69f569b-vmbkm   1/1     Running            0            81s
+python-api-6c4855688b-xmtpt   0/1     CrashLoopBackOff   1 (7s ago)   11s
+# exit 0

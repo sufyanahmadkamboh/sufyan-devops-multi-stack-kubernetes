@@ -1,0 +1,7 @@
+docker compose run --rm report-worker
+---
+ Container bookshop-report-worker-run-680c7e1dd334 Creating 
+ Container bookshop-report-worker-run-680c7e1dd334 Created 
+2026-10-04T19:19:25.561Z report-worker version 1.0.0 starting: stats from http://python-api:8000/api/stats, status from http://go-status:8080/api/status
+2026-10-04T19:19:25.753Z report-worker report #1 saved: users=3 books=5 reviews=3 services up=6/6
+# exit 0

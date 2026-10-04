@@ -1,0 +1,6 @@
+curl -s -w '\nHTTP %{http_code}\n' http://bookshop.localhost:8080/api/users
+---
+no available server
+
+HTTP 503
+# exit 0

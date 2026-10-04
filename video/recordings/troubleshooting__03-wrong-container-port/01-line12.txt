@@ -1,0 +1,4 @@
+kubectl set env deployment/node-api PORT=3001
+---
+deployment.apps/node-api env updated
+# exit 0

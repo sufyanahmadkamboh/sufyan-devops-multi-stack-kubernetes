@@ -1,0 +1,7 @@
+curl -s http://bookshop.localhost:8080/api/users | python3 -c "import sys,json; [print(u['id'], u['name']) for u in json.load(sys.stdin)]"
+---
+1 Ada Lovelace
+3 Grace Hopper
+6 Linus Torvalds
+7 Margaret Hamilton
+# exit 0

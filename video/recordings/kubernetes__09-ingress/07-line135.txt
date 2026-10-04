@@ -1,0 +1,8 @@
+for i in $(seq 1 10); do curl -s http://bookshop.localhost:8080/api/users > /dev/null; done
+for p in $(kubectl get pods -l app=node-api -o name); do
+  echo "$p: $(kubectl logs $p --since=60s | grep -c 'GET /api/users') requests"
+done
+---
+pod/node-api-6f678b5b5-54hfh: 6 requests
+pod/node-api-6f678b5b5-rh76x: 6 requests
+# exit 0

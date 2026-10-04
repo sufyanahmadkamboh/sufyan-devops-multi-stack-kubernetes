@@ -1,0 +1,6 @@
+docker exec frontend grep -A2 'location /api/books' /etc/nginx/conf.d/default.conf
+---
+    location /api/books {
+        set $upstream http://fake-books:8080;
+        proxy_pass $upstream;
+# exit 0

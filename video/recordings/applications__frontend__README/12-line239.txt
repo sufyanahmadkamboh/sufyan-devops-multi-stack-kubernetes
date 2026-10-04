@@ -1,0 +1,4 @@
+curl -s http://localhost:8081/api/books
+---
+[{"id": 1, "title": "Fake Book", "author": "Test Data"}]
+# exit 0

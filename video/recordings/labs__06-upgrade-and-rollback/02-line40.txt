@@ -1,0 +1,10 @@
+kubectl rollout history deployment/quotes-api
+curl -s http://bookshop.localhost:8080/api/quotes; echo
+---
+deployment.apps/quotes-api 
+REVISION  CHANGE-CAUSE
+1         <none>
+2         quotes-api 2.0.0: served_by
+
+{"quote": "Programs must be written for people to read.", "author": "Harold Abelson", "version": "2.0.0", "served_by": "quotes-api-664998546b-jfcxf"}
+# exit 0

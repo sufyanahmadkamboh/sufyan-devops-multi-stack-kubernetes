@@ -1,0 +1,10 @@
+kubectl rollout status deployment/frontend --timeout=240s
+kubectl get pods -l app=frontend
+---
+Waiting for deployment "frontend" rollout to finish: 0 of 2 updated replicas are available...
+Waiting for deployment "frontend" rollout to finish: 1 of 2 updated replicas are available...
+deployment "frontend" successfully rolled out
+NAME                       READY   STATUS    RESTARTS   AGE
+frontend-fd495cfc7-qqldj   1/1     Running   0          2s
+frontend-fd495cfc7-vjlrp   1/1     Running   0          2s
+# exit 0

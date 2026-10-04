@@ -1,0 +1,13 @@
+kind load docker-image quotes-api:1.0.0 --name bookshop > /dev/null
+kubectl apply -f labs/work/k8s/quotes-api.yaml
+kubectl rollout status deployment/quotes-api --timeout=240s
+---
+Image: "quotes-api:1.0.0" with ID "sha256:9f3b6acc9131793041d8b5b279b47f2e84a58a790efa714b4951624b6a481292" not yet present on node "bookshop-control-plane", loading...
+Image: "quotes-api:1.0.0" with ID "sha256:9f3b6acc9131793041d8b5b279b47f2e84a58a790efa714b4951624b6a481292" not yet present on node "bookshop-worker", loading...
+deployment.apps/quotes-api created
+service/quotes-api created
+ingress.networking.k8s.io/quotes created
+Waiting for deployment "quotes-api" rollout to finish: 0 of 2 updated replicas are available...
+Waiting for deployment "quotes-api" rollout to finish: 1 of 2 updated replicas are available...
+deployment "quotes-api" successfully rolled out
+# exit 0

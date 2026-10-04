@@ -1,0 +1,8 @@
+kubectl get pods -l app=node-api --show-labels
+kubectl get pods -l app=node-apii 2>&1
+---
+NAME                       READY   STATUS    RESTARTS   AGE     LABELS
+node-api-6f678b5b5-btwrc   1/1     Running   0          2m8s    app.kubernetes.io/part-of=bookshop,app=node-api,pod-template-hash=6f678b5b5
+node-api-6f678b5b5-dwb4s   1/1     Running   0          2m10s   app.kubernetes.io/part-of=bookshop,app=node-api,pod-template-hash=6f678b5b5
+No resources found in bookshop namespace.
+# exit 0

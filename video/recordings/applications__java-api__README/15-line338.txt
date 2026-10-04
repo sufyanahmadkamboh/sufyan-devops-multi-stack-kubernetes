@@ -1,0 +1,7 @@
+docker rm -f java-lab-api java-lab-db
+docker network rm java-lab
+---
+java-lab-api
+java-lab-db
+java-lab
+# exit 0

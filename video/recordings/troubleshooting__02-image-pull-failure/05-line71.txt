@@ -1,0 +1,4 @@
+kubectl get events --field-selector reason=Failed --sort-by=.lastTimestamp | grep 'python-api:1.2.0' | tail -1
+---
+1s          Warning   Failed   pod/python-api-8f7888c94-dnkrq   Failed to pull image "python-api:1.2.0": failed to pull and unpack image "docker.io/library/python-api:1.2.0": failed to resolve reference "docker.io/library/python-api:1.2.0": pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed
+# exit 0

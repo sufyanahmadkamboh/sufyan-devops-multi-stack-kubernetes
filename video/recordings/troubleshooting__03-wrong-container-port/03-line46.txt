@@ -1,0 +1,7 @@
+NEW=$(kubectl get pods -l app=node-api --sort-by=.metadata.creationTimestamp -o name | tail -1)
+kubectl get events --field-selector involvedObject.name=${NEW#pod/},reason=Unhealthy | tail -3
+---
+LAST SEEN   TYPE      REASON      OBJECT                          MESSAGE
+5s          Warning   Unhealthy   pod/node-api-645fd46d89-btcn6   Readiness probe failed: Get "http://10.244.1.38:3000/ready": dial tcp 10.244.1.38:3000: connect: connection refused
+0s          Warning   Unhealthy   pod/node-api-645fd46d89-btcn6   Liveness probe failed: Get "http://10.244.1.38:3000/health": dial tcp 10.244.1.38:3000: connect: connection refused
+# exit 0

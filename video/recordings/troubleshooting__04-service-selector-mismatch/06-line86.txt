@@ -1,0 +1,4 @@
+kubectl apply -f kubernetes/node-api/service.yaml
+---
+service/node-api configured
+# exit 0

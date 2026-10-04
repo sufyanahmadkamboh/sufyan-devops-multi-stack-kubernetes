@@ -1,0 +1,9 @@
+kubectl get configmap bookshop-config -o jsonpath='{.data.TARGETS}' | tr ',' '\n'
+---
+frontend=http://frontend:8080/health
+node-api=http://node-api:3000/health
+python-api=http://python-api:8000/health
+go-status=http://go-status:8080/health
+java-api=http://java-api:8080/health
+laravel-admin=http://laravel-admin:8080/health
+# exit 0

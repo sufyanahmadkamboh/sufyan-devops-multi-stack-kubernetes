@@ -1,0 +1,8 @@
+kubectl get pod scratch-writer
+kubectl get pvc scratch-data
+---
+NAME             READY   STATUS    RESTARTS   AGE
+scratch-writer   0/1     Pending   0          0s
+NAME           STATUS    VOLUME   CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+scratch-data   Pending                                      fast-ssd       <unset>                 0s
+# exit 0

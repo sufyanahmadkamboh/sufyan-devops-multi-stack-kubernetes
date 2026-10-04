@@ -1,0 +1,9 @@
+docker rm -f laravel-web laravel-fpm laravel-db
+docker network rm laravel-lab
+rm -f laravel-lab.env
+---
+laravel-web
+laravel-fpm
+laravel-db
+laravel-lab
+# exit 0

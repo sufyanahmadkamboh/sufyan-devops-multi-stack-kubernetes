@@ -1,0 +1,4 @@
+kubectl apply -f kubernetes/python-api/service.yaml
+---
+service/python-api configured
+# exit 0

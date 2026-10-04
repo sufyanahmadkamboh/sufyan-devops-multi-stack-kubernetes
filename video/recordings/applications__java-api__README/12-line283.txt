@@ -1,0 +1,9 @@
+docker stop java-lab-db > /dev/null
+curl -s -w ' [%{http_code}]\n' http://localhost:8084/health
+curl -s -w ' [%{http_code}]\n' http://localhost:8084/ready
+curl -s -w ' [%{http_code}]\n' http://localhost:8084/api/books
+---
+{"status":"ok","service":"java-api","version":"1.0.0"} [200]
+{"status":"not ready","service":"java-api","reason":"PSQLException: This connection has been closed."} [503]
+{"error":"database unavailable","reason":"PSQLException: This connection has been closed."} [503]
+# exit 0

@@ -1,0 +1,7 @@
+kubectl describe service node-api | grep -E 'Selector|Endpoints'
+curl -s http://bookshop.localhost:8080/api/users | head -c 90; echo
+---
+Selector:                 app=node-api
+Endpoints:                10.244.1.29:3000,10.244.1.31:3000
+[{"id":1,"name":"Ada Lovelace","email":"ada@example.com","created_at":"2026-10-04T19:21:20
+# exit 0

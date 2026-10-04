@@ -1,0 +1,8 @@
+kubectl get pods -l app=python-api
+kubectl get deployment python-api -o jsonpath='{.spec.template.spec.containers[0].image}'; echo
+---
+NAME                         READY   STATUS    RESTARTS   AGE
+python-api-8f7888c94-6gbqj   1/1     Running   0          15s
+python-api-8f7888c94-l9qc7   1/1     Running   0          9s
+python-api:1.2.0
+# exit 0

@@ -1,0 +1,8 @@
+kubectl get pods -l app=node-api
+kubectl get configmap bookshop-config -o jsonpath='DB_HOST={.data.DB_HOST}{"\n"}'
+---
+NAME                        READY   STATUS    RESTARTS   AGE
+node-api-565f855c84-5wwrl   1/1     Running   0          9s
+node-api-565f855c84-dkffh   1/1     Running   0          7s
+DB_HOST=postgres
+# exit 0

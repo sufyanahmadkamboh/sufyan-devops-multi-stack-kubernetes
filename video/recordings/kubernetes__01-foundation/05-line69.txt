@@ -1,0 +1,6 @@
+kubectl create secret generic db-credentials --from-literal=DB_PASSWORD="$(openssl rand -hex 16)"
+kubectl create secret generic laravel-app-key --from-literal=APP_KEY="base64:$(openssl rand -base64 32)"
+---
+secret/db-credentials created
+secret/laravel-app-key created
+# exit 0

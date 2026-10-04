@@ -1,0 +1,11 @@
+kubectl apply -f kubernetes/laravel-admin/deployment.yaml -f kubernetes/laravel-admin/service.yaml
+kubectl rollout status deployment/laravel-admin --timeout=240s
+kubectl get pods -l app=laravel-admin
+---
+deployment.apps/laravel-admin created
+service/laravel-admin created
+Waiting for deployment "laravel-admin" rollout to finish: 0 of 1 updated replicas are available...
+deployment "laravel-admin" successfully rolled out
+NAME                           READY   STATUS    RESTARTS   AGE
+laravel-admin-cbd8498c-zvghk   2/2     Running   0          1s
+# exit 0

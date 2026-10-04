@@ -1,0 +1,8 @@
+docker logs frontend 2>&1 | grep -E 'envsubst|config-js|local-resolvers'
+---
+/docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+20-envsubst-on-templates.sh: Running envsubst on /etc/nginx/templates/default.conf.template to /etc/nginx/conf.d/default.conf
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/40-config-js.sh
+40-config-js.sh: wrote /tmp/config.js (APP_ENV=production)
+# exit 0

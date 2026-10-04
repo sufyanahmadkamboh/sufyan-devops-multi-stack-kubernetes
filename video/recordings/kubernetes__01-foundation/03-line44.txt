@@ -1,0 +1,4 @@
+kubectl apply -f kubernetes/config/bookshop-config.yaml
+---
+configmap/bookshop-config created
+# exit 0

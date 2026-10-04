@@ -1,0 +1,4 @@
+kubectl get deployment go-status -o jsonpath='{.spec.template.spec.containers[0].image}'; echo
+---
+go-staus:1.0.0
+# exit 0

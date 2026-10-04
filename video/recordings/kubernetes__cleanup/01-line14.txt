@@ -1,0 +1,4 @@
+kubectl delete namespace bookshop
+---
+namespace "bookshop" deleted
+# exit 0

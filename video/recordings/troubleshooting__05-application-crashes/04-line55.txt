@@ -1,0 +1,12 @@
+NEW=$(kubectl get pods -l app=node-api --sort-by=.metadata.creationTimestamp -o name | tail -1)
+kubectl describe $NEW | grep -A5 'Last State'
+kubectl get deployment node-api -o jsonpath='{.spec.template.spec.containers[0].command}'; echo
+---
+    Last State:     Terminated
+      Reason:       Error
+      Exit Code:    1
+      Started:      Sun, 04 Oct 2026 21:26:54 +0200
+      Finished:     Sun, 04 Oct 2026 21:26:55 +0200
+    Ready:          False
+["node","src/servr.js"]
+# exit 0

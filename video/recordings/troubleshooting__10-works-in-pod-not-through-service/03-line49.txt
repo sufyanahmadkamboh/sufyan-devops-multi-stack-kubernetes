@@ -1,0 +1,4 @@
+kubectl exec deploy/python-api -- python -c "import urllib.request; print(urllib.request.urlopen('http://127.0.0.1:8000/health').read().decode())"
+---
+{"status":"ok","service":"python-api","version":"1.0.0"}
+# exit 0

@@ -1,0 +1,8 @@
+kubectl get replicasets -l app=node-api
+kubectl exec deploy/node-api -- wget -qO- http://127.0.0.1:3000/; echo
+---
+NAME                  DESIRED   CURRENT   READY   AGE
+node-api-698cbcbcdd   3         3         3       8s
+node-api-6f678b5b5    0         0         0       3m20s
+{"service":"node-api","version":"1.1.0","language":"JavaScript","runtime":"Node.js 24.21.0","description":"Users API of the Bookshop (Express)"}
+# exit 0

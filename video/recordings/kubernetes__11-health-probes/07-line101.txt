@@ -1,0 +1,4 @@
+kubectl patch deployment go-status --type json -p '[{"op":"replace","path":"/spec/template/spec/containers/0/livenessProbe/httpGet/path","value":"/healthz"}]'
+---
+deployment.apps/go-status patched
+# exit 0

@@ -1,0 +1,7 @@
+docker volume ls --filter name=bookshop -q
+docker ps -a --filter name=bookshop -q
+cd ..
+---
+4923c10f4799
+2b390b60c4c0
+# exit 0

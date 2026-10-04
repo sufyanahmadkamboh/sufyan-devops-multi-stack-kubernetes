@@ -1,0 +1,12 @@
+docker network create frontend-test
+docker run -d --name fake-books --network frontend-test python:3.14-alpine python -c '
+import http.server, json
+class H(http.server.BaseHTTPRequestHandler):
+    def do_GET(self):
+        body = json.dumps([{"id": 1, "title": "Fake Book", "author": "Test Data"}]).encode()
+        self.send_response(200); self.send_header("Content-Type", "application/json"); self.end_headers(); self.wfile.write(body)
+http.server.HTTPServer(("0.0.0.0", 8080), H).serve_forever()'
+---
+6aa45c331224364bf5d9b7703e5fbbce78b0b5ca126d4003e6d9041846d7a687
+962499a5d82b835fb55e2a2b7466cafcc15e58c09cd1cc9a2419b2a14a0f4579
+# exit 0

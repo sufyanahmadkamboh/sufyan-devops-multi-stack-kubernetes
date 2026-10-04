@@ -1,0 +1,15 @@
+docker run --rm --network laravel-lab --env-file laravel-lab.env laravel-fpm:1.0.0 php artisan migrate --force --seed
+---
+laravel-admin 1.0.0: starting: php artisan migrate --force --seed
+
+   INFO  Preparing database.  
+
+  Creating migration table ...................................... 10.29ms DONE
+
+   INFO  Running migrations.  
+
+  2026_10_04_000001_create_reviews_table ......................... 5.23ms DONE
+
+
+   INFO  Seeding database.  
+# exit 0

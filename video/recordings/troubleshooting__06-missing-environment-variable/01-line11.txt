@@ -1,0 +1,4 @@
+kubectl set env deployment/python-api DB_PASSWORD-
+---
+deployment.apps/python-api env updated
+# exit 0

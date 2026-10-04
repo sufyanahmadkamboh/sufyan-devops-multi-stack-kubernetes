@@ -1,0 +1,4 @@
+curl -s http://localhost:8082/ | grep -o '<title>[^<]*</title>'
+---
+<title>Bookshop · Reviews</title>
+# exit 0

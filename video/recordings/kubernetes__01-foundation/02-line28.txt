@@ -1,0 +1,6 @@
+kubectl config set-context --current --namespace=bookshop
+kubectl config view --minify -o jsonpath='{..namespace}'; echo
+---
+Context "kind-bookshop" modified.
+bookshop
+# exit 0

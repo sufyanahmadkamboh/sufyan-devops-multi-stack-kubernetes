@@ -1,0 +1,5 @@
+kubectl apply -f kubernetes/java-api/
+---
+deployment.apps/java-api created
+service/java-api created
+# exit 0

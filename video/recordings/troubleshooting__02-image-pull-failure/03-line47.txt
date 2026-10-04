@@ -1,0 +1,6 @@
+docker images python-api --format 'table {{.Repository}}\t{{.Tag}}\t{{.ID}}'
+---
+REPOSITORY   TAG       IMAGE ID
+python-api   1.2.0     f9f5cce02f77
+python-api   1.0.0     a44502a454de
+# exit 0

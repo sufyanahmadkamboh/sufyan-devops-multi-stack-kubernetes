@@ -1,0 +1,5 @@
+kubectl apply -f kubernetes/node-api/
+---
+deployment.apps/node-api created
+service/node-api created
+# exit 0

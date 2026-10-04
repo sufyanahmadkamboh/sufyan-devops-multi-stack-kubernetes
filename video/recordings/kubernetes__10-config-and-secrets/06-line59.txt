@@ -1,0 +1,10 @@
+kubectl create secret generic demo-secret --from-literal=PASSWORD=super-secret
+kubectl get secret demo-secret -o jsonpath='{.data.PASSWORD}'; echo
+kubectl get secret demo-secret -o jsonpath='{.data.PASSWORD}' | base64 -d; echo
+kubectl delete secret demo-secret
+---
+secret/demo-secret created
+c3VwZXItc2VjcmV0
+super-secret
+secret "demo-secret" deleted from bookshop namespace
+# exit 0

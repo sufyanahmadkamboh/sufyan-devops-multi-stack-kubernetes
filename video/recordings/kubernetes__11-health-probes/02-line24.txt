@@ -1,0 +1,9 @@
+kubectl get pods -l 'app in (node-api,python-api,java-api)'
+---
+NAME                          READY   STATUS    RESTARTS   AGE
+java-api-64578ccddb-tdjf4     0/1     Running   0          75s
+node-api-6f678b5b5-54hfh      0/1     Running   0          2m23s
+node-api-6f678b5b5-rh76x      0/1     Running   0          2m23s
+python-api-54c69f569b-4xxhv   0/1     Running   0          103s
+python-api-54c69f569b-xrmbc   0/1     Running   0          103s
+# exit 0

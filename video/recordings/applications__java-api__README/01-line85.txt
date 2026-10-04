@@ -1,0 +1,74 @@
+docker build -t java-api:1.0.0 applications/java-api
+docker image ls java-api:1.0.0
+---
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 DONE 0.0s
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.11kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/maven:3.9-eclipse-temurin-25-alpine
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/eclipse-temurin:25-jre-alpine
+#3 DONE 0.8s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 136B done
+#4 DONE 0.0s
+
+#5 [stage-1 1/4] FROM docker.io/library/eclipse-temurin:25-jre-alpine@sha256:3c0a9084927a221ccd1d007fcaf614465672c0af37aaa834c5184483afe56d61
+#5 resolve docker.io/library/eclipse-temurin:25-jre-alpine@sha256:3c0a9084927a221ccd1d007fcaf614465672c0af37aaa834c5184483afe56d61 0.0s done
+#5 DONE 0.0s
+
+#6 [build 1/6] FROM docker.io/library/maven:3.9-eclipse-temurin-25-alpine@sha256:781f1da87cd3d142e66e47cc149c4582a652fb7f574648206d1e956170c0dc90
+#6 resolve docker.io/library/maven:3.9-eclipse-temurin-25-alpine@sha256:781f1da87cd3d142e66e47cc149c4582a652fb7f574648206d1e956170c0dc90 0.0s done
+#6 DONE 0.0s
+
+#7 [internal] load build context
+#7 transferring context: 665B done
+#7 DONE 0.0s
+
+#8 [build 2/6] WORKDIR /src
+#8 CACHED
+
+#9 [build 4/6] RUN mvn -B -q dependency:go-offline
+#9 CACHED
+
+#10 [stage-1 3/4] WORKDIR /app
+#10 CACHED
+
+#11 [build 3/6] COPY pom.xml .
+#11 CACHED
+
+#12 [stage-1 2/4] RUN addgroup -S -g 10001 app && adduser -S -D -H -u 10001 -G app app
+#12 CACHED
+
+#13 [build 5/6] COPY src ./src
+#13 CACHED
+
+#14 [build 6/6] RUN mvn -B -q package -DskipTests
+#14 CACHED
+
+#15 [stage-1 4/4] COPY --from=build /src/target/app.jar app.jar
+#15 CACHED
+
+#16 exporting to image
+#16 exporting layers done
+#16 exporting manifest sha256:581094e1abb7e31c331de8440bee34ce8e0ae44bce499bed5510ed8f44aa3cf1 done
+#16 exporting config sha256:125a1f94f5c95cb7f64cd0cd2fa21598220c7f510a97e3ee78c01b9dd967365c done
+#16 exporting attestation manifest sha256:ad1145534abc9f41542b8ecf1758434f8653600d1ca60db88939a6887f82b531
+#16 exporting attestation manifest sha256:ad1145534abc9f41542b8ecf1758434f8653600d1ca60db88939a6887f82b531 0.0s done
+#16 exporting manifest list sha256:7c245c1c9d93d781081bd1600ec3ea73bb518ff616b8cc41b20dd929fffa33da 0.0s done
+#16 naming to docker.io/library/java-api:1.0.0 done
+#16 unpacking to docker.io/library/java-api:1.0.0 0.0s done
+#16 DONE 0.1s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/pq41yg4gz8r3jc627vi5nhk47
+WARNING: This output is designed for human readability. For machine-readable output, please use --format.
+IMAGE            ID             DISK USAGE   CONTENT SIZE   EXTRA
+java-api:1.0.0   7c245c1c9d93        348MB         95.9MB        
+# exit 0

@@ -1,0 +1,9 @@
+curl -s -i http://bookshop.localhost:8080/api/books | head -c 400; echo
+---
+HTTP/1.1 200 OK
+Content-Length: 390
+Content-Type: application/json
+Date: Sun, 04 Oct 2026 19:29:10 GMT
+
+[{"id":1,"title":"Pride and Prejudice","author":"Jane Austen","year":1813},{"id":2,"title":"Moby-Dick","author":"Herman Melville","year":1851},{"id":3,"title":"Crime and Punishment","author":"Fyodor Dostoevsky","year":1866},{"id":4,"title":"The Adventures of Sherlock Holmes","author":"Arthu
+# exit 0

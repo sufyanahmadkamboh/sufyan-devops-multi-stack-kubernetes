@@ -1,0 +1,5 @@
+docker exec bookshop-worker crictl images | grep -E 'IMAGE|python-api'
+---
+IMAGE                                           TAG                  IMAGE ID            SIZE
+docker.io/library/python-api                    1.0.0                09ef536e2e767       62MB
+# exit 0

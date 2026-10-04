@@ -1,0 +1,8 @@
+ASSET=$(curl -s http://localhost:8083/ | grep -o '/shop/assets/[^"]*\.js')
+echo "the page loads: $ASSET"
+curl -sI "http://localhost:8083$ASSET" | grep -iE '^(HTTP|content-type)'
+---
+the page loads: /shop/assets/index-D3AeDTfu.js
+HTTP/1.1 200 OK
+Content-Type: text/html
+# exit 0

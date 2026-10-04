@@ -1,0 +1,9 @@
+curl -s http://localhost:8086/ | grep -E '<h2>|<td>' | head -6
+---
+        <h2>Add a review</h2>
+        <h2>3 reviews</h2>
+                    <td>Clean Code</td>
+                    <td>Lena</td>
+                    <td>★★★</td>
+                    <td>Good ideas, some examples feel dated.</td>
+# exit 0

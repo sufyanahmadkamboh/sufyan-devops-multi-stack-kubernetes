@@ -1,0 +1,6 @@
+kubectl exec deploy/node-api -- wget -qO- http://laravel-admin:8080/ | grep -o '<title>[^<]*</title>'
+kubectl exec deploy/node-api -- wget -qO- http://laravel-admin:8080/ready; echo
+---
+<title>Bookshop · Reviews</title>
+{"status":"ready","service":"laravel-admin","version":"1.0.0"}
+# exit 0

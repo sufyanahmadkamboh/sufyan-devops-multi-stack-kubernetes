@@ -1,0 +1,4 @@
+kubectl apply -f kubernetes/laravel-admin/migrate-job.yaml
+---
+job.batch/laravel-migrate created
+# exit 0

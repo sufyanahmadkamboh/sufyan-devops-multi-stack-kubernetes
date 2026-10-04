@@ -1,0 +1,9 @@
+cd compose
+[ -f .env ] || printf 'DB_PASSWORD=%s\nAPP_KEY=base64:%s\n' "$(openssl rand -hex 16)" "$(openssl rand -base64 32)" > .env
+docker compose -f docker-compose.yml -f ../labs/work/compose.quotes.yml up -d --wait 2>&1 | tail -3
+cd ..
+---
+ Container bookshop-python-api-1 Healthy 
+ Container bookshop-laravel-web-1 Healthy 
+ Container bookshop-laravel-fpm-1 Healthy 
+# exit 0

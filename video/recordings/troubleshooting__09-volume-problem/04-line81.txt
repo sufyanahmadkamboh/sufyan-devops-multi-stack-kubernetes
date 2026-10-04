@@ -1,0 +1,10 @@
+kubectl describe pvc scratch-data | sed -n '/Events:/,$p'
+kubectl get storageclass
+---
+Events:
+  Type     Reason              Age   From                         Message
+  ----     ------              ----  ----                         -------
+  Warning  ProvisioningFailed  0s    persistentvolume-controller  storageclass.storage.k8s.io "fast-ssd" not found
+NAME                 PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+standard (default)   rancher.io/local-path   Delete          WaitForFirstConsumer   false                  8m15s
+# exit 0

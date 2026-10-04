@@ -1,0 +1,4 @@
+kubectl get deployment python-api -o jsonpath='{.spec.template.spec.containers[0].env[*].name}'; echo
+---
+DB_HOST DB_PORT DB_NAME DB_USER
+# exit 0

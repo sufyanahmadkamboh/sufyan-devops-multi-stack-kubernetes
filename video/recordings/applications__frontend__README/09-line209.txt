@@ -1,0 +1,5 @@
+curl -s -w '\nHTTP %{http_code}\n' http://localhost:8081/api/books
+---
+{"error":"upstream unreachable","path":"/api/books"}
+HTTP 502
+# exit 0

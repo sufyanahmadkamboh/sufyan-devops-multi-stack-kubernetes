@@ -1,0 +1,10 @@
+NEW=$(kubectl get pods -l app=python-api --sort-by=.metadata.creationTimestamp -o name | tail -1)
+kubectl get events --field-selector involvedObject.name=${NEW#pod/},reason=Unhealthy | tail -2
+kubectl describe $NEW | grep Readiness
+---
+24s         Warning   Unhealthy   pod/python-api-8684996bd6-2m5gv   Readiness probe failed: Get "http://10.244.1.44:8000/readyz": dial tcp 10.244.1.44:8000: connect: connection refused
+4s          Warning   Unhealthy   pod/python-api-8684996bd6-2m5gv   Readiness probe failed: HTTP probe failed with statuscode: 404
+    Readiness:  http-get http://:http/readyz delay=0s timeout=1s period=5s successThreshold=1 failureThreshold=2
+  Warning  Unhealthy  25s (x2 over 26s)  kubelet            spec.containers{python-api}: Readiness probe failed: Get "http://10.244.1.44:8000/readyz": dial tcp 10.244.1.44:8000: connect: connection refused
+  Warning  Unhealthy  0s (x5 over 20s)   kubelet            spec.containers{python-api}: Readiness probe failed: HTTP probe failed with statuscode: 404
+# exit 0

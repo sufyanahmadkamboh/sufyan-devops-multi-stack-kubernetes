@@ -1,0 +1,8 @@
+docker rm -f py-lab-api py-lab-wrong py-lab-db
+docker network rm py-lab
+---
+py-lab-api
+py-lab-wrong
+py-lab-db
+py-lab
+# exit 0

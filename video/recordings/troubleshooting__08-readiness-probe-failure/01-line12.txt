@@ -1,0 +1,4 @@
+kubectl patch deployment python-api --type json -p '[{"op":"replace","path":"/spec/template/spec/containers/0/readinessProbe/httpGet/path","value":"/readyz"}]'
+---
+deployment.apps/python-api patched
+# exit 0

@@ -1,0 +1,13 @@
+docker network create go-lab
+docker run -d --name go-lab-web --network go-lab nginx:1.30-alpine
+docker run -d --name go-lab-status --network go-lab -p 18080:8080 \
+  -e TARGETS="web=http://go-lab-web/,ghost=http://ghost-api:9999/health" \
+  go-status:1.0.0
+docker ps --filter name=go-lab --format '{{.Names}}  {{.Image}}  {{.Status}}'
+---
+77d8647b869fb36275d96e3bf303f427a834c089ffa4474197ed685fb9fb31e6
+5ed1c033f69bf218dd8b5cc055137956a1b89d8a29764f7ba483f49135a417e4
+8c230767872e34da12c0d0c5c74a1958e10922dd84a44dd13e21c161be0aef9d
+go-lab-status  go-status:1.0.0  Up Less than a second
+go-lab-web  nginx:1.30-alpine  Up Less than a second
+# exit 0

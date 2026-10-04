@@ -1,0 +1,8 @@
+docker run -d --name lesson-node-api --network lesson-node -p 3000:3000 \
+  -e DB_HOST=lesson-node-db -e DB_PASSWORD=example-only \
+  node-api:1.0.0
+docker ps --filter name=lesson-node-api --format '{{.Names}} {{.Status}} {{.Ports}}'
+---
+11ed8351abc96c7be619b5fd4bff44d59d16ab6afaa3c0c0a0907fcd0168bc0d
+lesson-node-api Up Less than a second 0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp
+# exit 0

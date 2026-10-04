@@ -1,0 +1,65 @@
+docker build --target build -t frontend-build:1.0.0 applications/frontend
+---
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.26kB done
+#1 DONE 0.0s
+
+#2 resolve image config for docker-image://docker.io/docker/dockerfile:1
+#2 DONE 0.2s
+
+#3 docker-image://docker.io/docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e
+#3 resolve docker.io/docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e 0.0s done
+#3 CACHED
+
+#4 [internal] load metadata for docker.io/library/node:24-alpine
+#4 DONE 0.2s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 104B done
+#5 DONE 0.0s
+
+#6 [build 1/8] FROM docker.io/library/node:24-alpine@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#6 resolve docker.io/library/node:24-alpine@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1 0.0s done
+#6 DONE 0.0s
+
+#7 [internal] load build context
+#7 transferring context: 351B done
+#7 DONE 0.0s
+
+#8 [build 2/8] WORKDIR /app
+#8 CACHED
+
+#9 [build 4/8] RUN npm ci
+#9 CACHED
+
+#10 [build 5/8] COPY index.html vite.config.js ./
+#10 CACHED
+
+#11 [build 7/8] COPY src ./src
+#11 CACHED
+
+#12 [build 3/8] COPY package.json package-lock.json ./
+#12 CACHED
+
+#13 [build 6/8] COPY public ./public
+#13 CACHED
+
+#14 [build 8/8] RUN npm run build -- --base=/
+#14 CACHED
+
+#15 exporting to image
+#15 exporting layers done
+#15 exporting manifest sha256:384cf5c14f45d87556de663795930895a0812b92cdbea28dfc091e03e52e882b 0.0s done
+#15 exporting config sha256:dd9bc60fb808f46bc16a33969562bce41d119506500c7d73d89002b3a1dc9e41 done
+#15 exporting attestation manifest sha256:0be9b00dbbe37155b0ce7247deddd17807810fd71803b3de7791743956837a77 0.0s done
+#15 exporting manifest list sha256:c34f8e1c912252b46daf05cb7344e9394d31e0e2fec4efaf29ad5bc6d59fbe9e 0.0s done
+#15 naming to docker.io/library/frontend-build:1.0.0
+#15 naming to docker.io/library/frontend-build:1.0.0 done
+#15 unpacking to docker.io/library/frontend-build:1.0.0
+#15 unpacking to docker.io/library/frontend-build:1.0.0 0.4s done
+#15 DONE 0.6s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/jkegw2rmchdqppyal31ymj47z
+# exit 0

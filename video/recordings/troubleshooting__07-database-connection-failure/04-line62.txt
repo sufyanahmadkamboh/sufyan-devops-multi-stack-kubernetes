@@ -1,0 +1,7 @@
+kubectl get configmap bookshop-config -o jsonpath='DB_HOST={.data.DB_HOST}{"\n"}'
+kubectl get service postgres
+---
+DB_HOST=postgress
+NAME       TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)    AGE
+postgres   ClusterIP   None         <none>        5432/TCP   6m53s
+# exit 0

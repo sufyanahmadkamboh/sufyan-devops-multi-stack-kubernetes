@@ -1,0 +1,4 @@
+curl -s http://localhost:18081/api/status
+---
+{"services":[{"name":"web","url":"http://go-lab-web/","status":"down","http_status":0,"latency_ms":2001,"error":"Get \"http://go-lab-web/\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"}],"total":1,"up":0}
+# exit 0

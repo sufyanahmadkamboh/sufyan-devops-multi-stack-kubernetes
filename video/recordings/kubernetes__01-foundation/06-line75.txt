@@ -1,0 +1,6 @@
+kubectl describe secret db-credentials | tail -3
+---
+Data
+====
+DB_PASSWORD:  32 bytes
+# exit 0

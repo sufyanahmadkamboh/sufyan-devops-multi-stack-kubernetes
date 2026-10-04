@@ -1,0 +1,4 @@
+docker run --rm node-api:1.0.0
+---
+2026-10-04T19:15:22.274Z node-api ERROR: DB_PASSWORD is not set. Set it (Compose: environment, Kubernetes: a Secret) and start again.
+# exit 1

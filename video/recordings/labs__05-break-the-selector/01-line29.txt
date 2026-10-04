@@ -1,0 +1,4 @@
+kubectl patch service quotes-api -p '{"spec":{"selector":{"app":"quote-api"}}}'
+---
+service/quotes-api patched
+# exit 0

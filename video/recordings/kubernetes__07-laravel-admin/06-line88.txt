@@ -1,0 +1,8 @@
+kubectl get pod -l app=laravel-admin -o jsonpath='{.items[0].spec.containers[*].name}'; echo
+kubectl logs deploy/laravel-admin -c laravel-fpm --tail=3
+---
+laravel-web laravel-fpm
+[04-Oct-2026 19:22:53] NOTICE: fpm is running, pid 1
+[04-Oct-2026 19:22:53] NOTICE: ready to handle connections
+127.0.0.1 -  04/Oct/2026:19:22:53 +0000 "GET /index.php" 200
+# exit 0

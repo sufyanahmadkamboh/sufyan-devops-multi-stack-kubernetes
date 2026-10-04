@@ -1,0 +1,5 @@
+kubectl apply -f labs/work/k8s/quotes-api.yaml > /dev/null
+curl -s http://bookshop.localhost:8080/api/quotes; echo
+---
+{"quote": "First, solve the problem. Then, write the code.", "author": "John Johnson", "version": "1.0.0"}
+# exit 0

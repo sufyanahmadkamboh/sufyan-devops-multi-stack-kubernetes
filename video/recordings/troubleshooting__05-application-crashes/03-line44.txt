@@ -1,0 +1,6 @@
+NEW=$(kubectl get pods -l app=node-api --sort-by=.metadata.creationTimestamp -o name | tail -1)
+kubectl logs $NEW --previous | grep -E 'Error|code'
+---
+Error: Cannot find module '/app/src/servr.js'
+  code: 'MODULE_NOT_FOUND',
+# exit 0

@@ -1,0 +1,15 @@
+kubectl exec deploy/node-api -- wget -qO- http://go-status:8080/api/status | python3 -c "
+import sys, json
+d = json.load(sys.stdin)
+print(f\"{d['up']} of {d['total']} services up\")
+for s in d['services']:
+    print(f\"  {s['name']:14} {s['status']:5} {s.get('http_status') or ''}\")"
+---
+4 of 6 services up
+  frontend       up    200
+  go-status      up    200
+  java-api       down  
+  laravel-admin  down  
+  node-api       up    200
+  python-api     up    200
+# exit 0

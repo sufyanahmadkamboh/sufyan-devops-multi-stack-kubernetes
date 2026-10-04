@@ -1,0 +1,5 @@
+kubectl exec deploy/node-api -- wget -qO- http://java-api:8080/api/books | head -c 200
+echo
+---
+[{"id":1,"title":"Pride and Prejudice","author":"Jane Austen","year":1813},{"id":2,"title":"Moby-Dick","author":"Herman Melville","year":1851},{"id":3,"title":"Crime and Punishment","author":"Fyodor D
+# exit 0

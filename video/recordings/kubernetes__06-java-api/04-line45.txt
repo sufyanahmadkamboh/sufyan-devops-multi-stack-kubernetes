@@ -1,0 +1,4 @@
+kubectl logs deploy/java-api | grep -m1 -o 'Started .*'
+---
+Started BookshopApplication in 4.498 seconds (process running for 5.486)
+# exit 0

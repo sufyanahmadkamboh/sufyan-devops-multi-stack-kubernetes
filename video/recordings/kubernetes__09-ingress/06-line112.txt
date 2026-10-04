@@ -1,0 +1,6 @@
+curl -s http://bookshop.localhost:8080/api/status | python3 -c "import sys,json; d=json.load(sys.stdin); print(f\"{d['up']} of {d['total']} services up\")"
+curl -s http://admin.bookshop.localhost:8080/ | grep -o '<title>[^<]*</title>'
+---
+6 of 6 services up
+<title>Bookshop · Reviews</title>
+# exit 0

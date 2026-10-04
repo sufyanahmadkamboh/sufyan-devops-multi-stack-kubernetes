@@ -1,0 +1,6 @@
+docker images --format 'table {{.Repository}}\t{{.Tag}}\t{{.Size}}' | grep -E 'REPOSITORY|laravel'
+---
+REPOSITORY               TAG                             SIZE
+laravel-fpm              1.0.0                           222MB
+laravel-web              1.0.0                           81.5MB
+# exit 0

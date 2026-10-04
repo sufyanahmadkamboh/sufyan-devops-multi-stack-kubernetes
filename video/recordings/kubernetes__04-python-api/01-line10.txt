@@ -1,0 +1,12 @@
+diff <(sed 's/python-api/APP/g; s/8000/PORT/g' kubernetes/python-api/deployment.yaml) \
+     <(sed 's/node-api/APP/g; s/3000/PORT/g' kubernetes/node-api/deployment.yaml) | grep '^[<>]' | head -12 || true
+echo "(only these lines differ, apart from the name and port)"
+---
+< # APP: Python 3.14 + FastAPI. The same image that runs in Docker and Compose.
+> # APP: Node.js 24 + Express. The same image that runs in Docker and Compose.
+<         runAsUser: 10001
+>         runAsUser: 1000
+<             requests: { cpu: 50m, memory: 96Mi }   # what the scheduler reserves
+>             requests: { cpu: 50m, memory: 64Mi }   # what the scheduler reserves
+(only these lines differ, apart from the name and port)
+# exit 0

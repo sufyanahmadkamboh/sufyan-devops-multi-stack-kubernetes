@@ -1,0 +1,5 @@
+kind delete cluster --name bookshop 2>&1
+---
+Deleting cluster "bookshop" ...
+Deleted nodes: ["bookshop-control-plane" "bookshop-worker"]
+# exit 0

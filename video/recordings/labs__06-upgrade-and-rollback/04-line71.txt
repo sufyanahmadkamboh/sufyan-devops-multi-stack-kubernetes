@@ -1,0 +1,5 @@
+kubectl delete -f labs/work/k8s/quotes-api.yaml --ignore-not-found > /dev/null
+rm -rf labs/work
+---
+
+# exit 0

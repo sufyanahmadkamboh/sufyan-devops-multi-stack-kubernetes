@@ -1,0 +1,5 @@
+kubectl set image deployment/node-api node-api=node-api:1.1.0
+kubectl annotate deployment/node-api kubernetes.io/change-cause="node-api 1.1.0" --overwrite > /dev/null
+---
+deployment.apps/node-api image updated
+# exit 0

@@ -1,0 +1,7 @@
+docker run -d --name py-lab-wrong --network py-lab -p 18001:8000 \
+  -e DB_HOST=py-lab-db -e DB_PASSWORD=not-the-password python-api:1.0.0
+docker ps --filter name=py-lab-wrong --format '{{.Names}} {{.Status}}'
+---
+09a6688ef3d4e068ec7405f68a15ae72c66d9ee8d521e65234c6466a7c376602
+py-lab-wrong Up Less than a second
+# exit 0

@@ -1,0 +1,4 @@
+kubectl replace -f kubernetes/java-api/service.yaml
+---
+service/java-api replaced
+# exit 0

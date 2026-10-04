@@ -1,0 +1,8 @@
+kubectl get service java-api
+kubectl get endpointslices -l kubernetes.io/service-name=java-api -o custom-columns='SERVICE:.metadata.labels.kubernetes\.io/service-name,PORT:.ports[0].port,ADDRESS:.endpoints[0].addresses[0]'
+---
+NAME       TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
+java-api   ClusterIP   10.96.193.99   <none>        8081/TCP   6m43s
+SERVICE    PORT   ADDRESS
+java-api   8080   10.244.1.12
+# exit 0

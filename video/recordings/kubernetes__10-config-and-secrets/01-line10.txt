@@ -1,0 +1,4 @@
+kubectl patch configmap bookshop-config --type merge -p '{"data":{"ADMIN_URL":"http://admin.bookshop.localhost:8080/?from=kubernetes"}}'
+---
+configmap/bookshop-config patched
+# exit 0

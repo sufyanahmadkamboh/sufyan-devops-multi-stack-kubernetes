@@ -1,0 +1,8 @@
+docker exec lesson-worker-db psql -U bookshop -d bookshop -c 'SELECT id, users, books, reviews, services_up, services_total FROM reports'
+---
+ id | users | books | reviews | services_up | services_total 
+----+-------+-------+---------+-------------+----------------
+  1 |     4 |     5 |       2 |           6 |              6
+  2 |     4 |     5 |       2 |           6 |              6
+(2 rows)
+# exit 0

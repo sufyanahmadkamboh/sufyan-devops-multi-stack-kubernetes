@@ -1,0 +1,5 @@
+curl -s -X POST http://bookshop.localhost:8080/api/users -H 'Content-Type: application/json' \
+  -d '{"name":"Margaret Hamilton","email":"margaret@example.com"}'; echo
+---
+{"id":7,"name":"Margaret Hamilton","email":"margaret@example.com","created_at":"2026-10-04T19:24:04.800Z"}
+# exit 0

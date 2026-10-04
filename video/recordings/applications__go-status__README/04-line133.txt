@@ -1,0 +1,6 @@
+curl -s http://localhost:18080/health
+curl -s http://localhost:18080/
+---
+{"service":"go-status","status":"ok","version":"1.0.0"}
+{"description":"Service status board: checks the /health endpoint of every Bookshop service","language":"Go","runtime":"go1.27.1","service":"go-status","version":"1.0.0"}
+# exit 0

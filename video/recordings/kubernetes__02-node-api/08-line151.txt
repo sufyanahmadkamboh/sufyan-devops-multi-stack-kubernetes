@@ -1,0 +1,9 @@
+kubectl logs -l app=node-api --tail=3 --prefix
+---
+[pod/node-api-6f678b5b5-54hfh/node-api] 2026-10-04T19:21:25.009Z node-api GET /ready 200
+[pod/node-api-6f678b5b5-54hfh/node-api] 2026-10-04T19:21:25.715Z node-api GET /api/users 200
+[pod/node-api-6f678b5b5-54hfh/node-api] 2026-10-04T19:21:28.888Z node-api GET / 200
+[pod/node-api-6f678b5b5-rh76x/node-api] 2026-10-04T19:21:20.159Z node-api version 1.0.0 listening on port 3000
+[pod/node-api-6f678b5b5-rh76x/node-api] 2026-10-04T19:21:20.240Z node-api table users ready
+[pod/node-api-6f678b5b5-rh76x/node-api] 2026-10-04T19:21:25.015Z node-api GET /ready 200
+# exit 0

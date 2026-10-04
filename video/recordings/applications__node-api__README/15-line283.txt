@@ -1,0 +1,7 @@
+docker rm -f lesson-node-api lesson-node-db
+docker network rm lesson-node
+---
+lesson-node-api
+lesson-node-db
+lesson-node
+# exit 0

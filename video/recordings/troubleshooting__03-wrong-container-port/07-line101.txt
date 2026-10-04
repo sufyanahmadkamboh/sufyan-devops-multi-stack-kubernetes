@@ -1,0 +1,9 @@
+kubectl get pods -l app=node-api
+kubectl logs deploy/node-api | grep listening
+---
+NAME                       READY   STATUS    RESTARTS   AGE
+node-api-6f678b5b5-btwrc   1/1     Running   0          2m6s
+node-api-6f678b5b5-dwb4s   1/1     Running   0          2m8s
+Found 2 pods, using pod/node-api-6f678b5b5-dwb4s
+2026-10-04T19:24:41.144Z node-api version 1.0.0 listening on port 3000
+# exit 0

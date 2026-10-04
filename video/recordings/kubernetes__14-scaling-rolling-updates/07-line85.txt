@@ -1,0 +1,7 @@
+kubectl rollout history deployment/node-api
+---
+deployment.apps/node-api 
+REVISION  CHANGE-CAUSE
+1         <none>
+2         node-api 1.1.0
+# exit 0

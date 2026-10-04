@@ -1,0 +1,7 @@
+docker logs go-lab-status
+---
+go-status 2026/10/04 19:16:16 listening on :8080, version 1.0.0, 2 targets
+go-status 2026/10/04 19:16:17 GET /health 200
+go-status 2026/10/04 19:16:17 GET / 200
+go-status 2026/10/04 19:16:19 GET /api/status 200
+# exit 0

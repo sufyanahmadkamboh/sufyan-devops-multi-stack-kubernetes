@@ -1,0 +1,5 @@
+NEW=$(kubectl get pods -l app=node-api --sort-by=.metadata.creationTimestamp -o name | tail -1)
+kubectl exec $NEW -- node -e "fetch('http://127.0.0.1:3000/ready').then(async r => console.log(r.status, await r.text()))"
+---
+503 {"status":"not ready","service":"node-api","reason":"password authentication failed for user \"bookshop\""}
+# exit 0

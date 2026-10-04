@@ -1,0 +1,11 @@
+kubectl describe node bookshop-worker | sed -n '/Allocated resources:/,/Events:/p' | head -8
+---
+Allocated resources:
+  (Total limits may be over 100 percent, i.e., overcommitted.)
+  Resource           Requests    Limits
+  --------           --------    ------
+  cpu                740m (5%)   5300m (37%)
+  memory             930Mi (5%)  2752Mi (17%)
+  ephemeral-storage  0 (0%)      0 (0%)
+  hugepages-1Gi      0 (0%)      0 (0%)
+# exit 0

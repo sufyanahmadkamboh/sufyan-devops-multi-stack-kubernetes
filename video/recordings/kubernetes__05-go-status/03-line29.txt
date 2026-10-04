@@ -1,0 +1,8 @@
+kubectl apply -f kubernetes/go-status/
+kubectl rollout status deployment/go-status --timeout=240s
+---
+deployment.apps/go-status created
+service/go-status created
+Waiting for deployment "go-status" rollout to finish: 0 of 1 updated replicas are available...
+deployment "go-status" successfully rolled out
+# exit 0

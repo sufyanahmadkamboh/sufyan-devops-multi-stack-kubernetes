@@ -1,0 +1,4 @@
+kubectl scale deployment node-api --replicas=2
+---
+deployment.apps/node-api scaled
+# exit 0

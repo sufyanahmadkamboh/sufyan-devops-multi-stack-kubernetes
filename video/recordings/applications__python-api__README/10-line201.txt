@@ -1,0 +1,6 @@
+curl -s -w '  -> HTTP %{http_code}\n' http://localhost:18000/ready
+curl -s -w '  -> HTTP %{http_code}\n' http://localhost:18000/health
+---
+{"status":"not ready","service":"python-api","reason":"failed to resolve host 'py-lab-db': [Errno -2] Name or service not known"}  -> HTTP 503
+{"status":"ok","service":"python-api","version":"1.0.0"}  -> HTTP 200
+# exit 0

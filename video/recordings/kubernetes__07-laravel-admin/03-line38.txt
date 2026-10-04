@@ -1,0 +1,7 @@
+kubectl wait --for=condition=complete job/laravel-migrate --timeout=240s
+kubectl get job laravel-migrate
+---
+job.batch/laravel-migrate condition met
+NAME              STATUS     COMPLETIONS   DURATION   AGE
+laravel-migrate   Complete   1/1           3s         3s
+# exit 0

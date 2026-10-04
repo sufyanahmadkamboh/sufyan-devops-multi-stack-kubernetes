@@ -1,0 +1,4 @@
+docker run -d --name frontend-wrong-port -p 8082:80 frontend:1.0.0
+---
+af2de8e0b7a9b83bf20afb444776d172fd1656fb11ab3cabd985f3a22525d785
+# exit 0

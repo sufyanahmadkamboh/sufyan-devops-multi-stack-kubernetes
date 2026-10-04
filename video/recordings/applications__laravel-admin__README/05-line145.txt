@@ -1,0 +1,11 @@
+cat > laravel-lab.env <<EOF
+APP_KEY=$(docker run --rm --entrypoint php laravel-fpm:1.0.0 artisan key:generate --show)
+DB_HOST=laravel-db
+DB_PASSWORD=example-only
+EOF
+sed -E 's/=.*/=…(hidden)/' laravel-lab.env
+---
+APP_KEY=…(hidden)
+DB_HOST=…(hidden)
+DB_PASSWORD=…(hidden)
+# exit 0

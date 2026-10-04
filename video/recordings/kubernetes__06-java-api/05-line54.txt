@@ -1,0 +1,7 @@
+kubectl describe pod -l app=java-api | grep -E 'Startup|Liveness|Readiness'
+---
+    Liveness:   http-get http://:http/health delay=0s timeout=1s period=10s successThreshold=1 failureThreshold=3
+    Readiness:  http-get http://:http/ready delay=0s timeout=1s period=5s successThreshold=1 failureThreshold=2
+    Startup:    http-get http://:http/health delay=0s timeout=1s period=2s successThreshold=1 failureThreshold=30
+  Warning  Unhealthy  3s (x2 over 5s)  kubelet            spec.containers{java-api}: Startup probe failed: Get "http://10.244.1.12:8080/health": dial tcp 10.244.1.12:8080: connect: connection refused
+# exit 0

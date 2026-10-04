@@ -1,0 +1,4 @@
+docker run -d --name frontend -p 8081:8080 -e ADMIN_URL=http://localhost:8084/ frontend:1.0.0
+---
+5ac4986e5f87edc8a28a8f331990aa4f106b6191cb4b9a07d90dc4097b1964c1
+# exit 0

@@ -1,0 +1,8 @@
+kubectl get pods -l app=python-api
+kubectl describe deployment python-api | grep Readiness
+---
+NAME                          READY   STATUS    RESTARTS   AGE
+python-api-54c69f569b-7mz9l   1/1     Running   0          2m22s
+python-api-54c69f569b-vmbkm   1/1     Running   0          2m28s
+    Readiness:  http-get http://:http/ready delay=0s timeout=1s period=5s successThreshold=1 failureThreshold=2
+# exit 0

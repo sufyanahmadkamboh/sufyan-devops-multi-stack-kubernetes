@@ -1,0 +1,12 @@
+docker compose config --services
+---
+postgres
+laravel-migrate
+laravel-fpm
+laravel-web
+node-api
+go-status
+java-api
+python-api
+frontend
+# exit 0

@@ -1,0 +1,6 @@
+docker images --format 'table {{.Repository}}:{{.Tag}}\t{{.Size}}' | grep -E '^(REPOSITORY|frontend)'
+---
+REPOSITORY:TAG                        SIZE
+frontend:1.0.0                        81.8MB
+frontend-build:1.0.0                  334MB
+# exit 0

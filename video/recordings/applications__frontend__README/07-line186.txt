@@ -1,0 +1,4 @@
+curl -s http://localhost:8081/config.js
+---
+window.APP_CONFIG = { ADMIN_URL: "http://localhost:8084/", APP_ENV: "production" };
+# exit 0

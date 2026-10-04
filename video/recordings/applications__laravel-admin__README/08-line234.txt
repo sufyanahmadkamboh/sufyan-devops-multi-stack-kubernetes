@@ -1,0 +1,8 @@
+curl -s http://localhost:8086/health; echo
+curl -s http://localhost:8086/ready; echo
+curl -s http://localhost:8086/info; echo
+---
+{"status":"ok","service":"laravel-admin","version":"1.0.0"}
+{"status":"ready","service":"laravel-admin","version":"1.0.0"}
+{"service":"laravel-admin","version":"1.0.0","language":"PHP","runtime":"PHP 8.5.11 (FPM), Laravel 13.34.0","description":"Book reviews: list and add reviews (server-rendered HTML)"}
+# exit 0

@@ -1,0 +1,7 @@
+cd compose
+printf 'DB_PASSWORD=%s\nAPP_KEY=base64:%s\n' "$(openssl rand -hex 16)" "$(openssl rand -base64 32)" > .env
+cut -d= -f1 .env
+---
+DB_PASSWORD
+APP_KEY
+# exit 0

@@ -1,0 +1,4 @@
+curl -s http://bookshop.localhost:8080/
+---
+404 page not found
+# exit 0

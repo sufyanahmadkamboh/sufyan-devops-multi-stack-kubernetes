@@ -1,0 +1,4 @@
+kubectl patch service node-api -p '{"spec":{"selector":{"app":"node-apii"}}}'
+---
+service/node-api patched
+# exit 0

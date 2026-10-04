@@ -1,0 +1,7 @@
+docker stop lesson-node-db > /dev/null
+curl -s -w ' HTTP %{http_code}\n' --max-time 10 http://localhost:3000/ready
+curl -s -w ' HTTP %{http_code}\n' http://localhost:3000/health
+---
+{"status":"not ready","service":"node-api","reason":"Connection terminated due to connection timeout"} HTTP 503
+{"status":"ok","service":"node-api","version":"1.0.0"} HTTP 200
+# exit 0

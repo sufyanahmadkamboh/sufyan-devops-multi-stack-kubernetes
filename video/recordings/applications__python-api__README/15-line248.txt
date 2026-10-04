@@ -1,0 +1,4 @@
+curl -s -w '  -> HTTP %{http_code}\n' http://localhost:18001/ready
+---
+{"status":"not ready","service":"python-api","reason":"connection failed: connection to server at \"172.19.0.2\", port 5432 failed: FATAL:  password authentication failed for user \"bookshop\""}  -> HTTP 503
+# exit 0

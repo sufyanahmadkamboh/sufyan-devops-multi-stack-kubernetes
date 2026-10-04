@@ -1,0 +1,6 @@
+docker network ls --filter name=bookshop
+---
+NETWORK ID     NAME                DRIVER    SCOPE
+484fd12155b1   bookshop_backend    bridge    local
+820c4bfdd20f   bookshop_frontend   bridge    local
+# exit 0

@@ -1,0 +1,5 @@
+curl -sI http://localhost:8081/books/2 | grep -iE '^(HTTP|content-type)'
+---
+HTTP/1.1 200 OK
+Content-Type: text/html
+# exit 0

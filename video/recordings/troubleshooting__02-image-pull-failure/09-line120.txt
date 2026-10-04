@@ -1,0 +1,4 @@
+kubectl exec deploy/node-api -- wget -qO- http://python-api:8000/; echo
+---
+{"service":"python-api","version":"1.2.0","language":"Python","runtime":"CPython 3.14.8","description":"Statistics for the Bookshop: counts of users, books, reviews and the latest report"}
+# exit 0

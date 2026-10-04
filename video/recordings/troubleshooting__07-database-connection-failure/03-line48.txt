@@ -1,0 +1,9 @@
+NEW=$(kubectl get pods -l app=node-api --sort-by=.metadata.creationTimestamp -o name | tail -1)
+kubectl exec $NEW -- node -e "fetch('http://127.0.0.1:3000/ready').then(async r => console.log(r.status, await r.text()))"
+kubectl exec $NEW -- node -e "fetch('http://127.0.0.1:3000/health').then(async r => console.log(r.status, await r.text()))"
+kubectl exec $NEW -- printenv DB_HOST
+---
+503 {"status":"not ready","service":"node-api","reason":"Connection terminated due to connection timeout"}
+200 {"status":"ok","service":"node-api","version":"1.0.0"}
+postgress
+# exit 0

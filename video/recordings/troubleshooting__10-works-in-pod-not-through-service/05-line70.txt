@@ -1,0 +1,8 @@
+kubectl describe service python-api | grep -E 'Port|Endpoints'
+kubectl get pods -l app=python-api -o jsonpath='{.items[0].spec.containers[0].ports[0].containerPort}{"\n"}'
+---
+Port:                     http  8000/TCP
+TargetPort:               8080/TCP
+Endpoints:                10.244.1.37:8080,10.244.1.36:8080
+8000
+# exit 0

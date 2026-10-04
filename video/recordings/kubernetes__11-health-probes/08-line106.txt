@@ -1,0 +1,4 @@
+kubectl get events --field-selector reason=Unhealthy --sort-by=.lastTimestamp | grep go-status | tail -2
+---
+1s          Warning   Unhealthy   pod/go-status-b5b65b96d-xdflm      Liveness probe failed: HTTP probe failed with statuscode: 404
+# exit 0

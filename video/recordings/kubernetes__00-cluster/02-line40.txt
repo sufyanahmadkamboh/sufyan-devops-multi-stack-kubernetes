@@ -1,0 +1,8 @@
+kubectl config current-context
+kubectl get nodes
+---
+kind-bookshop
+NAME                     STATUS   ROLES           AGE   VERSION
+bookshop-control-plane   Ready    control-plane   25s   v1.37.0
+bookshop-worker          Ready    <none>          14s   v1.37.0
+# exit 0

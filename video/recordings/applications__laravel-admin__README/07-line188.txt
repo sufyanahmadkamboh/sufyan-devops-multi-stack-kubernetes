@@ -1,0 +1,11 @@
+docker run -d --name laravel-fpm --network laravel-lab --env-file laravel-lab.env laravel-fpm:1.0.0
+docker run -d --name laravel-web --network laravel-lab -e FPM_HOST=laravel-fpm -p 8086:8080 laravel-web:1.0.0
+docker ps --filter name=laravel- --format 'table {{.Names}}\t{{.Image}}\t{{.Ports}}'
+---
+8699ffc5c757df94d0782c87ed25c3f5a554dbc22a2ef71312a9a6b886aceb49
+f1ea34b11567fd1a4ef9b63e809bc5f3164594231b0373c2990a112671e19839
+NAMES         IMAGE                  PORTS
+laravel-web   laravel-web:1.0.0      0.0.0.0:8086->8080/tcp, [::]:8086->8080/tcp
+laravel-fpm   laravel-fpm:1.0.0      9000/tcp
+laravel-db    postgres:18.6-alpine   5432/tcp
+# exit 0

@@ -1,0 +1,6 @@
+kubectl delete pod scratch-writer --wait=true
+kubectl delete pvc scratch-data
+---
+pod "scratch-writer" deleted from bookshop namespace
+persistentvolumeclaim "scratch-data" deleted from bookshop namespace
+# exit 0

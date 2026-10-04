@@ -1,0 +1,11 @@
+kubectl get pods,svc -n traefik
+kubectl get ingressclass
+---
+NAME                           READY   STATUS    RESTARTS   AGE
+pod/traefik-6d88bc478f-pjbcx   1/1     Running   0          18s
+
+NAME              TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+service/traefik   NodePort   10.96.209.219   <none>        80:30080/TCP   18s
+NAME                CONTROLLER                      PARAMETERS   AGE
+traefik (default)   traefik.io/ingress-controller   <none>       18s
+# exit 0

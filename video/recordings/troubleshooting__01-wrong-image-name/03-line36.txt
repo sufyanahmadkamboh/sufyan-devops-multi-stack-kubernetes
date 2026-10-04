@@ -1,0 +1,5 @@
+kubectl rollout status deployment/go-status --timeout=5s 2>&1 || true
+---
+Waiting for deployment "go-status" rollout to finish: 1 old replicas are pending termination...
+error: timed out waiting for the condition
+# exit 0

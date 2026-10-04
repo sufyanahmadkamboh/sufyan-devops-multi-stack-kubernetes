@@ -1,0 +1,7 @@
+kubectl get pods -l app=go-status
+kubectl get deployment go-status -o jsonpath='{.spec.template.spec.containers[0].image}'; echo
+---
+NAME                         READY   STATUS    RESTARTS   AGE
+go-status-6ddf8dbd94-vfht8   1/1     Running   0          66s
+go-status:1.0.0
+# exit 0

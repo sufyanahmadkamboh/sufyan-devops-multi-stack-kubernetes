@@ -1,0 +1,5 @@
+kubectl apply -f kubernetes/frontend/
+---
+deployment.apps/frontend created
+service/frontend created
+# exit 0

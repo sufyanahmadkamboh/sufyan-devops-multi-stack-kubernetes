@@ -1,0 +1,11 @@
+kubectl get namespaces
+kubectl config set-context --current --namespace=default > /dev/null
+---
+NAME                 STATUS   AGE
+default              Active   13m
+kube-node-lease      Active   13m
+kube-public          Active   13m
+kube-system          Active   13m
+local-path-storage   Active   12m
+traefik              Active   12m
+# exit 0

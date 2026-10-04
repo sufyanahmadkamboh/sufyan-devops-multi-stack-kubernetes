@@ -1,0 +1,4 @@
+kubectl exec scratch-writer -- cat /data/started
+---
+Sun Oct  4 19:28:27 UTC 2026
+# exit 0

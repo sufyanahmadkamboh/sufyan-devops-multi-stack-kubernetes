@@ -1,0 +1,7 @@
+kubectl describe ingress bookshop | grep -E 'Path|/api/books|/ '
+---
+  Host                      Path  Backends
+                            /api/books    java-api:8080 ()
+                            /             frontend:8080 (10.244.1.18:8080,10.244.1.19:8080)
+                            /   laravel-admin:8080 (10.244.1.14:8080)
+# exit 0

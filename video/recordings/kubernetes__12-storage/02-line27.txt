@@ -1,0 +1,4 @@
+kubectl delete pod postgres-0
+---
+pod "postgres-0" deleted from bookshop namespace
+# exit 0

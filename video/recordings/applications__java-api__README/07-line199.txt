@@ -1,0 +1,11 @@
+for cpus in 0.5 1; do
+  docker run -d --name java-lab-cpu --network java-lab --cpus=$cpus --memory=512m \
+    -e DB_HOST=java-lab-db -e DB_PASSWORD=example-only java-api:1.0.0 > /dev/null
+  until docker logs java-lab-cpu 2>&1 | grep -q 'Started BookshopApplication'; do sleep 1; done
+  echo "cpus=$cpus: $(docker logs java-lab-cpu 2>&1 | grep -o 'Started BookshopApplication in [0-9.]* seconds')"
+  docker rm -f java-lab-cpu > /dev/null
+done
+---
+cpus=0.5: Started BookshopApplication in 9.69 seconds
+cpus=1: Started BookshopApplication in 4.729 seconds
+# exit 0

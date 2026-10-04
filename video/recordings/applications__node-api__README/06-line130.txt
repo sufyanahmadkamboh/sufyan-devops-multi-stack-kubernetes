@@ -1,0 +1,7 @@
+curl -s http://localhost:3000/
+echo
+curl -s http://localhost:3000/health
+---
+{"service":"node-api","version":"1.0.0","language":"JavaScript","runtime":"Node.js 24.21.0","description":"Users API of the Bookshop (Express)"}
+{"status":"ok","service":"node-api","version":"1.0.0"}
+# exit 0

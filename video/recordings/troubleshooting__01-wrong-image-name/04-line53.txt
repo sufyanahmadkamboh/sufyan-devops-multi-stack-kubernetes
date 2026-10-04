@@ -1,0 +1,7 @@
+kubectl describe pod -l app=go-status | grep -E '^\s+Image:'
+kubectl get events --field-selector reason=Failed --sort-by=.lastTimestamp | grep go-staus | tail -1
+---
+    Image:          go-status:1.0.0
+    Image:          go-staus:1.0.0
+6s          Warning   Failed   pod/go-status-798ff9f56d-9zq2m   Failed to pull image "go-staus:1.0.0": failed to pull and unpack image "docker.io/library/go-staus:1.0.0": failed to resolve reference "docker.io/library/go-staus:1.0.0": pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed
+# exit 0

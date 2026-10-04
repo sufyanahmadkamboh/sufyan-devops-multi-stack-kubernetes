@@ -1,0 +1,8 @@
+kubectl apply -f kubernetes/go-status/deployment.yaml
+kubectl rollout status deployment/go-status --timeout=240s
+---
+deployment.apps/go-status configured
+Waiting for deployment "go-status" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "go-status" rollout to finish: 1 old replicas are pending termination...
+deployment "go-status" successfully rolled out
+# exit 0

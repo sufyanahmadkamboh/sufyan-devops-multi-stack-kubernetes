@@ -1,0 +1,4 @@
+sleep 2; curl -sS --max-time 5 http://localhost:8082/health
+---
+curl: (52) Empty reply from server
+# exit 52

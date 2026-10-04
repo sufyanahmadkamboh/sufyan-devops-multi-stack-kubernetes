@@ -1,0 +1,4 @@
+curl -s http://localhost:18080/api/status
+---
+{"services":[{"name":"ghost","url":"http://ghost-api:9999/health","status":"down","http_status":0,"latency_ms":2001,"error":"Get \"http://ghost-api:9999/health\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"},{"name":"web","url":"http://go-lab-web/","status":"up","http_status":200,"latency_ms":1}],"total":2,"up":1}
+# exit 0

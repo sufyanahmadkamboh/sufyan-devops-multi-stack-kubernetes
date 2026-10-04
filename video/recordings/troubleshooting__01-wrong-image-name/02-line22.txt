@@ -1,0 +1,6 @@
+kubectl get pods -l app=go-status
+---
+NAME                         READY   STATUS             RESTARTS   AGE
+go-status-6ddf8dbd94-vfht8   1/1     Running            0          58s
+go-status-798ff9f56d-9zq2m   0/1     ImagePullBackOff   0          17s
+# exit 0

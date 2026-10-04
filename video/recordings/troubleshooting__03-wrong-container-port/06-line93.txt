@@ -1,0 +1,6 @@
+kubectl set env deployment/node-api PORT-
+kubectl rollout status deployment/node-api --timeout=240s
+---
+deployment.apps/node-api env updated
+deployment "node-api" successfully rolled out
+# exit 0

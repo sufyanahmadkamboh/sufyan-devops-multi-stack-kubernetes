@@ -1,0 +1,12 @@
+kubectl port-forward service/frontend 18080:8080 > /dev/null 2>&1 &
+PF=$!
+sleep 3
+curl -s http://localhost:18080/ | grep -o '<title>[^<]*</title>'
+curl -s http://localhost:18080/health; echo
+curl -s http://localhost:18080/config.js
+kill $PF
+---
+<title>Bookshop</title>
+{"status":"ok","service":"frontend","version":"1.0.0"}
+window.APP_CONFIG = { ADMIN_URL: "http://admin.bookshop.localhost:8080", APP_ENV: "kubernetes" };
+# exit 0

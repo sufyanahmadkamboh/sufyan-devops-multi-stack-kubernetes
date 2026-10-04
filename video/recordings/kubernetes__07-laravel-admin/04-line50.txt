@@ -1,0 +1,15 @@
+kubectl logs job/laravel-migrate
+---
+laravel-admin 1.0.0: starting: php artisan migrate --force --seed
+
+   INFO  Preparing database.  
+
+  Creating migration table ...................................... 13.80ms DONE
+
+   INFO  Running migrations.  
+
+  2026_10_04_000001_create_reviews_table ......................... 4.54ms DONE
+
+
+   INFO  Seeding database.  
+# exit 0

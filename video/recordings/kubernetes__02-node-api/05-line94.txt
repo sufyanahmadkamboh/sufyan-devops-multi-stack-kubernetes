@@ -1,0 +1,9 @@
+kubectl get service node-api
+kubectl get endpoints node-api
+---
+NAME       TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
+node-api   ClusterIP   10.96.44.188   <none>        3000/TCP   6s
+Warning: v1 Endpoints is deprecated in v1.33+; use discovery.k8s.io/v1 EndpointSlice
+NAME       ENDPOINTS                         AGE
+node-api   10.244.1.5:3000,10.244.1.6:3000   6s
+# exit 0

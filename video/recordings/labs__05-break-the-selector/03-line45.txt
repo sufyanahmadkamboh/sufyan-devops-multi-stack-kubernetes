@@ -1,0 +1,9 @@
+kubectl get endpointslices -l kubernetes.io/service-name=quotes-api -o custom-columns='NAME:.metadata.name,ENDPOINTS:.endpoints[*].addresses[0]'
+kubectl get service quotes-api -o jsonpath='{.spec.selector}'; echo
+kubectl get pods -l app=quotes-api --show-labels --no-headers | head -1 | awk '{print $1, $NF}'
+---
+NAME               ENDPOINTS
+quotes-api-5tf49   <none>
+{"app":"quote-api"}
+quotes-api-5cc5b7c6c5-2gqr2 app=quotes-api,pod-template-hash=5cc5b7c6c5
+# exit 0

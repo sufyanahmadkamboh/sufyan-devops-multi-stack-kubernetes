@@ -1,0 +1,70 @@
+docker build --build-arg APP_VERSION=1.2.0 -t python-api:1.2.0 applications/python-api > /dev/null
+kubectl set image deployment/python-api python-api=python-api:1.2.0
+---
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 817B done
+#1 DONE 0.0s
+
+#2 resolve image config for docker-image://docker.io/docker/dockerfile:1
+#2 DONE 0.7s
+
+#3 docker-image://docker.io/docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e
+#3 resolve docker.io/docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e 0.0s done
+#3 CACHED
+
+#4 [internal] load metadata for docker.io/library/python:3.14-slim
+#4 DONE 0.7s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 116B done
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 91B done
+#6 DONE 0.0s
+
+#7 [build 1/5] FROM docker.io/library/python:3.14-slim@sha256:c3e521df8b2b498a7a682e7e18676771cb80c6b75b8699af886b2d554ce40151
+#7 resolve docker.io/library/python:3.14-slim@sha256:c3e521df8b2b498a7a682e7e18676771cb80c6b75b8699af886b2d554ce40151 0.0s done
+#7 DONE 0.0s
+
+#8 [stage-1 2/5] RUN useradd --system --uid 10001 --no-create-home app
+#8 CACHED
+
+#9 [build 2/5] WORKDIR /app
+#9 CACHED
+
+#10 [build 3/5] RUN python -m venv /opt/venv
+#10 CACHED
+
+#11 [build 5/5] RUN pip install --no-cache-dir -r requirements.txt
+#11 CACHED
+
+#12 [stage-1 3/5] WORKDIR /app
+#12 CACHED
+
+#13 [stage-1 4/5] COPY --from=build /opt/venv /opt/venv
+#13 CACHED
+
+#14 [build 4/5] COPY requirements.txt .
+#14 CACHED
+
+#15 [stage-1 5/5] COPY src/ ./src/
+#15 CACHED
+
+#16 exporting to image
+#16 exporting layers done
+#16 exporting manifest sha256:507a140f8f4d77a4416ae6a3e50043be15d315c159765bc00508680cd99e423c done
+#16 exporting config sha256:44246ae3a4b76ad83fe8afb922f17acb94186d8e18b848faaa942b69c23e89ce done
+#16 exporting attestation manifest sha256:ffb33b372a29615357a4fd376447515c69cd10978f3f3ed67e8e84592d129809
+#16 exporting attestation manifest sha256:ffb33b372a29615357a4fd376447515c69cd10978f3f3ed67e8e84592d129809 0.0s done
+#16 exporting manifest list sha256:f9f5cce02f7785e264256b72014fb65cf8f29edd102cb9abc0d7dc16fab8be57 0.0s done
+#16 naming to docker.io/library/python-api:1.2.0 done
+#16 unpacking to docker.io/library/python-api:1.2.0
+#16 unpacking to docker.io/library/python-api:1.2.0 0.4s done
+#16 DONE 0.5s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/jd5ufmmd2ncfmed3rw3d01iku
+deployment.apps/python-api image updated
+# exit 0

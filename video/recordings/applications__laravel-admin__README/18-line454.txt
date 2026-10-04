@@ -1,0 +1,25 @@
+docker exec laravel-db createdb -U bookshop bookshop_test
+docker run --rm --network laravel-lab --env-file laravel-lab.env -e DB_NAME=bookshop_test laravel-fpm:1.0.0 php artisan migrate --force --seed
+docker run -d --name laravel-fpm-test --network laravel-lab --env-file laravel-lab.env -e DB_NAME=bookshop_test laravel-fpm:1.0.0
+docker run -d --name laravel-web-test --network laravel-lab -e FPM_HOST=laravel-fpm-test -p 8090:8080 laravel-web:1.0.0
+sleep 3
+curl -s http://localhost:8090/ | grep '<h2>'
+---
+laravel-admin 1.0.0: starting: php artisan migrate --force --seed
+
+   INFO  Preparing database.  
+
+  Creating migration table ....................................... 8.64ms DONE
+
+   INFO  Running migrations.  
+
+  2026_10_04_000001_create_reviews_table ......................... 7.14ms DONE
+
+
+   INFO  Seeding database.  
+
+bb1762a010993e9610e455ee992a5ed3e5289b2f30716fd4c0a0c94aaab18ecf
+1f69a8edddbf4a7a57b28e9da3300397613eb3db3584e1ea38ac3736454d3873
+        <h2>Add a review</h2>
+        <h2>3 reviews</h2>
+# exit 0

@@ -1,0 +1,14 @@
+docker rm -f frontend fake-books frontend-wrong-port frontend-wrong-base
+docker network rm frontend-test
+docker rmi frontend:wrong-base frontend-build:1.0.0
+---
+frontend
+fake-books
+frontend-wrong-port
+frontend-wrong-base
+frontend-test
+Untagged: frontend:wrong-base
+Deleted: sha256:a4448bd666efcea9e7e9dba21dedfe9a442d641124725f72ba2dceac37197077
+Untagged: frontend-build:1.0.0
+Deleted: sha256:c34f8e1c912252b46daf05cb7344e9394d31e0e2fec4efaf29ad5bc6d59fbe9e
+# exit 0

@@ -1,0 +1,4 @@
+kubectl get deployment python-api -o jsonpath='{.spec.template.spec.containers[0].resources}'; echo
+---
+{"limits":{"cpu":"500m","memory":"256Mi"},"requests":{"cpu":"50m","memory":"96Mi"}}
+# exit 0

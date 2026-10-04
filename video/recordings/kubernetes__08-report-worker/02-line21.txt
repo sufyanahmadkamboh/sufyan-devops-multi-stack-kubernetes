@@ -1,0 +1,7 @@
+kubectl apply -f kubernetes/report-worker/
+kubectl get cronjob report-worker
+---
+cronjob.batch/report-worker created
+NAME            SCHEDULE       TIMEZONE   SUSPEND   ACTIVE   LAST SCHEDULE   AGE
+report-worker   */10 * * * *   <none>     False     0        <none>          0s
+# exit 0

@@ -1,0 +1,7 @@
+docker build -q -t quotes-api:1.0.0 labs/work/quotes-api > /dev/null
+docker images quotes-api --format 'table {{.Repository}}\t{{.Tag}}\t{{.Size}}'
+---
+REPOSITORY   TAG       SIZE
+quotes-api   1.0.0     189MB
+quotes-api   2.0.0     189MB
+# exit 0

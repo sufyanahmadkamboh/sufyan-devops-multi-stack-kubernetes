@@ -1,0 +1,15 @@
+helm repo add traefik https://traefik.github.io/charts > /dev/null 2>&1 || true
+helm repo update traefik > /dev/null
+helm install traefik traefik/traefik --version 41.6.1 --namespace traefik --create-namespace \
+  --values kubernetes/cluster/traefik-values.yaml --wait --timeout 5m
+---
+NAME: traefik
+LAST DEPLOYED: Sun Oct  4 21:20:27 2026
+NAMESPACE: traefik
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
+NOTES:
+traefik with docker.io/traefik:v3.7.13 has been deployed successfully on traefik namespace!
+# exit 0

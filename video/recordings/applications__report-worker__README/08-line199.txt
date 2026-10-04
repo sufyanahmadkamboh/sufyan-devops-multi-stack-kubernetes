@@ -1,0 +1,7 @@
+docker run --rm --network lesson-worker \
+  -e DB_HOST=lesson-worker-db -e DB_PASSWORD=example-only \
+  report-worker:1.0.0
+---
+2026-10-04T19:18:41.429Z report-worker version 1.0.0 starting: stats from http://python-api:8000/api/stats, status from http://go-status:8080/api/status
+2026-10-04T19:18:46.450Z report-worker ERROR: GET http://python-api:8000/api/stats failed: TimeoutError: The operation was aborted due to timeout
+# exit 1

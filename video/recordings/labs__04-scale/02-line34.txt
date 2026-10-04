@@ -1,0 +1,10 @@
+for i in $(seq 1 20); do curl -s http://bookshop.localhost:8080/api/quotes > /dev/null; done
+for p in $(kubectl get pods -l app=quotes-api -o name); do
+  echo "$p: $(kubectl logs $p | grep -c 'GET /api/quotes') requests"
+done
+---
+pod/quotes-api-5cc5b7c6c5-2gqr2: 7 requests
+pod/quotes-api-5cc5b7c6c5-85955: 5 requests
+pod/quotes-api-5cc5b7c6c5-nqmrb: 3 requests
+pod/quotes-api-5cc5b7c6c5-qftdd: 6 requests
+# exit 0

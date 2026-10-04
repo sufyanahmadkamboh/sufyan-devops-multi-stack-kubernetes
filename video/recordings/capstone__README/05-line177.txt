@@ -1,0 +1,18 @@
+kubectl apply -f kubernetes/python-api/service.yaml
+kubectl rollout undo deployment/go-status
+kubectl apply -f kubernetes/config/bookshop-config.yaml
+kubectl rollout restart deployment/java-api
+kubectl rollout status deployment/go-status --timeout=240s
+kubectl rollout status deployment/java-api --timeout=240s
+---
+service/python-api configured
+Warning: resource deployments/go-status was previously managed with 'kubectl apply'. Rolling back will not update the kubectl.kubernetes.io/last-applied-configuration annotation, which may cause unexpected behavior on future 'kubectl apply' operations. Consider using 'kubectl apply' with your previous configuration file instead.
+deployment.apps/go-status rolled back
+configmap/bookshop-config configured
+deployment.apps/java-api restarted
+deployment "go-status" successfully rolled out
+Waiting for deployment "java-api" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "java-api" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "java-api" rollout to finish: 1 old replicas are pending termination...
+deployment "java-api" successfully rolled out
+# exit 0

@@ -1,0 +1,4 @@
+docker run --rm --network py-lab -e DB_HOST=py-lab-db python-api:1.0.0
+---
+python-api: FATAL: the environment variable DB_PASSWORD is not set (the database password is required)
+# exit 1

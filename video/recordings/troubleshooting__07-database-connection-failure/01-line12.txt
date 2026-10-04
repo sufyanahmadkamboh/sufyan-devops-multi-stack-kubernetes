@@ -1,0 +1,6 @@
+kubectl patch configmap bookshop-config --type merge -p '{"data":{"DB_HOST":"postgress"}}'
+kubectl rollout restart deployment/node-api
+---
+configmap/bookshop-config patched
+deployment.apps/node-api restarted
+# exit 0

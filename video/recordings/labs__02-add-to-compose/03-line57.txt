@@ -1,0 +1,16 @@
+curl -s http://localhost:8081/api/status | python3 -c "
+import sys, json
+d = json.load(sys.stdin)
+print(f\"{d['up']} of {d['total']} services up\")
+for s in d['services']:
+    print(f\"  {s['name']:14} {s['status']}\")"
+---
+7 of 7 services up
+  frontend       up
+  go-status      up
+  java-api       up
+  laravel-admin  up
+  node-api       up
+  python-api     up
+  quotes-api     up
+# exit 0

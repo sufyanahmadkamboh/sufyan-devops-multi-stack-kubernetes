@@ -1,0 +1,4 @@
+curl -s http://bookshop.localhost:8080/config.js
+---
+window.APP_CONFIG = { ADMIN_URL: "http://admin.bookshop.localhost:8080/?from=kubernetes", APP_ENV: "kubernetes" };
+# exit 0

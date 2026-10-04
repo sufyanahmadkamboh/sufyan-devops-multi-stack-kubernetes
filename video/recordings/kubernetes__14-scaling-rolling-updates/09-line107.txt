@@ -1,0 +1,6 @@
+kubectl get deployment node-api -o jsonpath='{.spec.template.spec.containers[0].image}'; echo
+kubectl exec deploy/node-api -- wget -qO- http://127.0.0.1:3000/; echo
+---
+node-api:1.0.0
+{"service":"node-api","version":"1.0.0","language":"JavaScript","runtime":"Node.js 24.21.0","description":"Users API of the Bookshop (Express)"}
+# exit 0
