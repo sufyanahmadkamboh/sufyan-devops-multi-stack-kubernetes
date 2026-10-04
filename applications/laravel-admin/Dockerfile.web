@@ -1,0 +1,16 @@
+# syntax=docker/dockerfile:1
+# laravel-web: nginx in front of PHP-FPM. Serves the static files from public/ and passes every PHP request to
+# the laravel-fpm container. Runs as a non-root user and listens on 8080.
+FROM nginxinc/nginx-unprivileged:1.30-alpine
+
+# the configuration is a template: ${FPM_HOST} and ${FPM_PORT} are filled in from the environment at start
+COPY docker/nginx/default.conf.template /etc/nginx/templates/default.conf.template
+# only the public/ folder: CSS, images and index.php (nginx needs index.php to exist for try_files)
+COPY src/public /var/www/html/public
+
+ARG APP_VERSION=1.0.0
+ENV APP_VERSION=$APP_VERSION \
+    FPM_HOST=127.0.0.1 \
+    FPM_PORT=9000
+
+EXPOSE 8080

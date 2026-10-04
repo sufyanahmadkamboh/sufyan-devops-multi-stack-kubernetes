@@ -1,0 +1,52 @@
+# report-worker: plain JavaScript on Node.js. Not a server: it starts, does one job, and exits.
+# That is a Job in Kubernetes; a CronJob creates such a Job on a schedule (here every 10 minutes).
+# Run it once right now:  kubectl -n bookshop create job report-now --from=cronjob/report-worker
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: report-worker
+  namespace: bookshop
+  labels: { app: report-worker, app.kubernetes.io/part-of: bookshop }
+spec:
+  schedule: "*/10 * * * *"
+  concurrencyPolicy: Forbid            # never two reports at the same time
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      backoffLimit: 2                  # retry a failed run twice, then give up
+      ttlSecondsAfterFinished: 3600
+      template:
+        metadata:
+          labels: { app: report-worker, app.kubernetes.io/part-of: bookshop }
+        spec:
+          restartPolicy: OnFailure
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+            seccompProfile: { type: RuntimeDefault }
+          containers:
+            - name: report-worker
+              image: report-worker:1.0.0
+              imagePullPolicy: IfNotPresent
+              env:
+                - name: DB_HOST
+                  valueFrom: { configMapKeyRef: { name: bookshop-config, key: DB_HOST } }
+                - name: DB_PORT
+                  valueFrom: { configMapKeyRef: { name: bookshop-config, key: DB_PORT } }
+                - name: DB_NAME
+                  valueFrom: { configMapKeyRef: { name: bookshop-config, key: DB_NAME } }
+                - name: DB_USER
+                  valueFrom: { configMapKeyRef: { name: bookshop-config, key: DB_USER } }
+                - name: DB_PASSWORD
+                  valueFrom: { secretKeyRef: { name: db-credentials, key: DB_PASSWORD } }
+                - name: STATS_URL
+                  valueFrom: { configMapKeyRef: { name: bookshop-config, key: STATS_URL } }
+                - name: STATUS_URL
+                  valueFrom: { configMapKeyRef: { name: bookshop-config, key: STATUS_URL } }
+              resources:
+                requests: { cpu: 10m, memory: 32Mi }
+                limits: { cpu: 200m, memory: 128Mi }
+              securityContext:
+                allowPrivilegeEscalation: false
+                capabilities: { drop: ["ALL"] }

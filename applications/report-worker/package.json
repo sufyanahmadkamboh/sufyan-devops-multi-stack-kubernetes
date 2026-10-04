@@ -1,0 +1,17 @@
+{
+  "name": "report-worker",
+  "version": "1.0.0",
+  "description": "Bookshop report job (plain JavaScript on Node.js)",
+  "main": "src/worker.js",
+  "type": "commonjs",
+  "private": true,
+  "scripts": {
+    "start": "node src/worker.js"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "dependencies": {
+    "pg": "8.23.1"
+  }
+}

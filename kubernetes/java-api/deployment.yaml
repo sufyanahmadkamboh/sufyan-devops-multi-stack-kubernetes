@@ -1,0 +1,55 @@
+# java-api: Java 25 + Spring Boot. The same image that runs in Docker and Compose.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: java-api
+  namespace: bookshop
+  labels: { app: java-api, app.kubernetes.io/part-of: bookshop }
+spec:
+  replicas: 1
+  selector:
+    matchLabels: { app: java-api }            # must match the Pod labels below, and the Service's selector
+  template:
+    metadata:
+      labels: { app: java-api, app.kubernetes.io/part-of: bookshop }
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        seccompProfile: { type: RuntimeDefault }
+      containers:
+        - name: java-api
+          image: java-api:1.0.0                # a versioned tag, never "latest"
+          imagePullPolicy: IfNotPresent      # use the image loaded into the cluster (kind load docker-image)
+          ports:
+            - name: http
+              containerPort: 8080
+          env:
+            - name: DB_HOST
+              valueFrom: { configMapKeyRef: { name: bookshop-config, key: DB_HOST } }
+            - name: DB_PORT
+              valueFrom: { configMapKeyRef: { name: bookshop-config, key: DB_PORT } }
+            - name: DB_NAME
+              valueFrom: { configMapKeyRef: { name: bookshop-config, key: DB_NAME } }
+            - name: DB_USER
+              valueFrom: { configMapKeyRef: { name: bookshop-config, key: DB_USER } }
+            - name: DB_PASSWORD                     # the only secret value, from a Secret, never from the ConfigMap
+              valueFrom: { secretKeyRef: { name: db-credentials, key: DB_PASSWORD } }
+          startupProbe:                      # the JVM needs several seconds: give it up to 60 s before liveness starts
+            httpGet: { path: /health, port: http }
+            periodSeconds: 2
+            failureThreshold: 30
+          livenessProbe:                     # "should Kubernetes restart this container?"
+            httpGet: { path: /health, port: http }
+            periodSeconds: 10
+            failureThreshold: 3
+          readinessProbe:                    # "should this Pod receive traffic right now?"
+            httpGet: { path: /ready, port: http }
+            periodSeconds: 5
+            failureThreshold: 2
+          resources:
+            requests: { cpu: 250m, memory: 256Mi }   # what the scheduler reserves
+            limits: { cpu: "1", memory: 512Mi }       # the ceiling (above memory → OOMKilled)
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities: { drop: ["ALL"] }

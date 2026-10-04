@@ -1,0 +1,135 @@
+# The whole Bookshop platform on one machine: 7 applications in 6 languages/frameworks + PostgreSQL.
+#   cd compose && cp .env.example .env    (then set DB_PASSWORD and APP_KEY, see README.md)
+#   docker compose up -d --build
+# UI: http://localhost:8081   Reviews admin (Laravel): http://localhost:8082
+name: bookshop
+
+x-db-env: &db-env                      # the same database settings for every service that needs them
+  DB_HOST: postgres
+  DB_PORT: "5432"
+  DB_NAME: bookshop
+  DB_USER: bookshop
+  DB_PASSWORD: ${DB_PASSWORD:?set DB_PASSWORD in compose/.env}
+
+services:
+  postgres:
+    image: postgres:18.6-alpine
+    environment:
+      POSTGRES_DB: bookshop
+      POSTGRES_USER: bookshop
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?set DB_PASSWORD in compose/.env}
+    volumes:
+      - pgdata:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U bookshop -d bookshop"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+    networks: [backend]
+
+  node-api:
+    build: { context: ../applications/node-api, args: { APP_VERSION: "1.0.0" } }
+    image: node-api:1.0.0
+    environment: *db-env
+    depends_on:
+      postgres: { condition: service_healthy }
+    healthcheck:                       # Compose's version of a readiness check (Kubernetes: readinessProbe)
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3000/ready"]
+      interval: 3s
+      timeout: 3s
+      retries: 40
+    networks: [frontend, backend]
+
+  python-api:
+    build: { context: ../applications/python-api, args: { APP_VERSION: "1.0.0" } }
+    image: python-api:1.0.0
+    environment: *db-env
+    depends_on:
+      postgres: { condition: service_healthy }
+    healthcheck:                       # Compose's version of a readiness check (Kubernetes: readinessProbe)
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/ready')"]
+      interval: 3s
+      timeout: 3s
+      retries: 40
+    networks: [frontend, backend]
+
+  java-api:
+    build: { context: ../applications/java-api, args: { APP_VERSION: "1.0.0" } }
+    image: java-api:1.0.0
+    environment: *db-env
+    depends_on:
+      postgres: { condition: service_healthy }
+    healthcheck:                       # Compose's version of a readiness check (Kubernetes: readinessProbe)
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:8080/ready"]
+      interval: 3s
+      timeout: 3s
+      retries: 40
+    networks: [frontend, backend]
+
+  go-status:
+    build: { context: ../applications/go-status, args: { APP_VERSION: "1.0.0" } }
+    image: go-status:1.0.0
+    environment:
+      TARGETS: >-
+        frontend=http://frontend:8080/health,node-api=http://node-api:3000/health,python-api=http://python-api:8000/health,go-status=http://go-status:8080/health,java-api=http://java-api:8080/health,laravel-admin=http://laravel-web:8080/health
+    networks: [frontend, backend]
+
+  laravel-migrate:                     # one-off: create and seed the reviews table, then exit
+    build: { context: ../applications/laravel-admin, dockerfile: Dockerfile.fpm, args: { APP_VERSION: "1.0.0" } }
+    image: laravel-fpm:1.0.0
+    command: ["php", "artisan", "migrate", "--force", "--seed"]
+    environment:
+      <<: *db-env
+      APP_KEY: ${APP_KEY:?set APP_KEY in compose/.env}
+    depends_on:
+      postgres: { condition: service_healthy }
+    restart: "no"
+    networks: [backend]
+
+  laravel-fpm:
+    image: laravel-fpm:1.0.0
+    environment:
+      <<: *db-env
+      APP_KEY: ${APP_KEY:?set APP_KEY in compose/.env}
+    depends_on:
+      laravel-migrate: { condition: service_completed_successfully }
+    networks: [backend]
+
+  laravel-web:
+    build: { context: ../applications/laravel-admin, dockerfile: Dockerfile.web, args: { APP_VERSION: "1.0.0" } }
+    image: laravel-web:1.0.0
+    environment:
+      FPM_HOST: laravel-fpm
+    ports: ["127.0.0.1:8082:8080"]
+    depends_on: [laravel-fpm]
+    networks: [frontend, backend]
+
+  frontend:
+    build: { context: ../applications/frontend, args: { APP_VERSION: "1.0.0" } }
+    image: frontend:1.0.0
+    environment:
+      ADMIN_URL: http://localhost:8082
+    ports: ["127.0.0.1:8081:8080"]
+    depends_on:
+      node-api: { condition: service_healthy }
+      python-api: { condition: service_healthy }
+      java-api: { condition: service_healthy }
+      go-status: { condition: service_started }   # distroless image: no shell or wget for a healthcheck
+    networks: [frontend]                  # the UI never talks to the database: no backend network
+
+  report-worker:                       # a batch job: docker compose run --rm report-worker
+    build: { context: ../applications/report-worker, args: { APP_VERSION: "1.0.0" } }
+    image: report-worker:1.0.0
+    profiles: [jobs]
+    environment:
+      <<: *db-env
+      STATS_URL: http://python-api:8000/api/stats
+      STATUS_URL: http://go-status:8080/api/status
+    networks: [backend]
+
+networks:
+  frontend: {}
+  backend: {}
+
+volumes:
+  pgdata: {}

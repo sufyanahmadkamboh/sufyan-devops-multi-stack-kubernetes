@@ -1,0 +1,14 @@
+# A stable name and address (python-api:8000) in front of all python-api Pods.
+apiVersion: v1
+kind: Service
+metadata:
+  name: python-api
+  namespace: bookshop
+  labels: { app: python-api, app.kubernetes.io/part-of: bookshop }
+spec:
+  type: ClusterIP
+  selector: { app: python-api }                # traffic goes to the Ready Pods with this label
+  ports:
+    - name: http
+      port: 8000
+      targetPort: http

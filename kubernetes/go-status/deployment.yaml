@@ -1,0 +1,43 @@
+# go-status: Go 1.27 (standard library). The same image that runs in Docker and Compose.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-status
+  namespace: bookshop
+  labels: { app: go-status, app.kubernetes.io/part-of: bookshop }
+spec:
+  replicas: 1
+  selector:
+    matchLabels: { app: go-status }            # must match the Pod labels below, and the Service's selector
+  template:
+    metadata:
+      labels: { app: go-status, app.kubernetes.io/part-of: bookshop }
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65532
+        seccompProfile: { type: RuntimeDefault }
+      containers:
+        - name: go-status
+          image: go-status:1.0.0                # a versioned tag, never "latest"
+          imagePullPolicy: IfNotPresent      # use the image loaded into the cluster (kind load docker-image)
+          ports:
+            - name: http
+              containerPort: 8080
+          env:
+            - name: TARGETS
+              valueFrom: { configMapKeyRef: { name: bookshop-config, key: TARGETS } }
+          livenessProbe:                     # "should Kubernetes restart this container?"
+            httpGet: { path: /health, port: http }
+            periodSeconds: 10
+            failureThreshold: 3
+          readinessProbe:                    # "should this Pod receive traffic right now?"
+            httpGet: { path: /health, port: http }
+            periodSeconds: 5
+            failureThreshold: 2
+          resources:
+            requests: { cpu: 10m, memory: 16Mi }   # what the scheduler reserves
+            limits: { cpu: "200m", memory: 64Mi }       # the ceiling (above memory → OOMKilled)
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities: { drop: ["ALL"] }

@@ -1,0 +1,17 @@
+# A local two-node Kubernetes 1.37 cluster in Docker containers (kind).
+#   kind create cluster --config kubernetes/cluster/kind-config.yaml
+# Port 30080 of the nodes (the Traefik ingress controller's NodePort) is published on your computer as
+# http://localhost:8080, so http://bookshop.localhost:8080 reaches the Ingress.
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+name: bookshop
+nodes:
+  - role: control-plane
+    image: kindest/node:v1.37.0@sha256:a1ed56cfb0e7b93589bdf97c8cd566405a265939e3620fc4f5de89adff580ae5
+    extraPortMappings:
+      - containerPort: 30080
+        hostPort: 8080
+        listenAddress: "127.0.0.1"
+        protocol: TCP
+  - role: worker
+    image: kindest/node:v1.37.0@sha256:a1ed56cfb0e7b93589bdf97c8cd566405a265939e3620fc4f5de89adff580ae5

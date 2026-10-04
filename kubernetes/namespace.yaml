@@ -1,0 +1,7 @@
+# Everything of the Bookshop platform lives in one namespace: easy to see, easy to delete.
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: bookshop
+  labels:
+    app.kubernetes.io/part-of: bookshop

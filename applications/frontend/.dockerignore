@@ -1,0 +1,7 @@
+node_modules
+dist
+docs
+README.md
+Dockerfile
+.dockerignore
+*.log

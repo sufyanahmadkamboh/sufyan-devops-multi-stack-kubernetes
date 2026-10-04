@@ -1,0 +1,57 @@
+# frontend: React 19 built by Vite, served by nginx. The same image that runs in Docker and Compose.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: bookshop
+  labels: { app: frontend, app.kubernetes.io/part-of: bookshop }
+spec:
+  replicas: 2
+  selector:
+    matchLabels: { app: frontend }            # must match the Pod labels below, and the Service's selector
+  template:
+    metadata:
+      labels: { app: frontend, app.kubernetes.io/part-of: bookshop }
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 101
+        seccompProfile: { type: RuntimeDefault }
+      containers:
+        - name: frontend
+          image: frontend:1.0.0                # a versioned tag, never "latest"
+          imagePullPolicy: IfNotPresent      # use the image loaded into the cluster (kind load docker-image)
+          ports:
+            - name: http
+              containerPort: 8080
+          env:
+            - name: ADMIN_URL
+              valueFrom: { configMapKeyRef: { name: bookshop-config, key: ADMIN_URL } }
+            - name: APP_ENV
+              value: kubernetes
+            - name: NGINX_ENTRYPOINT_LOCAL_RESOLVERS   # let nginx use the cluster DNS for its proxy locations
+              value: "1"
+            # nginx's own resolver does not use the cluster's DNS search domains, so its proxy needs full names.
+            # (Through the Ingress, /api/* goes straight to the APIs; these make the frontend work on its own too.)
+            - name: NODE_API_URL
+              value: http://node-api.bookshop.svc.cluster.local:3000
+            - name: JAVA_API_URL
+              value: http://java-api.bookshop.svc.cluster.local:8080
+            - name: PYTHON_API_URL
+              value: http://python-api.bookshop.svc.cluster.local:8000
+            - name: GO_STATUS_URL
+              value: http://go-status.bookshop.svc.cluster.local:8080
+          livenessProbe:                     # "should Kubernetes restart this container?"
+            httpGet: { path: /health, port: http }
+            periodSeconds: 10
+            failureThreshold: 3
+          readinessProbe:                    # "should this Pod receive traffic right now?"
+            httpGet: { path: /health, port: http }
+            periodSeconds: 5
+            failureThreshold: 2
+          resources:
+            requests: { cpu: 10m, memory: 32Mi }   # what the scheduler reserves
+            limits: { cpu: "200m", memory: 128Mi }       # the ceiling (above memory → OOMKilled)
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities: { drop: ["ALL"] }

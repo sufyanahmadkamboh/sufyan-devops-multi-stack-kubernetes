@@ -1,0 +1,13 @@
+# never send these to the build: dependencies are installed inside the build, secrets never belong in an image
+**/.git
+src/vendor
+src/node_modules
+src/.env
+src/.env.*
+!src/.env.example
+src/storage/logs/*.log
+src/storage/framework/cache/data
+src/storage/framework/sessions/*
+src/storage/framework/views/*.php
+src/bootstrap/cache/*.php
+README.md

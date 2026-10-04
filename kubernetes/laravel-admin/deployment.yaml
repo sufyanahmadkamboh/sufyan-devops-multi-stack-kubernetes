@@ -1,0 +1,74 @@
+# laravel-admin: PHP 8.5 + Laravel 13. ONE Pod, TWO containers that always run and scale together:
+#   laravel-web (nginx, port 8080) serves static files and passes PHP requests to
+#   laravel-fpm (PHP-FPM, port 9000) over 127.0.0.1, because containers in a Pod share one network namespace.
+# In Compose these were two services talking over the network; here they are a sidecar pair.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: laravel-admin
+  namespace: bookshop
+  labels: { app: laravel-admin, app.kubernetes.io/part-of: bookshop }
+spec:
+  replicas: 1
+  selector:
+    matchLabels: { app: laravel-admin }
+  template:
+    metadata:
+      labels: { app: laravel-admin, app.kubernetes.io/part-of: bookshop }
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile: { type: RuntimeDefault }
+      containers:
+        - name: laravel-web
+          image: laravel-web:1.0.0
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            runAsUser: 101                     # the nginx user of nginx-unprivileged
+            allowPrivilegeEscalation: false
+            capabilities: { drop: ["ALL"] }
+          ports:
+            - name: http
+              containerPort: 8080
+          env:
+            - name: FPM_HOST
+              value: "127.0.0.1"               # the other container of this Pod
+          livenessProbe:
+            httpGet: { path: /health, port: http }
+            periodSeconds: 10
+          readinessProbe:
+            httpGet: { path: /ready, port: http }
+            periodSeconds: 5
+            failureThreshold: 2
+          resources:
+            requests: { cpu: 10m, memory: 32Mi }
+            limits: { cpu: 200m, memory: 128Mi }
+        - name: laravel-fpm
+          image: laravel-fpm:1.0.0
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            runAsUser: 82                      # www-data in the php alpine image
+            allowPrivilegeEscalation: false
+            capabilities: { drop: ["ALL"] }
+          ports:
+            - name: fastcgi
+              containerPort: 9000
+          env:
+            - name: DB_HOST
+              valueFrom: { configMapKeyRef: { name: bookshop-config, key: DB_HOST } }
+            - name: DB_PORT
+              valueFrom: { configMapKeyRef: { name: bookshop-config, key: DB_PORT } }
+            - name: DB_NAME
+              valueFrom: { configMapKeyRef: { name: bookshop-config, key: DB_NAME } }
+            - name: DB_USER
+              valueFrom: { configMapKeyRef: { name: bookshop-config, key: DB_USER } }
+            - name: DB_PASSWORD
+              valueFrom: { secretKeyRef: { name: db-credentials, key: DB_PASSWORD } }
+            - name: APP_KEY
+              valueFrom: { secretKeyRef: { name: laravel-app-key, key: APP_KEY } }
+          livenessProbe:
+            tcpSocket: { port: fastcgi }        # FPM speaks FastCGI, not HTTP: check that it accepts connections
+            periodSeconds: 10
+          resources:
+            requests: { cpu: 50m, memory: 64Mi }
+            limits: { cpu: 500m, memory: 256Mi }

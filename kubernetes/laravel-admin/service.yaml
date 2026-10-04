@@ -1,0 +1,14 @@
+# Only nginx (8080) is exposed; PHP-FPM is reachable only from inside the Pod.
+apiVersion: v1
+kind: Service
+metadata:
+  name: laravel-admin
+  namespace: bookshop
+  labels: { app: laravel-admin, app.kubernetes.io/part-of: bookshop }
+spec:
+  type: ClusterIP
+  selector: { app: laravel-admin }
+  ports:
+    - name: http
+      port: 8080
+      targetPort: http

@@ -1,0 +1,18 @@
+# Non-sensitive settings shared by several services (the Compose file's x-db-env, minus the password).
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: bookshop-config
+  namespace: bookshop
+  labels:
+    app.kubernetes.io/part-of: bookshop
+data:
+  DB_HOST: postgres
+  DB_PORT: "5432"
+  DB_NAME: bookshop
+  DB_USER: bookshop
+  STATS_URL: http://python-api:8000/api/stats
+  STATUS_URL: http://go-status:8080/api/status
+  ADMIN_URL: http://admin.bookshop.localhost:8080
+  TARGETS: >-
+    frontend=http://frontend:8080/health,node-api=http://node-api:3000/health,python-api=http://python-api:8000/health,go-status=http://go-status:8080/health,java-api=http://java-api:8080/health,laravel-admin=http://laravel-admin:8080/health

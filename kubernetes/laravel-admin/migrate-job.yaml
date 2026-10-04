@@ -1,0 +1,45 @@
+# Database migrations run ONCE per release, not in every replica at startup: a Job.
+#   kubectl apply -f kubernetes/laravel-admin/migrate-job.yaml
+#   kubectl -n bookshop wait --for=condition=complete job/laravel-migrate --timeout=120s
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: laravel-migrate
+  namespace: bookshop
+  labels: { app: laravel-migrate, app.kubernetes.io/part-of: bookshop }
+spec:
+  backoffLimit: 4                      # the database may still be starting: retry a few times
+  ttlSecondsAfterFinished: 3600
+  template:
+    metadata:
+      labels: { app: laravel-migrate, app.kubernetes.io/part-of: bookshop }
+    spec:
+      restartPolicy: Never
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 82
+        seccompProfile: { type: RuntimeDefault }
+      containers:
+        - name: migrate
+          image: laravel-fpm:1.0.0
+          imagePullPolicy: IfNotPresent
+          args: ["php", "artisan", "migrate", "--force", "--seed"]   # args: the image entrypoint still checks the settings
+          env:
+            - name: DB_HOST
+              valueFrom: { configMapKeyRef: { name: bookshop-config, key: DB_HOST } }
+            - name: DB_PORT
+              valueFrom: { configMapKeyRef: { name: bookshop-config, key: DB_PORT } }
+            - name: DB_NAME
+              valueFrom: { configMapKeyRef: { name: bookshop-config, key: DB_NAME } }
+            - name: DB_USER
+              valueFrom: { configMapKeyRef: { name: bookshop-config, key: DB_USER } }
+            - name: DB_PASSWORD
+              valueFrom: { secretKeyRef: { name: db-credentials, key: DB_PASSWORD } }
+            - name: APP_KEY
+              valueFrom: { secretKeyRef: { name: laravel-app-key, key: APP_KEY } }
+          resources:
+            requests: { cpu: 50m, memory: 64Mi }
+            limits: { cpu: 500m, memory: 256Mi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities: { drop: ["ALL"] }

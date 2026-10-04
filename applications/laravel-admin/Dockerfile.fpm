@@ -1,0 +1,47 @@
+# syntax=docker/dockerfile:1
+# laravel-fpm: the Laravel application, executed by PHP-FPM (FastCGI on port 9000). It does not speak HTTP;
+# the laravel-web image (nginx) sits in front of it.
+
+# ---- stage 1: PHP dependencies with Composer (Composer itself does not end up in the final image)
+FROM composer:2 AS vendor
+WORKDIR /app
+# dependency files first: this layer is cached until composer.json / composer.lock change
+COPY src/composer.json src/composer.lock ./
+RUN composer install --no-dev --no-scripts --no-autoloader --no-interaction --prefer-dist
+COPY src/ ./
+RUN composer dump-autoload --no-dev --optimize --classmap-authoritative
+
+# ---- stage 2: the runtime
+FROM php:8.5-fpm-alpine
+# the PostgreSQL driver for PHP (build tools are removed again in the same layer)
+RUN apk add --no-cache libpq \
+ && apk add --no-cache --virtual .build-deps postgresql-dev \
+ && docker-php-ext-install pdo_pgsql \
+ && apk del .build-deps
+
+WORKDIR /var/www/html
+COPY --from=vendor --chown=www-data:www-data /app /var/www/html
+COPY --chmod=755 docker/entrypoint.sh /usr/local/bin/laravel-entrypoint
+
+# Values that are the same in every environment. Everything that differs (database, APP_KEY) comes from the
+# environment at run time. That is why `php artisan config:cache` is NOT run here: it would freeze today's
+# environment variables into the image.
+ARG APP_VERSION=1.0.0
+ENV APP_VERSION=$APP_VERSION \
+    APP_ENV=production \
+    APP_DEBUG=false \
+    LOG_CHANNEL=stderr \
+    DB_CONNECTION=pgsql \
+    SESSION_DRIVER=cookie \
+    CACHE_STORE=file \
+    QUEUE_CONNECTION=sync
+
+USER www-data
+# routes, views and the package list do not depend on the environment: prepare them once, at build time
+RUN php artisan package:discover \
+ && php artisan route:cache \
+ && php artisan view:cache
+
+EXPOSE 9000
+ENTRYPOINT ["laravel-entrypoint"]
+CMD ["php-fpm"]

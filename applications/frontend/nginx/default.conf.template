@@ -1,0 +1,67 @@
+# Rendered at container start by the nginx image's entrypoint (envsubst): ${VARIABLES} with an environment
+# variable of the same name are replaced; nginx's own $variables stay as they are.
+server {
+    listen 8080;
+    server_name _;
+    root /usr/share/nginx/html;
+
+    # The single-page app: unknown paths return index.html, React decides what to show.
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    # Static assets have a content hash in their file name: cache them for a long time.
+    location /assets/ {
+        add_header Cache-Control "public, max-age=31536000, immutable";
+    }
+
+    # Runtime configuration, written from environment variables at start (40-config-js.sh).
+    location = /config.js {
+        alias /tmp/config.js;
+        default_type application/javascript;
+        add_header Cache-Control "no-store";
+    }
+
+    location = /health {
+        default_type application/json;
+        return 200 '{"status":"ok","service":"frontend","version":"${APP_VERSION}"}';
+    }
+
+    # nginx needs an explicit DNS resolver for upstream names held in variables. The image's entrypoint writes the
+    # container's own DNS servers into NGINX_LOCAL_RESOLVERS (enabled by NGINX_ENTRYPOINT_LOCAL_RESOLVERS=1):
+    # Docker's embedded DNS (127.0.0.11) under Compose, CoreDNS under Kubernetes. nginx does not use the "search"
+    # domains of /etc/resolv.conf, so in Kubernetes these URLs must be fully qualified names if this proxy is used.
+    resolver ${NGINX_LOCAL_RESOLVERS} valid=10s ipv6=off;
+
+    # Reverse proxy to the APIs (used in Docker Compose; in Kubernetes the Ingress routes /api/* directly).
+    # The upstream is a variable, so nginx resolves the name per request with the resolver above instead of once at
+    # start: nginx starts even when an API does not exist yet, and answers 502 for that API only.
+    location /api/users {
+        set $upstream ${NODE_API_URL};
+        proxy_pass $upstream;
+    }
+    location /api/books {
+        set $upstream ${JAVA_API_URL};
+        proxy_pass $upstream;
+    }
+    location /api/stats {
+        set $upstream ${PYTHON_API_URL};
+        proxy_pass $upstream;
+    }
+    location /api/status {
+        set $upstream ${GO_STATUS_URL};
+        proxy_pass $upstream;
+    }
+
+    proxy_connect_timeout 3s;
+    proxy_read_timeout 15s;
+    proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_intercept_errors on;
+    error_page 502 504 = @upstream_down;
+
+    location @upstream_down {
+        default_type application/json;
+        return 502 '{"error":"upstream unreachable","path":"$uri"}';
+    }
+}

@@ -1,0 +1,38 @@
+# One entry point for the whole platform (the Traefik ingress controller carries out these rules).
+#   http://bookshop.localhost:8080/            → frontend (React)
+#   http://bookshop.localhost:8080/api/users   → node-api      /api/books  → java-api
+#   http://bookshop.localhost:8080/api/stats   → python-api    /api/status → go-status
+#   http://admin.bookshop.localhost:8080/      → laravel-admin (host-based rule)
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: bookshop
+  namespace: bookshop
+  labels: { app.kubernetes.io/part-of: bookshop }
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: bookshop.localhost
+      http:
+        paths:
+          - path: /api/users
+            pathType: Prefix
+            backend: { service: { name: node-api, port: { number: 3000 } } }
+          - path: /api/books
+            pathType: Prefix
+            backend: { service: { name: java-api, port: { number: 8080 } } }
+          - path: /api/stats
+            pathType: Prefix
+            backend: { service: { name: python-api, port: { number: 8000 } } }
+          - path: /api/status
+            pathType: Prefix
+            backend: { service: { name: go-status, port: { number: 8080 } } }
+          - path: /
+            pathType: Prefix
+            backend: { service: { name: frontend, port: { number: 8080 } } }
+    - host: admin.bookshop.localhost
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend: { service: { name: laravel-admin, port: { number: 8080 } } }

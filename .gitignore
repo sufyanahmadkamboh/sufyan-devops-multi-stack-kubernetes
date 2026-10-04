@@ -1,0 +1,16 @@
+node_modules/
+vendor/
+__pycache__/
+*.pyc
+target/
+dist/
+tests/out/
+video/out/
+.env
+!*.env.example
+kubeconfig*
+.idea/
+.vscode/
+# env files the lessons generate (example-only values, never committed)
+*-lab.env
+labs/work/

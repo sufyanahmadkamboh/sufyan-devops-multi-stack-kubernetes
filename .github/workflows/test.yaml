@@ -1,0 +1,135 @@
+# Proves that every command in the lessons still works, level by level:
+#   apps        each application builds and runs as a container (its own lesson)
+#   compose     the whole platform with Docker Compose
+#   kubernetes  the whole platform on a kind cluster, the troubleshooting labs, the challenges, the capstone
+#   publish     (main only) pushes the versioned images to GHCR
+name: test-lessons
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 5 * * 1"     # weekly: catch upstream changes (base images, packages)
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  KIND_VERSION: v0.33.0
+  KUBECTL_VERSION: v1.37.1
+
+jobs:
+  static:
+    name: Static checks (links, manifests, scripts)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+      - name: Relative links in every Markdown file
+        run: python3 tests/check_links.py
+      - name: Kubernetes manifests are valid (kubeconform)
+        run: |
+          curl -fsSL https://github.com/yannh/kubeconform/releases/download/v0.8.0/kubeconform-linux-amd64.tar.gz | tar xz kubeconform
+          find kubernetes -name '*.yaml' ! -path 'kubernetes/cluster/*' -print0 | xargs -0 ./kubeconform -strict -summary -ignore-missing-schemas
+      - name: Compose file is valid
+        run: |
+          cd compose && cp .env.example .env && docker compose config --quiet && echo "compose file ok"
+
+  apps:
+    name: App lesson (${{ matrix.app }})
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        app: [node-api, report-worker, python-api, go-status, java-api, laravel-admin, frontend]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+      - name: Run the lesson
+        run: python3 tests/mdrun.py --update --record tests/out "applications/${{ matrix.app }}/README.md"
+      - name: Keep the real outputs and recordings
+        if: always()
+        run: git diff > tests/out/outputs.patch || true
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7.0.1
+        if: always()
+        with:
+          name: run-app-${{ matrix.app }}
+          path: tests/out/
+          retention-days: 14
+
+  compose:
+    name: Compose lesson
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+      - name: Run the lesson
+        run: python3 tests/mdrun.py --update --record tests/out compose/README.md
+      - name: Keep the real outputs and recordings
+        if: always()
+        run: git diff > tests/out/outputs.patch || true
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7.0.1
+        if: always()
+        with:
+          name: run-compose
+          path: tests/out/
+          retention-days: 14
+
+  kubernetes:
+    name: Kubernetes lessons, troubleshooting, labs, capstone
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+      - name: Tools (kind, kubectl)
+        run: |
+          curl -fsSLo kind "https://kind.sigs.k8s.io/dl/${KIND_VERSION}/kind-linux-amd64"
+          curl -fsSLo kubectl "https://dl.k8s.io/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl"
+          chmod +x kind kubectl && sudo mv kind kubectl /usr/local/bin/
+          kind version && kubectl version --client && helm version
+      - name: Build the images (the same as the Compose lesson builds)
+        run: |
+          cd compose && cp .env.example .env && docker compose --profile jobs build
+      - name: Run the lessons
+        run: |
+          files="kubernetes/00-cluster.md kubernetes/01-foundation.md"
+          files="$files $(ls kubernetes/0[2-9]-*.md kubernetes/1[0-9]-*.md | sort)"
+          files="$files $(ls troubleshooting/[0-9]*.md 2>/dev/null | sort || true)"
+          files="$files $(ls labs/[0-9]*.md 2>/dev/null | sort || true)"
+          [ -f capstone/README.md ] && files="$files capstone/README.md"
+          files="$files kubernetes/cleanup.md"
+          python3 tests/mdrun.py --update --record tests/out --stop-on-failure $files
+      - name: Keep the real outputs and recordings
+        if: always()
+        run: git diff > tests/out/outputs.patch || true
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7.0.1
+        if: always()
+        with:
+          name: run-kubernetes
+          path: tests/out/
+          retention-days: 14
+
+  publish:
+    name: Publish images to GHCR
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: [apps, compose, kubernetes]
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+      - name: Build, tag and push every image with its version tag
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ACTOR: ${{ github.actor }}
+        run: |
+          echo "$TOKEN" | docker login ghcr.io -u "$ACTOR" --password-stdin
+          cd compose && cp .env.example .env && docker compose --profile jobs build
+          for svc in frontend node-api python-api go-status java-api laravel-fpm laravel-web report-worker; do
+            docker tag "$svc:1.0.0" "ghcr.io/${GITHUB_REPOSITORY_OWNER}/bookshop-$svc:1.0.0"
+            docker push "ghcr.io/${GITHUB_REPOSITORY_OWNER}/bookshop-$svc:1.0.0"
+          done
+          docker logout ghcr.io

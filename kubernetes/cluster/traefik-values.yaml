@@ -1,0 +1,15 @@
+# Traefik as the cluster's ingress controller (Helm chart traefik/traefik 41.6.1, Traefik v3.7).
+# It watches Ingress objects and routes HTTP traffic that arrives on NodePort 30080.
+service:
+  spec:
+    type: NodePort
+ports:
+  web:
+    nodePort: 30080
+  websecure:
+    expose:
+      default: false
+ingressClass:
+  enabled: true
+  isDefaultClass: true
+  name: traefik

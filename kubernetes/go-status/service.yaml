@@ -1,0 +1,14 @@
+# A stable name and address (go-status:8080) in front of all go-status Pods.
+apiVersion: v1
+kind: Service
+metadata:
+  name: go-status
+  namespace: bookshop
+  labels: { app: go-status, app.kubernetes.io/part-of: bookshop }
+spec:
+  type: ClusterIP
+  selector: { app: go-status }                # traffic goes to the Ready Pods with this label
+  ports:
+    - name: http
+      port: 8080
+      targetPort: http
