@@ -14,3 +14,7 @@ kubeconfig*
 # env files the lessons generate (example-only values, never committed)
 *-lab.env
 labs/work/
+
+# Social media packages (LinkedIn carousel/post, YouTube upload package): kept locally, not published
+linkedin/
+video/youtube/

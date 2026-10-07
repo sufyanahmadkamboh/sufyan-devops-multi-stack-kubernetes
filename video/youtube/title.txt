@@ -1,5 +1,0 @@
-Multi-Stack Apps on Kubernetes: React, Node.js, Python, Go, Java, Laravel · Dockerfile → Compose → Kubernetes
-
-Alternatives (A/B test with YouTube "Test & compare"):
-From Docker Compose to Kubernetes: Deploy 7 Tech Stacks (Hands-On, Real Output)
-Dockerize and Deploy Any Stack to Kubernetes: Probes, Ingress, Rollbacks, 12 Real Failures

@@ -1,5 +1,7 @@
 # Video course
 
+> The YouTube upload package (`youtube/`) is written by the build and kept locally; it is not published in this repository.
+
 A narrated walkthrough of this repository in **36 chapters**, built from code. **Every terminal in the video shows
 real output**: the commands were recorded while the lessons ran (`tests/mdrun.py --record`): each application on
 Docker, the platform on Docker Compose and on a kind cluster, the troubleshooting labs and the capstone. Code panels
